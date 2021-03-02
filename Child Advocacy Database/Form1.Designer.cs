@@ -34,7 +34,7 @@ namespace Child_Advocacy_Database
             this.childFirstNameLbl = new System.Windows.Forms.Label();
             this.childFirstNameTxt = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.childLastNameLbl = new System.Windows.Forms.Label();
             this.perpFirstTxt = new System.Windows.Forms.TextBox();
             this.perpFirstLbl = new System.Windows.Forms.Label();
             this.perpLastTxt = new System.Windows.Forms.TextBox();
@@ -97,12 +97,12 @@ namespace Child_Advocacy_Database
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 110);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Child Last Name";
+            this.childLastNameLbl.AutoSize = true;
+            this.childLastNameLbl.Location = new System.Drawing.Point(5, 110);
+            this.childLastNameLbl.Name = "childLastNameLbl";
+            this.childLastNameLbl.Size = new System.Drawing.Size(84, 13);
+            this.childLastNameLbl.TabIndex = 4;
+            this.childLastNameLbl.Text = "Child Last Name";
             // 
             // perpFirstTxt
             // 
@@ -185,9 +185,8 @@ namespace Child_Advocacy_Database
             // 
             // addPDF
             // 
-            this.addPDF.DefaultExt = "mp4";
-            this.addPDF.Filter = "Video files (*.mp4;*.wmv;*.mkv;*.avi;*.flv;*.mov)|*.mp4;*.wmv;*.mkv;*.avi;*.flv;*" +
-    ".mov|All files (*.*)|*.*";
+            this.addPDF.DefaultExt = "pdf";
+            this.addPDF.Filter = "PDF files (*pdf)|*.pdf|All files (*.*)|*.*";
             this.addPDF.Multiselect = true;
             this.addPDF.Title = "Add PDF File(s)";
             // 
@@ -252,6 +251,11 @@ namespace Child_Advocacy_Database
             // addVideo
             // 
             this.addVideo.FileName = "addVideo";
+            this.addVideo.DefaultExt = "mp4";
+            this.addVideo.Filter = "Video files (*.mp4;*.wmv;*.mkv;*.avi;*.flv;*.mov)|*.mp4;*.wmv;*.mkv;*.avi;*.flv;*" +
+    ".mov|All files (*.*)|*.*";
+            this.addVideo.Multiselect = true;
+            this.addVideo.Title = "Add Video File(s)";
             // 
             // textBox1
             // 
@@ -289,7 +293,7 @@ namespace Child_Advocacy_Database
             this.Controls.Add(this.perpFirstTxt);
             this.Controls.Add(this.perpFirstLbl);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.childLastNameLbl);
             this.Controls.Add(this.childFirstNameTxt);
             this.Controls.Add(this.childFirstNameLbl);
             this.Controls.Add(this.cNumLbl);
@@ -309,7 +313,7 @@ namespace Child_Advocacy_Database
         private System.Windows.Forms.Label childFirstNameLbl;
         private System.Windows.Forms.TextBox childFirstNameTxt;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label childLastNameLbl;
         private System.Windows.Forms.TextBox perpFirstTxt;
         private System.Windows.Forms.Label perpFirstLbl;
         private System.Windows.Forms.TextBox perpLastTxt;

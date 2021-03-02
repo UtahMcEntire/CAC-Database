@@ -46,7 +46,7 @@ namespace Child_Advocacy_Database
 
         private void mp4Btn_Click(object sender, EventArgs e)
         {
-            addPDF.ShowDialog();
+            addVideo.ShowDialog();
             childFirstNameTxt.Text = addVideo.FileName;
 
             foreach (string Video in addVideo.FileNames)
