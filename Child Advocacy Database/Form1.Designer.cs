@@ -95,7 +95,7 @@ namespace Child_Advocacy_Database
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 5;
             // 
-            // label2
+            // childLastNameLbl
             // 
             this.childLastNameLbl.AutoSize = true;
             this.childLastNameLbl.Location = new System.Drawing.Point(5, 110);
@@ -250,28 +250,28 @@ namespace Child_Advocacy_Database
             // 
             // addVideo
             // 
-            this.addVideo.FileName = "addVideo";
             this.addVideo.DefaultExt = "mp4";
+            this.addVideo.FileName = "addVideo";
             this.addVideo.Filter = "Video files (*.mp4;*.wmv;*.mkv;*.avi;*.flv;*.mov)|*.mp4;*.wmv;*.mkv;*.avi;*.flv;*" +
     ".mov|All files (*.*)|*.*";
             this.addVideo.Multiselect = true;
             this.addVideo.Title = "Add Video File(s)";
             // 
-            // textBox1
+            // childDobTxt
             // 
             this.childDobTxt.Location = new System.Drawing.Point(95, 133);
-            this.childDobTxt.Name = "textBox1";
+            this.childDobTxt.Name = "childDobTxt";
             this.childDobTxt.Size = new System.Drawing.Size(100, 20);
             this.childDobTxt.TabIndex = 19;
             // 
-            // label1
+            // childDobLbl
             // 
             this.childDobLbl.AutoSize = true;
             this.childDobLbl.Location = new System.Drawing.Point(5, 136);
             this.childDobLbl.Name = "childDobLbl";
-            this.childDobLbl.Size = new System.Drawing.Size(84, 13);
+            this.childDobLbl.Size = new System.Drawing.Size(63, 13);
             this.childDobLbl.TabIndex = 18;
-            this.childDobLbl.Text = "Child's DOB";
+            this.childDobLbl.Text = "Child\'s DOB";
             // 
             // Form1
             // 
