@@ -52,6 +52,8 @@ namespace Child_Advocacy_Database
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mp4Btn = new System.Windows.Forms.Button();
             this.addVideo = new System.Windows.Forms.OpenFileDialog();
+            this.childDobTxt = new System.Windows.Forms.TextBox();
+            this.childDobLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cNumTxt
@@ -183,8 +185,9 @@ namespace Child_Advocacy_Database
             // 
             // addPDF
             // 
-            this.addPDF.DefaultExt = "pdf";
-            this.addPDF.Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*";
+            this.addPDF.DefaultExt = "mp4";
+            this.addPDF.Filter = "Video files (*.mp4;*.wmv;*.mkv;*.avi;*.flv;*.mov)|*.mp4;*.wmv;*.mkv;*.avi;*.flv;*" +
+    ".mov|All files (*.*)|*.*";
             this.addPDF.Multiselect = true;
             this.addPDF.Title = "Add PDF File(s)";
             // 
@@ -246,18 +249,33 @@ namespace Child_Advocacy_Database
             this.mp4Btn.UseVisualStyleBackColor = true;
             this.mp4Btn.Click += new System.EventHandler(this.mp4Btn_Click);
             // 
-            // openFileDialog1
+            // addVideo
             // 
             this.addVideo.FileName = "addVideo";
-            this.addPDF.DefaultExt = "mp4";
-            this.addPDF.Filter = "Video files (*.mp4;*.wmv;*.mkv;*.avi;*.flv;*.mov)|*.mp4;*.wmv;*.mkv;*.avi;*.flv;*.mov|All files (*.*)|*.*";
-            this.addPDF.Multiselect = true;
+            // 
+            // textBox1
+            // 
+            this.childDobTxt.Location = new System.Drawing.Point(95, 133);
+            this.childDobTxt.Name = "textBox1";
+            this.childDobTxt.Size = new System.Drawing.Size(100, 20);
+            this.childDobTxt.TabIndex = 19;
+            // 
+            // label1
+            // 
+            this.childDobLbl.AutoSize = true;
+            this.childDobLbl.Location = new System.Drawing.Point(5, 136);
+            this.childDobLbl.Name = "childDobLbl";
+            this.childDobLbl.Size = new System.Drawing.Size(84, 13);
+            this.childDobLbl.TabIndex = 18;
+            this.childDobLbl.Text = "Child's DOB";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.childDobTxt);
+            this.Controls.Add(this.childDobLbl);
             this.Controls.Add(this.mp4ListView);
             this.Controls.Add(this.mp4Btn);
             this.Controls.Add(this.pdfFilesListView);
@@ -309,5 +327,7 @@ namespace Child_Advocacy_Database
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button mp4Btn;
         private System.Windows.Forms.OpenFileDialog addVideo;
+        private System.Windows.Forms.TextBox childDobTxt;
+        private System.Windows.Forms.Label childDobLbl;
     }
 }
