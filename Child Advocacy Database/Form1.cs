@@ -12,6 +12,8 @@ namespace Child_Advocacy_Database
 {
     public partial class Form1 : Form
     {
+        private string caseNum, childFirstName, childLastName, childDob, parentFirstName, parentLastName, parentDob;
+        private DateTime interviewDate;
         public Form1()
         {
             InitializeComponent();
@@ -53,6 +55,30 @@ namespace Child_Advocacy_Database
             {
                 pdfFilesListView.Items.Add(Video);
             }
+        }
+
+        private void addCaseBtn_Click(object sender, EventArgs e)
+        {
+            if (cNumTxt.TextLength == 0)
+            {
+                cNumTxt.BackColor = Color.Red;
+                return;
+            }
+            else
+                cNumTxt.BackColor = Color.White;
+            caseNum = cNumTxt.Text;
+            childFirstName = childFirstNameTxt.Text;
+            childLastName = childLastNameTxt.Text;
+            childDob = childDobTxt.Text;
+            parentFirstName = parentFirstNameTxt.Text;
+            parentLastName = parentLastNameTxt.Text;
+            parentDob = parentDobTxt.Text;
+            interviewDate = interviewDateTxt.Value;
+            // TODO: Perp first name. Does it need to be array for multiple perps?
+            // TODO: Perp last name. Does it need to be array for multiple perps?
+            // TODO: Pdf files
+            // TODO: Video files 
+
         }
     }
 }

@@ -29,11 +29,12 @@ namespace Child_Advocacy_Database
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.cNumTxt = new System.Windows.Forms.TextBox();
             this.cNumLbl = new System.Windows.Forms.Label();
             this.childFirstNameLbl = new System.Windows.Forms.Label();
             this.childFirstNameTxt = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.childLastNameTxt = new System.Windows.Forms.TextBox();
             this.childLastNameLbl = new System.Windows.Forms.Label();
             this.perpFirstTxt = new System.Windows.Forms.TextBox();
             this.perpFirstLbl = new System.Windows.Forms.Label();
@@ -54,11 +55,22 @@ namespace Child_Advocacy_Database
             this.addVideo = new System.Windows.Forms.OpenFileDialog();
             this.childDobTxt = new System.Windows.Forms.TextBox();
             this.childDobLbl = new System.Windows.Forms.Label();
+            this.parentDobLbl = new System.Windows.Forms.Label();
+            this.parentDobTxt = new System.Windows.Forms.TextBox();
+            this.interviewDateLbl = new System.Windows.Forms.Label();
+            this.interviewDateTxt = new System.Windows.Forms.DateTimePicker();
+            this.parentLastNameTxt = new System.Windows.Forms.TextBox();
+            this.parentLastNameLbl = new System.Windows.Forms.Label();
+            this.parentFirstNameTxt = new System.Windows.Forms.TextBox();
+            this.parentFirstNameLbl = new System.Windows.Forms.Label();
+            this.required1Lbl = new System.Windows.Forms.Label();
+            this.requiredDescLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cNumTxt
             // 
-            this.cNumTxt.Location = new System.Drawing.Point(95, 22);
+            this.cNumTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cNumTxt.Location = new System.Drawing.Point(98, 23);
             this.cNumTxt.Name = "cNumTxt";
             this.cNumTxt.Size = new System.Drawing.Size(100, 20);
             this.cNumTxt.TabIndex = 0;
@@ -66,7 +78,7 @@ namespace Child_Advocacy_Database
             // cNumLbl
             // 
             this.cNumLbl.AutoSize = true;
-            this.cNumLbl.Location = new System.Drawing.Point(18, 25);
+            this.cNumLbl.Location = new System.Drawing.Point(0, 26);
             this.cNumLbl.Name = "cNumLbl";
             this.cNumLbl.Size = new System.Drawing.Size(71, 13);
             this.cNumLbl.TabIndex = 1;
@@ -75,7 +87,7 @@ namespace Child_Advocacy_Database
             // childFirstNameLbl
             // 
             this.childFirstNameLbl.AutoSize = true;
-            this.childFirstNameLbl.Location = new System.Drawing.Point(5, 84);
+            this.childFirstNameLbl.Location = new System.Drawing.Point(0, 54);
             this.childFirstNameLbl.Name = "childFirstNameLbl";
             this.childFirstNameLbl.Size = new System.Drawing.Size(83, 13);
             this.childFirstNameLbl.TabIndex = 2;
@@ -83,22 +95,22 @@ namespace Child_Advocacy_Database
             // 
             // childFirstNameTxt
             // 
-            this.childFirstNameTxt.Location = new System.Drawing.Point(95, 81);
+            this.childFirstNameTxt.Location = new System.Drawing.Point(98, 54);
             this.childFirstNameTxt.Name = "childFirstNameTxt";
             this.childFirstNameTxt.Size = new System.Drawing.Size(100, 20);
             this.childFirstNameTxt.TabIndex = 3;
             // 
-            // textBox2
+            // childLastNameTxt
             // 
-            this.textBox2.Location = new System.Drawing.Point(95, 107);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 5;
+            this.childLastNameTxt.Location = new System.Drawing.Point(98, 84);
+            this.childLastNameTxt.Name = "childLastNameTxt";
+            this.childLastNameTxt.Size = new System.Drawing.Size(100, 20);
+            this.childLastNameTxt.TabIndex = 5;
             // 
             // childLastNameLbl
             // 
             this.childLastNameLbl.AutoSize = true;
-            this.childLastNameLbl.Location = new System.Drawing.Point(5, 110);
+            this.childLastNameLbl.Location = new System.Drawing.Point(-1, 87);
             this.childLastNameLbl.Name = "childLastNameLbl";
             this.childLastNameLbl.Size = new System.Drawing.Size(84, 13);
             this.childLastNameLbl.TabIndex = 4;
@@ -157,7 +169,7 @@ namespace Child_Advocacy_Database
             // 
             // addPerpBtn
             // 
-            this.addPerpBtn.Location = new System.Drawing.Point(493, 84);
+            this.addPerpBtn.Location = new System.Drawing.Point(529, 81);
             this.addPerpBtn.Name = "addPerpBtn";
             this.addPerpBtn.Size = new System.Drawing.Size(91, 23);
             this.addPerpBtn.TabIndex = 11;
@@ -176,12 +188,13 @@ namespace Child_Advocacy_Database
             // 
             // addCaseBtn
             // 
-            this.addCaseBtn.Location = new System.Drawing.Point(713, 415);
+            this.addCaseBtn.Location = new System.Drawing.Point(713, 422);
             this.addCaseBtn.Name = "addCaseBtn";
             this.addCaseBtn.Size = new System.Drawing.Size(75, 23);
             this.addCaseBtn.TabIndex = 13;
             this.addCaseBtn.Text = "Add Case";
             this.addCaseBtn.UseVisualStyleBackColor = true;
+            this.addCaseBtn.Click += new System.EventHandler(this.addCaseBtn_Click);
             // 
             // addPDF
             // 
@@ -192,7 +205,7 @@ namespace Child_Advocacy_Database
             // 
             // addPdfBtn
             // 
-            this.addPdfBtn.Location = new System.Drawing.Point(8, 312);
+            this.addPdfBtn.Location = new System.Drawing.Point(7, 301);
             this.addPdfBtn.Name = "addPdfBtn";
             this.addPdfBtn.Size = new System.Drawing.Size(75, 23);
             this.addPdfBtn.TabIndex = 14;
@@ -206,7 +219,7 @@ namespace Child_Advocacy_Database
             this.columnHeader2});
             this.pdfFilesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.pdfFilesListView.HideSelection = false;
-            this.pdfFilesListView.Location = new System.Drawing.Point(8, 341);
+            this.pdfFilesListView.Location = new System.Drawing.Point(7, 330);
             this.pdfFilesListView.Name = "pdfFilesListView";
             this.pdfFilesListView.Size = new System.Drawing.Size(282, 97);
             this.pdfFilesListView.TabIndex = 15;
@@ -225,7 +238,7 @@ namespace Child_Advocacy_Database
             this.columnHeader3});
             this.mp4ListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.mp4ListView.HideSelection = false;
-            this.mp4ListView.Location = new System.Drawing.Point(302, 341);
+            this.mp4ListView.Location = new System.Drawing.Point(301, 330);
             this.mp4ListView.Name = "mp4ListView";
             this.mp4ListView.Size = new System.Drawing.Size(282, 97);
             this.mp4ListView.TabIndex = 17;
@@ -240,7 +253,7 @@ namespace Child_Advocacy_Database
             // 
             // mp4Btn
             // 
-            this.mp4Btn.Location = new System.Drawing.Point(302, 312);
+            this.mp4Btn.Location = new System.Drawing.Point(301, 301);
             this.mp4Btn.Name = "mp4Btn";
             this.mp4Btn.Size = new System.Drawing.Size(75, 23);
             this.mp4Btn.TabIndex = 16;
@@ -259,7 +272,7 @@ namespace Child_Advocacy_Database
             // 
             // childDobTxt
             // 
-            this.childDobTxt.Location = new System.Drawing.Point(95, 133);
+            this.childDobTxt.Location = new System.Drawing.Point(98, 110);
             this.childDobTxt.Name = "childDobTxt";
             this.childDobTxt.Size = new System.Drawing.Size(100, 20);
             this.childDobTxt.TabIndex = 19;
@@ -267,17 +280,113 @@ namespace Child_Advocacy_Database
             // childDobLbl
             // 
             this.childDobLbl.AutoSize = true;
-            this.childDobLbl.Location = new System.Drawing.Point(5, 136);
+            this.childDobLbl.Location = new System.Drawing.Point(0, 116);
             this.childDobLbl.Name = "childDobLbl";
             this.childDobLbl.Size = new System.Drawing.Size(63, 13);
             this.childDobLbl.TabIndex = 18;
             this.childDobLbl.Text = "Child\'s DOB";
+            // 
+            // parentDobLbl
+            // 
+            this.parentDobLbl.AutoSize = true;
+            this.parentDobLbl.Location = new System.Drawing.Point(0, 201);
+            this.parentDobLbl.Name = "parentDobLbl";
+            this.parentDobLbl.Size = new System.Drawing.Size(71, 13);
+            this.parentDobLbl.TabIndex = 20;
+            this.parentDobLbl.Text = "Parent\'s DOB";
+            // 
+            // parentDobTxt
+            // 
+            this.parentDobTxt.Location = new System.Drawing.Point(98, 198);
+            this.parentDobTxt.Name = "parentDobTxt";
+            this.parentDobTxt.Size = new System.Drawing.Size(100, 20);
+            this.parentDobTxt.TabIndex = 21;
+            // 
+            // interviewDateLbl
+            // 
+            this.interviewDateLbl.AutoSize = true;
+            this.interviewDateLbl.Location = new System.Drawing.Point(0, 234);
+            this.interviewDateLbl.Name = "interviewDateLbl";
+            this.interviewDateLbl.Size = new System.Drawing.Size(76, 13);
+            this.interviewDateLbl.TabIndex = 23;
+            this.interviewDateLbl.Text = "Interview Date";
+            // 
+            // interviewDateTxt
+            // 
+            this.interviewDateTxt.Location = new System.Drawing.Point(98, 228);
+            this.interviewDateTxt.Name = "interviewDateTxt";
+            this.interviewDateTxt.Size = new System.Drawing.Size(201, 20);
+            this.interviewDateTxt.TabIndex = 24;
+            // 
+            // parentLastNameTxt
+            // 
+            this.parentLastNameTxt.Location = new System.Drawing.Point(98, 169);
+            this.parentLastNameTxt.Name = "parentLastNameTxt";
+            this.parentLastNameTxt.Size = new System.Drawing.Size(100, 20);
+            this.parentLastNameTxt.TabIndex = 26;
+            // 
+            // parentLastNameLbl
+            // 
+            this.parentLastNameLbl.AutoSize = true;
+            this.parentLastNameLbl.Location = new System.Drawing.Point(0, 172);
+            this.parentLastNameLbl.Name = "parentLastNameLbl";
+            this.parentLastNameLbl.Size = new System.Drawing.Size(92, 13);
+            this.parentLastNameLbl.TabIndex = 25;
+            this.parentLastNameLbl.Text = "Parent Last Name";
+            // 
+            // parentFirstNameTxt
+            // 
+            this.parentFirstNameTxt.Location = new System.Drawing.Point(98, 139);
+            this.parentFirstNameTxt.Name = "parentFirstNameTxt";
+            this.parentFirstNameTxt.Size = new System.Drawing.Size(100, 20);
+            this.parentFirstNameTxt.TabIndex = 28;
+            // 
+            // parentFirstNameLbl
+            // 
+            this.parentFirstNameLbl.AutoSize = true;
+            this.parentFirstNameLbl.Location = new System.Drawing.Point(1, 142);
+            this.parentFirstNameLbl.Name = "parentFirstNameLbl";
+            this.parentFirstNameLbl.Size = new System.Drawing.Size(91, 13);
+            this.parentFirstNameLbl.TabIndex = 27;
+            this.parentFirstNameLbl.Text = "Parent First Name";
+            // 
+            // required1Lbl
+            // 
+            this.required1Lbl.AutoSize = true;
+            this.required1Lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.required1Lbl.ForeColor = System.Drawing.Color.Red;
+            this.required1Lbl.Location = new System.Drawing.Point(68, 26);
+            this.required1Lbl.Name = "required1Lbl";
+            this.required1Lbl.Size = new System.Drawing.Size(15, 20);
+            this.required1Lbl.TabIndex = 29;
+            this.required1Lbl.Text = "*";
+            // 
+            // requiredDescLbl
+            // 
+            this.requiredDescLbl.AutoSize = true;
+            this.requiredDescLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.requiredDescLbl.ForeColor = System.Drawing.Color.Red;
+            this.requiredDescLbl.Location = new System.Drawing.Point(3, 430);
+            this.requiredDescLbl.Name = "requiredDescLbl";
+            this.requiredDescLbl.Size = new System.Drawing.Size(103, 15);
+            this.requiredDescLbl.TabIndex = 30;
+            this.requiredDescLbl.Text = "* - Required Field";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.requiredDescLbl);
+            this.Controls.Add(this.required1Lbl);
+            this.Controls.Add(this.parentFirstNameTxt);
+            this.Controls.Add(this.parentFirstNameLbl);
+            this.Controls.Add(this.parentLastNameTxt);
+            this.Controls.Add(this.parentLastNameLbl);
+            this.Controls.Add(this.interviewDateTxt);
+            this.Controls.Add(this.interviewDateLbl);
+            this.Controls.Add(this.parentDobTxt);
+            this.Controls.Add(this.parentDobLbl);
             this.Controls.Add(this.childDobTxt);
             this.Controls.Add(this.childDobLbl);
             this.Controls.Add(this.mp4ListView);
@@ -292,12 +401,13 @@ namespace Child_Advocacy_Database
             this.Controls.Add(this.perpLastLbl);
             this.Controls.Add(this.perpFirstTxt);
             this.Controls.Add(this.perpFirstLbl);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.childLastNameTxt);
             this.Controls.Add(this.childLastNameLbl);
             this.Controls.Add(this.childFirstNameTxt);
             this.Controls.Add(this.childFirstNameLbl);
             this.Controls.Add(this.cNumLbl);
             this.Controls.Add(this.cNumTxt);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Add New Case";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -312,7 +422,7 @@ namespace Child_Advocacy_Database
         private System.Windows.Forms.Label cNumLbl;
         private System.Windows.Forms.Label childFirstNameLbl;
         private System.Windows.Forms.TextBox childFirstNameTxt;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox childLastNameTxt;
         private System.Windows.Forms.Label childLastNameLbl;
         private System.Windows.Forms.TextBox perpFirstTxt;
         private System.Windows.Forms.Label perpFirstLbl;
@@ -333,5 +443,15 @@ namespace Child_Advocacy_Database
         private System.Windows.Forms.OpenFileDialog addVideo;
         private System.Windows.Forms.TextBox childDobTxt;
         private System.Windows.Forms.Label childDobLbl;
+        private System.Windows.Forms.Label parentDobLbl;
+        private System.Windows.Forms.TextBox parentDobTxt;
+        private System.Windows.Forms.Label interviewDateLbl;
+        private System.Windows.Forms.DateTimePicker interviewDateTxt;
+        private System.Windows.Forms.TextBox parentLastNameTxt;
+        private System.Windows.Forms.Label parentLastNameLbl;
+        private System.Windows.Forms.TextBox parentFirstNameTxt;
+        private System.Windows.Forms.Label parentFirstNameLbl;
+        private System.Windows.Forms.Label required1Lbl;
+        private System.Windows.Forms.Label requiredDescLbl;
     }
 }
