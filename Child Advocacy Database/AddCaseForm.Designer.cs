@@ -313,10 +313,16 @@ namespace Child_Advocacy_Database
             // 
             // interviewDateTxt
             // 
+            this.interviewDateTxt.CalendarForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.interviewDateTxt.CalendarTrailingForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.interviewDateTxt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.interviewDateTxt.CustomFormat = "MM/dd/yyyy";
+            this.interviewDateTxt.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.interviewDateTxt.Location = new System.Drawing.Point(98, 228);
             this.interviewDateTxt.Name = "interviewDateTxt";
-            this.interviewDateTxt.Size = new System.Drawing.Size(201, 20);
+            this.interviewDateTxt.Size = new System.Drawing.Size(100, 20);
             this.interviewDateTxt.TabIndex = 24;
+            this.interviewDateTxt.Value = new System.DateTime(2021, 3, 4, 11, 54, 0, 0);
             // 
             // parentLastNameTxt
             // 
