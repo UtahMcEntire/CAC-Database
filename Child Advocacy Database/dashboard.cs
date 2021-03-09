@@ -59,7 +59,7 @@ namespace Child_Advocacy_Database
                 if (frm.Name == "Query")
                 {
                     Form1_Open = true;
-                    MessageBox.Show("The search window is open. Please save close that window before exiting the program to avoid possible data loss.", "Case File Search Open", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                    MessageBox.Show("The search window is open. Please close that window before exiting the program to avoid possible data loss.", "Case File Search Open", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 }
 
             }
