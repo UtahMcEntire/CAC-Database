@@ -32,7 +32,7 @@ namespace Child_Advocacy_Database
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.AddButton = new System.Windows.Forms.Button();
-            this.SearchButton = new System.Windows.Forms.Button();
+            this.QueryButton = new System.Windows.Forms.Button();
             this.searchTip = new System.Windows.Forms.ToolTip(this.components);
             this.QuitButton = new System.Windows.Forms.Button();
             this.PleaseTextBox = new System.Windows.Forms.TextBox();
@@ -54,15 +54,15 @@ namespace Child_Advocacy_Database
             // 
             // SearchButton
             // 
-            this.SearchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.SearchButton.Location = new System.Drawing.Point(295, 154);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(183, 81);
-            this.SearchButton.TabIndex = 2;
-            this.SearchButton.Text = "Search Database";
-            this.searchTip.SetToolTip(this.SearchButton, "Search for a case file to view, edit, or delete");
-            this.SearchButton.UseVisualStyleBackColor = true;
-            this.SearchButton.Click += new System.EventHandler(this.QueryButton_Click);
+            this.QueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.QueryButton.Location = new System.Drawing.Point(295, 154);
+            this.QueryButton.Name = "SearchButton";
+            this.QueryButton.Size = new System.Drawing.Size(183, 81);
+            this.QueryButton.TabIndex = 2;
+            this.QueryButton.Text = "Search Database";
+            this.searchTip.SetToolTip(this.QueryButton, "Search for a case file to view, edit, or delete");
+            this.QueryButton.UseVisualStyleBackColor = true;
+            this.QueryButton.Click += new System.EventHandler(this.QueryButton_Click);
             // 
             // searchTip
             // 
@@ -112,7 +112,7 @@ namespace Child_Advocacy_Database
             this.Controls.Add(this.WelcomeTextBox);
             this.Controls.Add(this.PleaseTextBox);
             this.Controls.Add(this.QuitButton);
-            this.Controls.Add(this.SearchButton);
+            this.Controls.Add(this.QueryButton);
             this.Controls.Add(this.AddButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -126,7 +126,7 @@ namespace Child_Advocacy_Database
         #endregion
 
         private System.Windows.Forms.Button AddButton;
-        private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.Button QueryButton;
         private System.Windows.Forms.ToolTip searchTip;
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.TextBox PleaseTextBox;

@@ -33,14 +33,20 @@ namespace Child_Advocacy_Database
         private void QueryButton_Click(object sender, EventArgs e)
         {
             var QueryForm = new Query(); // Bring up search form onclick
-            QueryForm.FormClosed += Form1_FormClosing;
-            SearchButton.Enabled = false;
+            QueryForm.FormClosed += Query_FormClosing;
+            QueryButton.Enabled = false;
             QueryForm.Show();
         }
 
         private void Form1_FormClosing(object sender, EventArgs e)
         {
             AddButton.Enabled = true; // re-enables add button on dashboard
+            this.Show();
+        }
+
+        private void Query_FormClosing(object sender, EventArgs e)
+        {
+            QueryButton.Enabled = true; // re-enables query button on dashboard
             this.Show();
         }
 
