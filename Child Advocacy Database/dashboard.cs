@@ -19,7 +19,7 @@ namespace Child_Advocacy_Database
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var AddForm = new Form1(); // Bring up add form onclick
+            var AddForm = new AddCaseForm(); // Bring up add form onclick
             AddForm.FormClosed += Form1_FormClosing;
             AddButton.Enabled = false;
             AddForm.Show();
