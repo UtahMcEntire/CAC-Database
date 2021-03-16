@@ -19,10 +19,10 @@ namespace Child_Advocacy_Database
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var AddForm = new AddCaseForm(); // Bring up add form onclick
-            AddForm.FormClosed += Form1_FormClosing;
+            var AddCaseForm = new AddCaseForm(); // Bring up add form onclick
+            AddCaseForm.FormClosed += AddCaseForm_FormClosing;
             AddButton.Enabled = false;
-            AddForm.Show();
+            AddCaseForm.Show();
         }
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)
@@ -38,7 +38,7 @@ namespace Child_Advocacy_Database
             QueryForm.Show();
         }
 
-        private void Form1_FormClosing(object sender, EventArgs e)
+        private void AddCaseForm_FormClosing(object sender, EventArgs e)
         {
             AddButton.Enabled = true; // re-enables add button on dashboard
             this.Show();
@@ -52,24 +52,24 @@ namespace Child_Advocacy_Database
 
         private void QuitButton_Click(object sender, EventArgs e)
         {
-            bool Form1_Open = false;
+            bool AddCaseForm_Open = false;
             FormCollection fc = Application.OpenForms;
             foreach (Form frm in fc)
             {
-                //iterate through forms to see if "form1" form or "Query" form is open
-                if (frm.Name == "Form1")
+                //iterate through forms to see if "AddCaseForm" form or "Query" form is open
+                if (frm.Name == "AddCaseForm")
                 {
-                    Form1_Open = true;
+                    AddCaseForm_Open = true;
                     MessageBox.Show("The case file editor is open. Please save any unsaved data and close that window before exiting the program to avoid possible data loss.", "Case File Editor Open", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 }
                 if (frm.Name == "Query")
                 {
-                    Form1_Open = true;
+                    AddCaseForm_Open = true;
                     MessageBox.Show("The search window is open. Please close that window before exiting the program to avoid possible data loss.", "Case File Search Open", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 }
 
             }
-            if (!Form1_Open)
+            if (!AddCaseForm_Open)
             {
                 System.Windows.Forms.Application.Exit();
             }
