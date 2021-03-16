@@ -41,6 +41,7 @@ public class DatabaseController
 				command.Parameters.AddWithValue("guard2Last", Guardian2Last == null ? (object)DBNull.Value : Guardian2Last);
 				command.Parameters.AddWithValue("perps", DBNull.Value);
 				command.Parameters.AddWithValue("mappedLoc", DBNull.Value);
+				Console.WriteLine("work");
 
 				try
 				{
