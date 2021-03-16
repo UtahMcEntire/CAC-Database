@@ -80,7 +80,7 @@ namespace Child_Advocacy_Database
             this.searchBtn.Location = new System.Drawing.Point(598, 415);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(75, 23);
-            this.searchBtn.TabIndex = 3;
+            this.searchBtn.TabIndex = 11;
             this.searchBtn.Text = "Search";
             this.searchBtn.UseVisualStyleBackColor = true;
             // 
@@ -89,14 +89,14 @@ namespace Child_Advocacy_Database
             this.childLastNameTxt.Location = new System.Drawing.Point(34, 96);
             this.childLastNameTxt.Name = "childLastNameTxt";
             this.childLastNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.childLastNameTxt.TabIndex = 4;
+            this.childLastNameTxt.TabIndex = 2;
             // 
             // parentFirstNameTxt
             // 
             this.parentFirstNameTxt.Location = new System.Drawing.Point(34, 135);
             this.parentFirstNameTxt.Name = "parentFirstNameTxt";
             this.parentFirstNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.parentFirstNameTxt.TabIndex = 5;
+            this.parentFirstNameTxt.TabIndex = 3;
             // 
             // forensicTxt
             // 
@@ -110,21 +110,21 @@ namespace Child_Advocacy_Database
             this.childDobTxt.Location = new System.Drawing.Point(34, 213);
             this.childDobTxt.Name = "childDobTxt";
             this.childDobTxt.Size = new System.Drawing.Size(161, 20);
-            this.childDobTxt.TabIndex = 7;
+            this.childDobTxt.TabIndex = 5;
             // 
             // parentLastNameTxt
             // 
             this.parentLastNameTxt.Location = new System.Drawing.Point(34, 174);
             this.parentLastNameTxt.Name = "parentLastNameTxt";
             this.parentLastNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.parentLastNameTxt.TabIndex = 8;
+            this.parentLastNameTxt.TabIndex = 4;
             // 
             // childFirstNameTxt
             // 
             this.childFirstNameTxt.Location = new System.Drawing.Point(34, 57);
             this.childFirstNameTxt.Name = "childFirstNameTxt";
             this.childFirstNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.childFirstNameTxt.TabIndex = 9;
+            this.childFirstNameTxt.TabIndex = 1;
             // 
             // parentFirstNameLbl
             // 
@@ -211,37 +211,38 @@ namespace Child_Advocacy_Database
             this.ncaTxt.Location = new System.Drawing.Point(34, 291);
             this.ncaTxt.Name = "ncaTxt";
             this.ncaTxt.Size = new System.Drawing.Size(161, 20);
-            this.ncaTxt.TabIndex = 19;
+            this.ncaTxt.TabIndex = 7;
             // 
             // perpNicknameTxt
             // 
             this.perpNicknameTxt.Location = new System.Drawing.Point(34, 328);
             this.perpNicknameTxt.Name = "perpNicknameTxt";
             this.perpNicknameTxt.Size = new System.Drawing.Size(161, 20);
-            this.perpNicknameTxt.TabIndex = 20;
+            this.perpNicknameTxt.TabIndex = 8;
             // 
             // perpFirstNameTxt
             // 
             this.perpFirstNameTxt.Location = new System.Drawing.Point(34, 368);
             this.perpFirstNameTxt.Name = "perpFirstNameTxt";
             this.perpFirstNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.perpFirstNameTxt.TabIndex = 21;
+            this.perpFirstNameTxt.TabIndex = 9;
             // 
             // perpLastNameTxt
             // 
             this.perpLastNameTxt.Location = new System.Drawing.Point(34, 408);
             this.perpLastNameTxt.Name = "perpLastNameTxt";
             this.perpLastNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.perpLastNameTxt.TabIndex = 22;
+            this.perpLastNameTxt.TabIndex = 10;
             // 
             // addRemoveBtn
             // 
             this.addRemoveBtn.Location = new System.Drawing.Point(679, 415);
             this.addRemoveBtn.Name = "addRemoveBtn";
             this.addRemoveBtn.Size = new System.Drawing.Size(109, 23);
-            this.addRemoveBtn.TabIndex = 23;
+            this.addRemoveBtn.TabIndex = 12;
             this.addRemoveBtn.Text = "Go to Add/Remove";
             this.addRemoveBtn.UseVisualStyleBackColor = true;
+            this.addRemoveBtn.Click += new System.EventHandler(this.addRemoveBtn_Click);
             // 
             // searchResultLbl
             // 

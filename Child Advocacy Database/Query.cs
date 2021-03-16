@@ -17,5 +17,11 @@ namespace Child_Advocacy_Database
             InitializeComponent();
         }
 
+        private void addRemoveBtn_Click(object sender, EventArgs e)
+        {
+            var AddForm = new AddCaseForm(); // Bring up add form onclick
+            AddForm.Show();
+            Close();
+        }
     }
 }
