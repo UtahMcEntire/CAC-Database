@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+
 
 namespace Child_Advocacy_Database
 {
@@ -18,5 +21,10 @@ namespace Child_Advocacy_Database
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Dashboard());
         }
+
+        //string queryString = "";
+        //SqlCommand command = new SqlCommand(queryString, connection);
+
     }
 }
+
