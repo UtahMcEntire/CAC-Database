@@ -33,5 +33,16 @@ namespace Child_Advocacy_Database.Properties {
                 return ((string)(this["Database1ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\ChildDatabase" +
+            ".mdf;Integrated Security=True;Connect Timeout=30")]
+        public string ChildDatabaseConnectionString {
+            get {
+                return ((string)(this["ChildDatabaseConnectionString"]));
+            }
+        }
     }
 }
