@@ -16,11 +16,15 @@ namespace Child_Advocacy_Database
         {
             InitializeComponent();
         }
-        private void addRemoveBtn_Click(object sender, EventArgs e)
+        private void dashboardBtn_Click(object sender, EventArgs e)
         {
-            var AddForm = new AddCaseForm(); 
-            AddForm.Show();
+            Application.OpenForms["dashboard"].BringToFront();
             Close();
+        }
+
+        private void Query_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -34,7 +34,6 @@ namespace Child_Advocacy_Database
             this.searchBtn = new System.Windows.Forms.Button();
             this.childLastNameTxt = new System.Windows.Forms.TextBox();
             this.parentFirstNameTxt = new System.Windows.Forms.TextBox();
-            this.forensicTxt = new System.Windows.Forms.TextBox();
             this.childDobTxt = new System.Windows.Forms.TextBox();
             this.parentLastNameTxt = new System.Windows.Forms.TextBox();
             this.childFirstNameTxt = new System.Windows.Forms.TextBox();
@@ -51,15 +50,24 @@ namespace Child_Advocacy_Database
             this.perpNicknameTxt = new System.Windows.Forms.TextBox();
             this.perpFirstNameTxt = new System.Windows.Forms.TextBox();
             this.perpLastNameTxt = new System.Windows.Forms.TextBox();
-            this.addRemoveBtn = new System.Windows.Forms.Button();
+            this.dashboardBtn = new System.Windows.Forms.Button();
             this.searchResultLbl = new System.Windows.Forms.Label();
             this.searchLbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.g2DobTxt = new System.Windows.Forms.TextBox();
+            this.g2DobLbl = new System.Windows.Forms.Label();
+            this.g2LastNameLbl = new System.Windows.Forms.Label();
+            this.g2FirstNameLbl = new System.Windows.Forms.Label();
+            this.g2LastNameTxt = new System.Windows.Forms.TextBox();
+            this.g2FirstNameTxt = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // childFirstNameLbl
             // 
             this.childFirstNameLbl.AutoSize = true;
-            this.childFirstNameLbl.Location = new System.Drawing.Point(31, 41);
+            this.childFirstNameLbl.Location = new System.Drawing.Point(28, 73);
             this.childFirstNameLbl.Name = "childFirstNameLbl";
             this.childFirstNameLbl.Size = new System.Drawing.Size(86, 13);
             this.childFirstNameLbl.TabIndex = 1;
@@ -68,7 +76,7 @@ namespace Child_Advocacy_Database
             // childLastNameLbl
             // 
             this.childLastNameLbl.AutoSize = true;
-            this.childLastNameLbl.Location = new System.Drawing.Point(31, 80);
+            this.childLastNameLbl.Location = new System.Drawing.Point(28, 112);
             this.childLastNameLbl.Name = "childLastNameLbl";
             this.childLastNameLbl.Size = new System.Drawing.Size(87, 13);
             this.childLastNameLbl.TabIndex = 2;
@@ -76,51 +84,44 @@ namespace Child_Advocacy_Database
             // 
             // searchBtn
             // 
-            this.searchBtn.Location = new System.Drawing.Point(598, 415);
+            this.searchBtn.Location = new System.Drawing.Point(531, 440);
             this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(75, 23);
+            this.searchBtn.Size = new System.Drawing.Size(109, 40);
             this.searchBtn.TabIndex = 11;
             this.searchBtn.Text = "Search";
             this.searchBtn.UseVisualStyleBackColor = true;
             // 
             // childLastNameTxt
             // 
-            this.childLastNameTxt.Location = new System.Drawing.Point(34, 96);
+            this.childLastNameTxt.Location = new System.Drawing.Point(31, 128);
             this.childLastNameTxt.Name = "childLastNameTxt";
             this.childLastNameTxt.Size = new System.Drawing.Size(161, 20);
             this.childLastNameTxt.TabIndex = 2;
             // 
             // parentFirstNameTxt
             // 
-            this.parentFirstNameTxt.Location = new System.Drawing.Point(34, 135);
+            this.parentFirstNameTxt.Location = new System.Drawing.Point(31, 206);
             this.parentFirstNameTxt.Name = "parentFirstNameTxt";
             this.parentFirstNameTxt.Size = new System.Drawing.Size(161, 20);
             this.parentFirstNameTxt.TabIndex = 3;
             // 
-            // forensicTxt
-            // 
-            this.forensicTxt.Location = new System.Drawing.Point(34, 252);
-            this.forensicTxt.Name = "forensicTxt";
-            this.forensicTxt.Size = new System.Drawing.Size(161, 20);
-            this.forensicTxt.TabIndex = 6;
-            // 
             // childDobTxt
             // 
-            this.childDobTxt.Location = new System.Drawing.Point(34, 213);
+            this.childDobTxt.Location = new System.Drawing.Point(31, 167);
             this.childDobTxt.Name = "childDobTxt";
             this.childDobTxt.Size = new System.Drawing.Size(161, 20);
             this.childDobTxt.TabIndex = 5;
             // 
             // parentLastNameTxt
             // 
-            this.parentLastNameTxt.Location = new System.Drawing.Point(34, 174);
+            this.parentLastNameTxt.Location = new System.Drawing.Point(31, 245);
             this.parentLastNameTxt.Name = "parentLastNameTxt";
             this.parentLastNameTxt.Size = new System.Drawing.Size(161, 20);
             this.parentLastNameTxt.TabIndex = 4;
             // 
             // childFirstNameTxt
             // 
-            this.childFirstNameTxt.Location = new System.Drawing.Point(34, 57);
+            this.childFirstNameTxt.Location = new System.Drawing.Point(31, 89);
             this.childFirstNameTxt.Name = "childFirstNameTxt";
             this.childFirstNameTxt.Size = new System.Drawing.Size(161, 20);
             this.childFirstNameTxt.TabIndex = 1;
@@ -128,34 +129,34 @@ namespace Child_Advocacy_Database
             // parentFirstNameLbl
             // 
             this.parentFirstNameLbl.AutoSize = true;
-            this.parentFirstNameLbl.Location = new System.Drawing.Point(31, 119);
+            this.parentFirstNameLbl.Location = new System.Drawing.Point(28, 190);
             this.parentFirstNameLbl.Name = "parentFirstNameLbl";
-            this.parentFirstNameLbl.Size = new System.Drawing.Size(94, 13);
+            this.parentFirstNameLbl.Size = new System.Drawing.Size(112, 13);
             this.parentFirstNameLbl.TabIndex = 10;
-            this.parentFirstNameLbl.Text = "Parent First Name:";
+            this.parentFirstNameLbl.Text = "Guardian1 First Name:";
             // 
             // parentLastNameLbl
             // 
             this.parentLastNameLbl.AutoSize = true;
-            this.parentLastNameLbl.Location = new System.Drawing.Point(31, 158);
+            this.parentLastNameLbl.Location = new System.Drawing.Point(28, 229);
             this.parentLastNameLbl.Name = "parentLastNameLbl";
-            this.parentLastNameLbl.Size = new System.Drawing.Size(95, 13);
+            this.parentLastNameLbl.Size = new System.Drawing.Size(113, 13);
             this.parentLastNameLbl.TabIndex = 11;
-            this.parentLastNameLbl.Text = "Parent Last Name:";
+            this.parentLastNameLbl.Text = "Guardian1 Last Name:";
             // 
             // childDobLbl
             // 
             this.childDobLbl.AutoSize = true;
-            this.childDobLbl.Location = new System.Drawing.Point(31, 197);
+            this.childDobLbl.Location = new System.Drawing.Point(28, 151);
             this.childDobLbl.Name = "childDobLbl";
-            this.childDobLbl.Size = new System.Drawing.Size(95, 13);
+            this.childDobLbl.Size = new System.Drawing.Size(59, 13);
             this.childDobLbl.TabIndex = 12;
-            this.childDobLbl.Text = "Child Date of Birth:";
+            this.childDobLbl.Text = "Child DOB:";
             // 
             // forensicLbl
             // 
             this.forensicLbl.AutoSize = true;
-            this.forensicLbl.Location = new System.Drawing.Point(31, 236);
+            this.forensicLbl.Location = new System.Drawing.Point(28, 424);
             this.forensicLbl.Name = "forensicLbl";
             this.forensicLbl.Size = new System.Drawing.Size(122, 13);
             this.forensicLbl.TabIndex = 13;
@@ -164,16 +165,16 @@ namespace Child_Advocacy_Database
             // ncaLbl
             // 
             this.ncaLbl.AutoSize = true;
-            this.ncaLbl.Location = new System.Drawing.Point(34, 275);
+            this.ncaLbl.Location = new System.Drawing.Point(28, 34);
             this.ncaLbl.Name = "ncaLbl";
-            this.ncaLbl.Size = new System.Drawing.Size(39, 13);
+            this.ncaLbl.Size = new System.Drawing.Size(72, 13);
             this.ncaLbl.TabIndex = 14;
-            this.ncaLbl.Text = "NCA#:";
+            this.ncaLbl.Text = "NCA Number:";
             // 
             // perpNicknameLbl
             // 
             this.perpNicknameLbl.AutoSize = true;
-            this.perpNicknameLbl.Location = new System.Drawing.Point(31, 311);
+            this.perpNicknameLbl.Location = new System.Drawing.Point(222, 112);
             this.perpNicknameLbl.Name = "perpNicknameLbl";
             this.perpNicknameLbl.Size = new System.Drawing.Size(113, 13);
             this.perpNicknameLbl.TabIndex = 15;
@@ -182,7 +183,7 @@ namespace Child_Advocacy_Database
             // perpFirstNameLbl
             // 
             this.perpFirstNameLbl.AutoSize = true;
-            this.perpFirstNameLbl.Location = new System.Drawing.Point(31, 351);
+            this.perpFirstNameLbl.Location = new System.Drawing.Point(223, 34);
             this.perpFirstNameLbl.Name = "perpFirstNameLbl";
             this.perpFirstNameLbl.Size = new System.Drawing.Size(115, 13);
             this.perpFirstNameLbl.TabIndex = 16;
@@ -191,7 +192,7 @@ namespace Child_Advocacy_Database
             // searchResultListBox
             // 
             this.searchResultListBox.FormattingEnabled = true;
-            this.searchResultListBox.Location = new System.Drawing.Point(398, 41);
+            this.searchResultListBox.Location = new System.Drawing.Point(471, 34);
             this.searchResultListBox.Name = "searchResultListBox";
             this.searchResultListBox.Size = new System.Drawing.Size(300, 264);
             this.searchResultListBox.TabIndex = 17;
@@ -199,7 +200,7 @@ namespace Child_Advocacy_Database
             // perpLastNameLbl
             // 
             this.perpLastNameLbl.AutoSize = true;
-            this.perpLastNameLbl.Location = new System.Drawing.Point(31, 391);
+            this.perpLastNameLbl.Location = new System.Drawing.Point(222, 73);
             this.perpLastNameLbl.Name = "perpLastNameLbl";
             this.perpLastNameLbl.Size = new System.Drawing.Size(116, 13);
             this.perpLastNameLbl.TabIndex = 18;
@@ -207,46 +208,46 @@ namespace Child_Advocacy_Database
             // 
             // ncaTxt
             // 
-            this.ncaTxt.Location = new System.Drawing.Point(34, 291);
+            this.ncaTxt.Location = new System.Drawing.Point(31, 50);
             this.ncaTxt.Name = "ncaTxt";
             this.ncaTxt.Size = new System.Drawing.Size(161, 20);
             this.ncaTxt.TabIndex = 7;
             // 
             // perpNicknameTxt
             // 
-            this.perpNicknameTxt.Location = new System.Drawing.Point(34, 328);
+            this.perpNicknameTxt.Location = new System.Drawing.Point(225, 128);
             this.perpNicknameTxt.Name = "perpNicknameTxt";
             this.perpNicknameTxt.Size = new System.Drawing.Size(161, 20);
             this.perpNicknameTxt.TabIndex = 8;
             // 
             // perpFirstNameTxt
             // 
-            this.perpFirstNameTxt.Location = new System.Drawing.Point(34, 368);
+            this.perpFirstNameTxt.Location = new System.Drawing.Point(225, 50);
             this.perpFirstNameTxt.Name = "perpFirstNameTxt";
             this.perpFirstNameTxt.Size = new System.Drawing.Size(161, 20);
             this.perpFirstNameTxt.TabIndex = 9;
             // 
             // perpLastNameTxt
             // 
-            this.perpLastNameTxt.Location = new System.Drawing.Point(34, 408);
+            this.perpLastNameTxt.Location = new System.Drawing.Point(225, 89);
             this.perpLastNameTxt.Name = "perpLastNameTxt";
             this.perpLastNameTxt.Size = new System.Drawing.Size(161, 20);
             this.perpLastNameTxt.TabIndex = 10;
             // 
-            // addRemoveBtn
+            // dashboardBtn
             // 
-            this.addRemoveBtn.Location = new System.Drawing.Point(679, 415);
-            this.addRemoveBtn.Name = "addRemoveBtn";
-            this.addRemoveBtn.Size = new System.Drawing.Size(109, 23);
-            this.addRemoveBtn.TabIndex = 12;
-            this.addRemoveBtn.Text = "Go to Add/Remove";
-            this.addRemoveBtn.UseVisualStyleBackColor = true;
-            this.addRemoveBtn.Click += new System.EventHandler(this.addRemoveBtn_Click);
+            this.dashboardBtn.Location = new System.Drawing.Point(662, 440);
+            this.dashboardBtn.Name = "dashboardBtn";
+            this.dashboardBtn.Size = new System.Drawing.Size(109, 40);
+            this.dashboardBtn.TabIndex = 12;
+            this.dashboardBtn.Text = "Quit to Dashboard";
+            this.dashboardBtn.UseVisualStyleBackColor = true;
+            this.dashboardBtn.Click += new System.EventHandler(this.dashboardBtn_Click);
             // 
             // searchResultLbl
             // 
             this.searchResultLbl.AutoSize = true;
-            this.searchResultLbl.Location = new System.Drawing.Point(395, 21);
+            this.searchResultLbl.Location = new System.Drawing.Point(468, 18);
             this.searchResultLbl.Name = "searchResultLbl";
             this.searchResultLbl.Size = new System.Drawing.Size(82, 13);
             this.searchResultLbl.TabIndex = 24;
@@ -255,21 +256,103 @@ namespace Child_Advocacy_Database
             // searchLbl
             // 
             this.searchLbl.AutoSize = true;
-            this.searchLbl.Location = new System.Drawing.Point(31, 21);
+            this.searchLbl.Location = new System.Drawing.Point(28, 21);
             this.searchLbl.Name = "searchLbl";
             this.searchLbl.Size = new System.Drawing.Size(62, 13);
             this.searchLbl.TabIndex = 25;
             this.searchLbl.Text = "Search For:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(28, 268);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Guardian1 DOB:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(31, 284);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(161, 20);
+            this.textBox1.TabIndex = 27;
+            // 
+            // g2DobTxt
+            // 
+            this.g2DobTxt.Location = new System.Drawing.Point(31, 401);
+            this.g2DobTxt.Name = "g2DobTxt";
+            this.g2DobTxt.Size = new System.Drawing.Size(161, 20);
+            this.g2DobTxt.TabIndex = 33;
+            // 
+            // g2DobLbl
+            // 
+            this.g2DobLbl.AutoSize = true;
+            this.g2DobLbl.Location = new System.Drawing.Point(28, 385);
+            this.g2DobLbl.Name = "g2DobLbl";
+            this.g2DobLbl.Size = new System.Drawing.Size(85, 13);
+            this.g2DobLbl.TabIndex = 32;
+            this.g2DobLbl.Text = "Guardian2 DOB:";
+            // 
+            // g2LastNameLbl
+            // 
+            this.g2LastNameLbl.AutoSize = true;
+            this.g2LastNameLbl.Location = new System.Drawing.Point(28, 346);
+            this.g2LastNameLbl.Name = "g2LastNameLbl";
+            this.g2LastNameLbl.Size = new System.Drawing.Size(113, 13);
+            this.g2LastNameLbl.TabIndex = 31;
+            this.g2LastNameLbl.Text = "Guardian2 Last Name:";
+            // 
+            // g2FirstNameLbl
+            // 
+            this.g2FirstNameLbl.AutoSize = true;
+            this.g2FirstNameLbl.Location = new System.Drawing.Point(28, 307);
+            this.g2FirstNameLbl.Name = "g2FirstNameLbl";
+            this.g2FirstNameLbl.Size = new System.Drawing.Size(112, 13);
+            this.g2FirstNameLbl.TabIndex = 30;
+            this.g2FirstNameLbl.Text = "Guardian2 First Name:";
+            // 
+            // g2LastNameTxt
+            // 
+            this.g2LastNameTxt.Location = new System.Drawing.Point(31, 362);
+            this.g2LastNameTxt.Name = "g2LastNameTxt";
+            this.g2LastNameTxt.Size = new System.Drawing.Size(161, 20);
+            this.g2LastNameTxt.TabIndex = 29;
+            // 
+            // g2FirstNameTxt
+            // 
+            this.g2FirstNameTxt.Location = new System.Drawing.Point(31, 323);
+            this.g2FirstNameTxt.Name = "g2FirstNameTxt";
+            this.g2FirstNameTxt.Size = new System.Drawing.Size(161, 20);
+            this.g2FirstNameTxt.TabIndex = 28;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "MM/dd/yyyy";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(31, 441);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(161, 20);
+            this.dateTimePicker1.TabIndex = 34;
             // 
             // Query
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(796, 494);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.g2DobTxt);
+            this.Controls.Add(this.g2DobLbl);
+            this.Controls.Add(this.g2LastNameLbl);
+            this.Controls.Add(this.g2FirstNameLbl);
+            this.Controls.Add(this.g2LastNameTxt);
+            this.Controls.Add(this.g2FirstNameTxt);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.searchLbl);
             this.Controls.Add(this.searchResultLbl);
-            this.Controls.Add(this.addRemoveBtn);
+            this.Controls.Add(this.dashboardBtn);
             this.Controls.Add(this.perpLastNameTxt);
             this.Controls.Add(this.perpFirstNameTxt);
             this.Controls.Add(this.perpNicknameTxt);
@@ -286,7 +369,6 @@ namespace Child_Advocacy_Database
             this.Controls.Add(this.childFirstNameTxt);
             this.Controls.Add(this.parentLastNameTxt);
             this.Controls.Add(this.childDobTxt);
-            this.Controls.Add(this.forensicTxt);
             this.Controls.Add(this.parentFirstNameTxt);
             this.Controls.Add(this.childLastNameTxt);
             this.Controls.Add(this.searchBtn);
@@ -295,6 +377,7 @@ namespace Child_Advocacy_Database
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Query";
             this.Text = " Query Database";
+            this.Load += new System.EventHandler(this.Query_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,7 +389,6 @@ namespace Child_Advocacy_Database
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.TextBox childLastNameTxt;
         private System.Windows.Forms.TextBox parentFirstNameTxt;
-        private System.Windows.Forms.TextBox forensicTxt;
         private System.Windows.Forms.TextBox childDobTxt;
         private System.Windows.Forms.TextBox parentLastNameTxt;
         private System.Windows.Forms.TextBox childFirstNameTxt;
@@ -323,8 +405,17 @@ namespace Child_Advocacy_Database
         private System.Windows.Forms.TextBox perpNicknameTxt;
         private System.Windows.Forms.TextBox perpFirstNameTxt;
         private System.Windows.Forms.TextBox perpLastNameTxt;
-        private System.Windows.Forms.Button addRemoveBtn;
+        private System.Windows.Forms.Button dashboardBtn;
         private System.Windows.Forms.Label searchResultLbl;
         private System.Windows.Forms.Label searchLbl;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox g2DobTxt;
+        private System.Windows.Forms.Label g2DobLbl;
+        private System.Windows.Forms.Label g2LastNameLbl;
+        private System.Windows.Forms.Label g2FirstNameLbl;
+        private System.Windows.Forms.TextBox g2LastNameTxt;
+        private System.Windows.Forms.TextBox g2FirstNameTxt;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
