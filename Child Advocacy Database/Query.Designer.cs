@@ -87,7 +87,7 @@ namespace Child_Advocacy_Database
             this.searchBtn.Location = new System.Drawing.Point(531, 440);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(109, 40);
-            this.searchBtn.TabIndex = 11;
+            this.searchBtn.TabIndex = 14;
             this.searchBtn.Text = "Search";
             this.searchBtn.UseVisualStyleBackColor = true;
             // 
@@ -103,21 +103,21 @@ namespace Child_Advocacy_Database
             this.parentFirstNameTxt.Location = new System.Drawing.Point(31, 206);
             this.parentFirstNameTxt.Name = "parentFirstNameTxt";
             this.parentFirstNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.parentFirstNameTxt.TabIndex = 3;
+            this.parentFirstNameTxt.TabIndex = 4;
             // 
             // childDobTxt
             // 
             this.childDobTxt.Location = new System.Drawing.Point(31, 167);
             this.childDobTxt.Name = "childDobTxt";
             this.childDobTxt.Size = new System.Drawing.Size(161, 20);
-            this.childDobTxt.TabIndex = 5;
+            this.childDobTxt.TabIndex = 3;
             // 
             // parentLastNameTxt
             // 
             this.parentLastNameTxt.Location = new System.Drawing.Point(31, 245);
             this.parentLastNameTxt.Name = "parentLastNameTxt";
             this.parentLastNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.parentLastNameTxt.TabIndex = 4;
+            this.parentLastNameTxt.TabIndex = 5;
             // 
             // childFirstNameTxt
             // 
@@ -195,7 +195,8 @@ namespace Child_Advocacy_Database
             this.searchResultListBox.Location = new System.Drawing.Point(471, 34);
             this.searchResultListBox.Name = "searchResultListBox";
             this.searchResultListBox.Size = new System.Drawing.Size(300, 264);
-            this.searchResultListBox.TabIndex = 17;
+            this.searchResultListBox.TabIndex = 20;
+            this.searchResultListBox.TabStop = false;
             // 
             // perpLastNameLbl
             // 
@@ -211,35 +212,35 @@ namespace Child_Advocacy_Database
             this.ncaTxt.Location = new System.Drawing.Point(31, 50);
             this.ncaTxt.Name = "ncaTxt";
             this.ncaTxt.Size = new System.Drawing.Size(161, 20);
-            this.ncaTxt.TabIndex = 7;
+            this.ncaTxt.TabIndex = 0;
             // 
             // perpNicknameTxt
             // 
             this.perpNicknameTxt.Location = new System.Drawing.Point(225, 128);
             this.perpNicknameTxt.Name = "perpNicknameTxt";
             this.perpNicknameTxt.Size = new System.Drawing.Size(161, 20);
-            this.perpNicknameTxt.TabIndex = 8;
+            this.perpNicknameTxt.TabIndex = 13;
             // 
             // perpFirstNameTxt
             // 
             this.perpFirstNameTxt.Location = new System.Drawing.Point(225, 50);
             this.perpFirstNameTxt.Name = "perpFirstNameTxt";
             this.perpFirstNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.perpFirstNameTxt.TabIndex = 9;
+            this.perpFirstNameTxt.TabIndex = 11;
             // 
             // perpLastNameTxt
             // 
             this.perpLastNameTxt.Location = new System.Drawing.Point(225, 89);
             this.perpLastNameTxt.Name = "perpLastNameTxt";
             this.perpLastNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.perpLastNameTxt.TabIndex = 10;
+            this.perpLastNameTxt.TabIndex = 12;
             // 
             // dashboardBtn
             // 
             this.dashboardBtn.Location = new System.Drawing.Point(662, 440);
             this.dashboardBtn.Name = "dashboardBtn";
             this.dashboardBtn.Size = new System.Drawing.Size(109, 40);
-            this.dashboardBtn.TabIndex = 12;
+            this.dashboardBtn.TabIndex = 15;
             this.dashboardBtn.Text = "Quit to Dashboard";
             this.dashboardBtn.UseVisualStyleBackColor = true;
             this.dashboardBtn.Click += new System.EventHandler(this.dashboardBtn_Click);
@@ -276,14 +277,14 @@ namespace Child_Advocacy_Database
             this.textBox1.Location = new System.Drawing.Point(31, 284);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(161, 20);
-            this.textBox1.TabIndex = 27;
+            this.textBox1.TabIndex = 6;
             // 
             // g2DobTxt
             // 
             this.g2DobTxt.Location = new System.Drawing.Point(31, 401);
             this.g2DobTxt.Name = "g2DobTxt";
             this.g2DobTxt.Size = new System.Drawing.Size(161, 20);
-            this.g2DobTxt.TabIndex = 33;
+            this.g2DobTxt.TabIndex = 9;
             // 
             // g2DobLbl
             // 
@@ -317,14 +318,14 @@ namespace Child_Advocacy_Database
             this.g2LastNameTxt.Location = new System.Drawing.Point(31, 362);
             this.g2LastNameTxt.Name = "g2LastNameTxt";
             this.g2LastNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.g2LastNameTxt.TabIndex = 29;
+            this.g2LastNameTxt.TabIndex = 8;
             // 
             // g2FirstNameTxt
             // 
             this.g2FirstNameTxt.Location = new System.Drawing.Point(31, 323);
             this.g2FirstNameTxt.Name = "g2FirstNameTxt";
             this.g2FirstNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.g2FirstNameTxt.TabIndex = 28;
+            this.g2FirstNameTxt.TabIndex = 7;
             // 
             // dateTimePicker1
             // 
@@ -333,7 +334,7 @@ namespace Child_Advocacy_Database
             this.dateTimePicker1.Location = new System.Drawing.Point(31, 441);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(161, 20);
-            this.dateTimePicker1.TabIndex = 34;
+            this.dateTimePicker1.TabIndex = 10;
             // 
             // Query
             // 
