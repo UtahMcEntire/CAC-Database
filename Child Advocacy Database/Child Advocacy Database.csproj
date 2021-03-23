@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>E:\Documents\CAC\</PublishUrl>
+    <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -49,16 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>2D7B07C6200A4C1863F2A4162F90DD6BCF97B5AD</ManifestCertificateThumbprint>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestKeyFile>Child Advocacy Database_TemporaryKey.pfx</ManifestKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <ApplicationIcon>CACTNDB.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -67,6 +58,7 @@
       <HintPath>..\packages\System.Data.SqlClient.4.8.2\lib\net461\System.Data.SqlClient.dll</HintPath>
     </Reference>
     <Reference Include="System.Management" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -95,6 +87,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddCaseForm.resx">
       <DependentUpon>AddCaseForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Query.cs">
       <SubType>Form</SubType>
