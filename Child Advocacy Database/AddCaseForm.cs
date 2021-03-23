@@ -25,7 +25,7 @@ namespace Child_Advocacy_Database
         // TODO: ?? more
 
 
-        DatabaseItem addCase;
+        Case addCase;
         //
         // Initialization of HDD list and form
         //
@@ -33,7 +33,7 @@ namespace Child_Advocacy_Database
         {
             InitializeComponent();
 
-            addCase = new DatabaseItem();
+            addCase = new Case();
 
             try
             {
@@ -340,7 +340,7 @@ namespace Child_Advocacy_Database
             addCase.OtherVictimFirstNames = null;
             addCase.OtherVictimLastNames = null;
             addCase = null;
-            addCase = new DatabaseItem();
+            addCase = new Case();
             statusLbl.ForeColor = Color.Green;
             statusLbl.Text = "**Status: Enter case information to add to database.";
             // Would be nice to reset tab order to 0 here but not especially needed as it only takes 2 tabs to be back at the start from here

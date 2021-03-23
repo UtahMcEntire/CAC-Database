@@ -25,8 +25,8 @@ namespace Child_Advocacy_Database
         // TODO: ?? lots more
 
 
-        DatabaseItem queryCase;
-        List<DatabaseItem> queryCases;
+        Case queryCase;
+        List<Case> queryCases;
 
         //
         // Intitialization and add drive list to the select hdd listbox
@@ -34,8 +34,8 @@ namespace Child_Advocacy_Database
         public Query()
         {
             InitializeComponent();
-            queryCases = new List<DatabaseItem>();
-            queryCase = new DatabaseItem();
+            queryCases = new List<Case>();
+            queryCase = new Case();
             try
             {
                 DriveInfo[] myDrives = DriveInfo.GetDrives();
@@ -164,7 +164,7 @@ namespace Child_Advocacy_Database
             List<string> tempHDD = new List<string>();
             tempHDD = queryCase.HddList;
 
-            queryCase = new DatabaseItem();
+            queryCase = new Case();
             queryCase.HddList = tempHDD;
             queryCase.CaseNum = ncaNumTxt.Text;
             queryCase.ChildFirst = childFirstNameTxt.Text;
@@ -288,7 +288,7 @@ namespace Child_Advocacy_Database
             selectHddListBox.BackColor = Color.White;
             confirmHddListBox.BackColor = Color.White;
             queryCases = null;
-            queryCases = new List<DatabaseItem>();
+            queryCases = new List<Case>();
             statusLbl.ForeColor = Color.Green;
             statusLbl.Text = "**Status: Enter search criteria.";
             // Would be nice to reset tab order to 0 here 
@@ -346,6 +346,11 @@ namespace Child_Advocacy_Database
                 otherVictimFirstNameTxt.Text = queryCases[searchResultListBox.SelectedIndex].printOtherVictimFirst();
                 otherVictimLastNameTxt.Text = queryCases[searchResultListBox.SelectedIndex].printOtherVictimLast();
             }
+        }
+
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
