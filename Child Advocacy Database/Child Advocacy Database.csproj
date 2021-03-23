@@ -77,7 +77,7 @@
       <DependentUpon>ChildDatabaseDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DatabaseController.cs" />
-    <Compile Include="DatabaseItem.cs" />
+    <Compile Include="Case.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddCaseForm.resx">
