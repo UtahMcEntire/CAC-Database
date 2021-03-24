@@ -140,6 +140,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CACMboro.png" />
     <Content Include="CACTNDB.ico" />
     <Content Include="ChildDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
