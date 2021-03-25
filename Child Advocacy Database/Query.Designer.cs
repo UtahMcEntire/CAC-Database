@@ -564,6 +564,7 @@ namespace Child_Advocacy_Database
             this.Controls.Add(this.childFirstNameLbl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Query";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " Query Database";
             this.ResumeLayout(false);
             this.PerformLayout();
