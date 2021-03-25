@@ -100,6 +100,11 @@ namespace Child_Advocacy_Database
             addCase.PerpLastNames.Add(perpLast);
             addCase.PerpNicks.Add(perpNick);
 
+            // New code using the Perp class
+            if (perpFirst.Trim() != "" || perpLast.Trim() != "" || perpNick.Trim() != "")
+                addCase.PerpList.Add(new Perp(perpFirst, perpLast, perpNick));
+
+
             if (perpFirst.Trim() != "" || perpLast.Trim() != "" || perpNick.Trim() != "")
                 perpListBox.Items.Add((perpFirst.Trim() + ' ' + perpLast.Trim() + ' ' + perpNick.Trim()).Trim());
 
@@ -116,6 +121,9 @@ namespace Child_Advocacy_Database
             addCase.PerpFirstNames.RemoveAt(perpListBox.SelectedIndex);
             addCase.PerpLastNames.RemoveAt(perpListBox.SelectedIndex);
             addCase.PerpNicks.RemoveAt(perpListBox.SelectedIndex);
+
+            // New code using the Perp class
+            addCase.PerpList.RemoveAt(perpListBox.SelectedIndex);
 
             /* Testing
             foreach(var x in addCase.PerpFirstNames)
@@ -145,6 +153,10 @@ namespace Child_Advocacy_Database
             addCase.SiblingFirstNames.Add(siblingFirst);
             addCase.SiblingLastNames.Add(siblingLast);
 
+            // New code using the Sibling class
+            if (siblingFirst.Trim() != "" || siblingLast.Trim() != "")
+                addCase.SiblingList.Add(new Sibling(siblingFirst, siblingLast));
+
             if (siblingFirst.Trim() != "" || siblingLast.Trim() != "")
             {
                 siblingListBox.Items.Add((siblingFirst.Trim() + ' ' + siblingLast.Trim()).Trim());
@@ -160,6 +172,11 @@ namespace Child_Advocacy_Database
         {
             addCase.SiblingFirstNames.RemoveAt(siblingListBox.SelectedIndex);
             addCase.SiblingLastNames.RemoveAt(siblingListBox.SelectedIndex);
+
+            // New code using the Sibling class
+            addCase.SiblingList.RemoveAt(siblingListBox.SelectedIndex);
+
+
             /* Testing
             foreach(var x in addCase.SiblingFirstNames)
             {
@@ -184,6 +201,10 @@ namespace Child_Advocacy_Database
             addCase.OtherVictimFirstNames.Add(victimFirst);
             addCase.OtherVictimLastNames.Add(victimLast);
 
+            // New code using the Perp class
+            if (victimFirst.Trim() != "" || victimLast.Trim() != "")
+                addCase.VictimList.Add(new Victim(victimFirst, victimLast));
+
             if (victimFirst.Trim() != "" || victimLast.Trim() != "")
             {
                 otherVictimListBox.Items.Add((victimFirst.Trim() + ' ' + victimLast.Trim()).Trim());
@@ -199,6 +220,10 @@ namespace Child_Advocacy_Database
         {
             addCase.OtherVictimFirstNames.RemoveAt(otherVictimListBox.SelectedIndex);
             addCase.OtherVictimLastNames.RemoveAt(otherVictimListBox.SelectedIndex);
+
+            // New code using the Victim class
+            addCase.VictimList.RemoveAt(otherVictimListBox.SelectedIndex);
+
             /* Testing 
             foreach(var x in addCase.OtherVictimFirstNames)
             {
@@ -414,6 +439,8 @@ namespace Child_Advocacy_Database
                 {
                     //
                     // Enter entry addCase into database here
+                    DatabaseController database = new DatabaseController();
+                    database.Insert(addCase.CaseNum, addCase.ChildFirst, addCase.ChildLast, addCase.ChildDob, addCase.InterviewDate, addCase.Guardian1First, addCase.Guardian1Last, addCase.Guardian2First, addCase.Guardian2Last, addCase.PerpList, addCase.SiblingList, addCase.VictimList, targetPath);
                     // database(targetPath)
                     // if(success){
                     statusLbl.ForeColor = Color.Blue;
