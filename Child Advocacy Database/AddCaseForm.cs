@@ -113,25 +113,27 @@ namespace Child_Advocacy_Database
         //
         private void removePerpBtn_Click(object sender, EventArgs e)
         {
-            addCase.PerpFirstNames.RemoveAt(perpListBox.SelectedIndex);
-            addCase.PerpLastNames.RemoveAt(perpListBox.SelectedIndex);
-            addCase.PerpNicks.RemoveAt(perpListBox.SelectedIndex);
+            if(perpListBox.SelectedIndex != -1) { 
+                addCase.PerpFirstNames.RemoveAt(perpListBox.SelectedIndex);
+                addCase.PerpLastNames.RemoveAt(perpListBox.SelectedIndex);
+                addCase.PerpNicks.RemoveAt(perpListBox.SelectedIndex);
 
-            /* Testing
-            foreach(var x in addCase.PerpFirstNames)
-            {
-                MessageBox.Show("Testing names left in list perp first name: " + x);
+                /* Testing
+                foreach(var x in addCase.PerpFirstNames)
+                {
+                    MessageBox.Show("Testing names left in list perp first name: " + x);
+                }
+                foreach(var x in addCase.PerpLastNames)
+                {
+                    MessageBox.Show("Testing names left in list last perp name: " + x);
+                }
+                foreach(var x in addCase.PerpNicks)
+                {
+                    MessageBox.Show("Testing names left in list perp nick name: " + x);
+                }
+                */
+                perpListBox.Items.Remove(perpListBox.SelectedItem);
             }
-            foreach(var x in addCase.PerpLastNames)
-            {
-                MessageBox.Show("Testing names left in list last perp name: " + x);
-            }
-            foreach(var x in addCase.PerpNicks)
-            {
-                MessageBox.Show("Testing names left in list perp nick name: " + x);
-            }
-            */
-            perpListBox.Items.Remove(perpListBox.SelectedItem);
         }
 
         //
@@ -158,19 +160,22 @@ namespace Child_Advocacy_Database
         //
         private void removeSiblingBtn_Click(object sender, EventArgs e)
         {
-            addCase.SiblingFirstNames.RemoveAt(siblingListBox.SelectedIndex);
-            addCase.SiblingLastNames.RemoveAt(siblingListBox.SelectedIndex);
-            /* Testing
-            foreach(var x in addCase.SiblingFirstNames)
+            if(siblingListBox.SelectedIndex != -1)
             {
-                MessageBox.Show("Testing names left in list sibling first name: " + x);
+                addCase.SiblingFirstNames.RemoveAt(siblingListBox.SelectedIndex);
+                addCase.SiblingLastNames.RemoveAt(siblingListBox.SelectedIndex);
+                /* Testing
+                foreach(var x in addCase.SiblingFirstNames)
+                {
+                    MessageBox.Show("Testing names left in list sibling first name: " + x);
+                }
+                foreach(var x in addCase.SiblingLastNames)
+                {
+                    MessageBox.Show("Testing names left in list sibling last name: " + x);
+                }
+                */
+                siblingListBox.Items.Remove(siblingListBox.SelectedItem);
             }
-            foreach(var x in addCase.SiblingLastNames)
-            {
-                MessageBox.Show("Testing names left in list sibling last name: " + x);
-            }
-            */
-            siblingListBox.Items.Remove(siblingListBox.SelectedItem);
         }
 
         //
@@ -197,19 +202,22 @@ namespace Child_Advocacy_Database
         //
         private void removeVictimBtn_Click(object sender, EventArgs e)
         {
-            addCase.OtherVictimFirstNames.RemoveAt(otherVictimListBox.SelectedIndex);
-            addCase.OtherVictimLastNames.RemoveAt(otherVictimListBox.SelectedIndex);
-            /* Testing 
-            foreach(var x in addCase.OtherVictimFirstNames)
+            if(otherVictimListBox.SelectedIndex != -1)
             {
-                MessageBox.Show("Testing names left in list other victim first name: " + x);
+                addCase.OtherVictimFirstNames.RemoveAt(otherVictimListBox.SelectedIndex);
+                addCase.OtherVictimLastNames.RemoveAt(otherVictimListBox.SelectedIndex);
+                /* Testing 
+                foreach(var x in addCase.OtherVictimFirstNames)
+                {
+                    MessageBox.Show("Testing names left in list other victim first name: " + x);
+                }
+                foreach(var x in addCase.OtherVictimLastNames)
+                {
+                    MessageBox.Show("Testing names left in list other victim last name: " + x);
+                }
+                */
+                otherVictimListBox.Items.Remove(otherVictimListBox.SelectedItem);
             }
-            foreach(var x in addCase.OtherVictimLastNames)
-            {
-                MessageBox.Show("Testing names left in list other victim last name: " + x);
-            }
-            */
-            otherVictimListBox.Items.Remove(otherVictimListBox.SelectedItem);
         }
         
         //
