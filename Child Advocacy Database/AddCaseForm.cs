@@ -9,7 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //using System.IO.Compression;
 using System.IO;
-
+using System.Reflection;
+using Child_Advocacy_Database.Properties;
+using System.Resources;
+using System.Collections;
 
 namespace Child_Advocacy_Database
 {
@@ -26,10 +29,12 @@ namespace Child_Advocacy_Database
 
 
         Case addCase;
+        
+
         //
         // Initialization of HDD list and form
         //
-        public AddCaseForm()
+        public AddCaseForm(Case editCase)
         {
             InitializeComponent();
 
@@ -50,7 +55,50 @@ namespace Child_Advocacy_Database
                 statusLbl.Text = "**Status: Could not read hard drive list.";
                 MessageBox.Show("Exception message: " + e.Message);
             }
+
+            if (editCase != null)
+            {
+                statusLbl.Text = "**Status: Entering edit.";
+                addCase = editCase;
+                EditCaseFunc();
+            }
         }
+
+        //
+        // Edit a case, gets the editCase from the query form
+        //
+        private void EditCaseFunc()
+        {
+            int i;
+            ncaNumTxt.Text = addCase.CaseNum;
+            childFirstNameTxt.Text = addCase.ChildFirst;
+            childLastNameTxt.Text = addCase.ChildLast;
+            childDobTxt.Text = addCase.ChildDob;
+            g1FirstNameTxt.Text = addCase.Guardian1First;
+            g1LastNameTxt.Text = addCase.Guardian1Last;
+            g2FirstNameTxt.Text = addCase.Guardian2First;
+            g2LastNameTxt.Text = addCase.Guardian2Last;
+            interviewTxt.Text = addCase.InterviewDate;
+
+            for (i = 0; i < addCase.PerpFirstNames.Count; i++)
+            {
+                perpListBox.Items.Add(addCase.PerpFirstNames[i].Trim() + ' ' + 
+                    addCase.PerpLastNames[i].Trim() + ' ' + addCase.PerpNicks[i].Trim());
+            }
+
+            for (i = 0; i < addCase.SiblingFirstNames.Count; i++)
+            {
+                siblingListBox.Items.Add(addCase.SiblingFirstNames[i].Trim() + ' ' +
+                    addCase.SiblingLastNames[i].Trim());
+            }
+
+            for (i = 0; i < addCase.OtherVictimFirstNames.Count; i++)
+            {
+                otherVictimListBox.Items.Add(addCase.OtherVictimFirstNames[i].Trim() + ' ' +
+                    addCase.OtherVictimLastNames[i].Trim());
+            }
+        }
+
 
         //
         // Select a hard drive to save the database 
@@ -354,12 +402,38 @@ namespace Child_Advocacy_Database
             // Would be nice to reset tab order to 0 here but not especially needed as it only takes 2 tabs to be back at the start from here
         }
 
+        /* Can read from a resource file, cannot figure out how to write. Thinking to use database instead
+        private static UnmanagedMemoryStream GetResourceStream(string resName)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var strResources = assembly.GetName().Name + ".g.resources";
+            var rStream = assembly.GetManifestResourceStream(strResources);
+            var resourceReader = new ResourceReader(rStream);
+            var items = resourceReader.OfType<DictionaryEntry>();
+            var stream = items.First(x => (x.Key as string) == resName.ToLower()).Value;
+            return (UnmanagedMemoryStream)stream;
+        }
+        */          
+
         //
         // Add the case to the database
         //
         private void addCaseBtn_Click(object sender, EventArgs e)
         {
             bool fileSuccess = false;
+            /*if(ncaNumTxt.Text.Length == 4) Thinking to use database instead
+            {
+                string resName = "CaseCount.txt";
+                var file = GetResourceStream(resName);
+                using (var reader = new StreamReader(file))
+                {
+                    var line = reader.ReadLine();
+                    int count = Int32.Parse(line);
+                    count++;
+                    MessageBox.Show(count.ToString());
+                }
+            }*/
+
             if(addCase.HddList.Count == 0)
             {
                 statusLbl.ForeColor = Color.Red;
@@ -371,13 +445,6 @@ namespace Child_Advocacy_Database
                 ncaNumTxt.BackColor = Color.Red;
                 statusLbl.ForeColor = Color.Red;
                 statusLbl.Text = "**Status: A NCA number is required to add a case to the database.";
-            }
-            else if(pdfFilesListView.Items.Count == 0 && mp4FilesListView.Items.Count == 0)
-            {
-                statusLbl.ForeColor = Color.Red;
-                statusLbl.Text = "**Status: Please enter files associated with the case.";
-                pdfFilesListView.BackColor = Color.Red;
-                mp4FilesListView.BackColor = Color.Red;
             }
             else if(!checkDateFormat(childDobTxt.Text) && childDobTxt.Text != "")
             {

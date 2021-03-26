@@ -160,6 +160,20 @@ namespace Child_Advocacy_Database
             //
             // queryCase data members to search for
             //
+            
+            if (!checkDateFormat(childDobTxt.Text) && childDobTxt.Text != "")
+            {
+                statusLbl.ForeColor = Color.Red;
+                statusLbl.Text = "**Status: Please enter child DOB in the exact format MM/DD/YYYY or leave blank if unknown.";
+                childDobTxt.BackColor = Color.Red;
+            }
+            else if (!checkDateFormat(interviewTxt.Text) && interviewTxt.Text != "")
+            {
+                statusLbl.ForeColor = Color.Red;
+                statusLbl.Text = "**Status: Please enter interview date in the exact format MM/DD/YYYY or leave blank if unknown.";
+                interviewTxt.BackColor = Color.Red;
+            }
+
             // For testing:
             List<string> tempHDD = new List<string>();
             tempHDD = queryCase.HddList;
@@ -182,9 +196,8 @@ namespace Child_Advocacy_Database
             queryCase.SiblingLastNames.Add(siblingLastNameTxt.Text);
             queryCase.OtherVictimFirstNames.Add(otherVictimFirstNameTxt.Text);
             queryCase.OtherVictimLastNames.Add(otherVictimLastNameTxt.Text);
-            queryCase.PerpFirstNames.Add("PressDownArrow");
-            queryCase.PerpFirstNames.Add("ToSeeMoreNames");
-
+            /*queryCase.PerpFirstNames.Add("PressDownArrow");
+            queryCase.PerpFirstNames.Add("ToSeeMoreNames");*/
 
             //
             // Add database query here 
@@ -236,7 +249,7 @@ namespace Child_Advocacy_Database
                         {
                             if (Directory.Exists(queryCase.HddList[i] + ncaNumTxt.Text))
                             {
-                                Directory.Delete(queryCase.HddList[i] + ncaNumTxt.Text, true);
+                                Directory.Delete(queryCase.HddList[i] + ncaNumTxt.Text, true); // 'true' means to delete subfiles
                                 //
                                 // Need to remove from database here
                                 //
@@ -350,7 +363,67 @@ namespace Child_Advocacy_Database
 
         private void editBtn_Click(object sender, EventArgs e)
         {
+            // This will change to be when a listboxitem is selected and populates the textboxes,
+            // that will be the query to send to edit, there needs to be a flag to check if the search was completed
+            if (queryCase != null)
+            {
+                AddCaseForm editCase = new AddCaseForm(queryCase);
+                statusLbl.ForeColor = Color.Green;
+                statusLbl.Text = "**Status: Editing the most recently searched case.";
+                editCase.Show();
+                Close();
+            }
+            else
+            {
+                statusLbl.ForeColor = Color.Red;
+                statusLbl.Text = "**Status: Please search for a case before attempting to edit.";
+            }
+        }
 
+        //
+        // Check the date format
+        //
+        public bool checkDateFormat(string date)
+        {
+            if (date.Length == 10)
+            {
+                if (
+                    (date[0] >= '0' && date[0] <= '9') &&
+                    (date[1] >= '0' && date[1] <= '9') &&
+                    (date[2] == '/') &&
+                    (date[3] >= '0' && date[3] <= '9') &&
+                    (date[4] >= '0' && date[4] <= '9') &&
+                    (date[5] == '/') &&
+                    (date[6] >= '0' && date[6] <= '9') &&
+                    (date[7] >= '0' && date[7] <= '9') &&
+                    (date[8] >= '0' && date[8] <= '9') &&
+                    (date[9] >= '0' && date[9] <= '9')
+                   )
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //
+        // Change color of child DOB
+        //
+        private void childDobTxt_TextChanged(object sender, EventArgs e)
+        {
+            childDobTxt.BackColor = Color.White;
+            statusLbl.ForeColor = Color.Green;
+            statusLbl.Text = "**Status: Enter search criteria.";
+        }
+
+        //
+        // Change color of interview text
+        //
+        private void interviewTxt_TextChanged(object sender, EventArgs e)
+        {
+            interviewTxt.BackColor = Color.White;
+            statusLbl.ForeColor = Color.Green;
+            statusLbl.Text = "**Status: Enter search criteria.";
         }
     }
 }
