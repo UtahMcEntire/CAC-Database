@@ -3,6 +3,102 @@ using System.Collections.Generic;
 
 namespace Child_Advocacy_Database {
 
+	public class Perp
+    {
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		public string Nick { get; set; }
+
+		public Perp(string FName, string LName, string Nick)
+        {
+			this.FirstName = FName;
+			this.LastName = LName;
+			this.Nick = Nick;
+        }
+
+		public override string ToString()
+		{
+			return FirstName + " " + LastName + " \"" + Nick + "\"";
+		}
+
+		// A function used to convert the class into a XML string
+		public String ToXmlString()
+        {
+			string toXML = "<perp>";
+			if (this.FirstName != null)
+				toXML += "<first>" + this.FirstName + "</first>";
+			if (this.LastName != null)
+				toXML += "<last>" + this.LastName + "</last>";
+			if (this.Nick != null)
+				toXML += "<nick>" + this.Nick + "</nick>";
+			toXML += "</perp>";
+
+			return toXML;
+        }
+	}
+
+
+	public class Sibling
+    {
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+
+		public Sibling(string FName, string LName)
+		{
+			this.FirstName = FName;
+			this.LastName = LName;
+		}
+
+		public override string ToString()
+		{
+			return FirstName + " " + LastName;
+		}
+
+		// A function used to convert the class into a XML string
+		public String ToXmlString()
+		{
+			string toXML = "<sibling>";
+			if (this.FirstName != null)
+				toXML += "<first>" + this.FirstName + "</first>";
+			if (this.LastName != null)
+				toXML += "<last>" + this.LastName + "</last>";
+			toXML += "</sibling>";
+
+			return toXML;
+		}
+	}
+
+	public class Victim
+	{
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+
+		public Victim(string FName, string LName)
+		{
+			this.FirstName = FName;
+			this.LastName = LName;
+		}
+
+		public override string ToString()
+		{
+			return FirstName + " " + LastName;
+		}
+
+		// A function used to convert the class into a XML string
+		public String ToXmlString()
+		{
+			string toXML = "<victim>";
+			if (this.FirstName != null)
+				toXML += "<first>" + this.FirstName + "</first>";
+			if (this.LastName != null)
+				toXML += "<last>" + this.LastName + "</last>";
+			toXML += "</victim>";
+
+			return toXML;
+		}
+	}
+
+
 	public class Case
 	{
 		public string CaseNum { get; set; }
@@ -15,12 +111,6 @@ namespace Child_Advocacy_Database {
 		public string Guardian2First { get; set; }
 		public string Guardian2Last { get; set; }
 
-		/* 
-		 * May not be final datatype. 
-		 * Planned for this to be a 2d array of first/last name pairs 
-		 * that will be converted to xml
-		 * */
-		string[][] Perps { get; set; }
 
 		public List<string> PerpFirstNames { get; set; }
 		public List<string> PerpLastNames { get; set; }
@@ -33,13 +123,27 @@ namespace Child_Advocacy_Database {
 		string[] AddCaseHdd { get; set; }
 
 
+		public List<Perp> PerpList = new List<Perp>();
+		public List<Sibling> SiblingList = new List<Sibling>();
+		public List<Victim> VictimList = new List<Victim>();
+
+
+
+
+		/* 
+		 * May not be final datatype. 
+		 * Planned for this to be a 2d array of first/last name pairs 
+		 * that will be converted to xml
+		 * */
+		public string[][] Perps { get; set; }
+
 		/* 
 		 * May not be final datatype. 
 		 * Planned for this to be an array of:
 		 * location, encryption key, and maybe other items
 		 * that will be converted to xml 
 		*/
-		string[] Mappedloc { get; set; }
+		public string[] Mappedloc { get; set; }
 
 
 		/*
@@ -49,22 +153,6 @@ namespace Child_Advocacy_Database {
 		 */
 		public Case()
 		{
-			if (CaseNum == null)
-				Console.WriteLine("it null");
-				
-			Console.WriteLine(CaseNum);
-			Console.WriteLine(ChildFirst);
-			Console.WriteLine(ChildLast);
-			Console.WriteLine(ChildDob);
-			Console.WriteLine(InterviewDate);
-			/*if (InterviewDate.ToString() == "")
-				Console.WriteLine("Date NULL too");*/
-			Console.WriteLine(Guardian1First);
-			Console.WriteLine(Guardian1Last);
-			Console.WriteLine(Guardian2First);
-			Console.WriteLine(Guardian2Last);
-			Console.WriteLine(Perps);
-			Console.WriteLine(Mappedloc);
 			HddList = new List<string>();
 			PerpFirstNames = new List<string>();
 			PerpLastNames = new List<string>();
@@ -76,12 +164,12 @@ namespace Child_Advocacy_Database {
 		}
 
 		public string printPerpFirst()
-        {
+		{
 			string name = "";
 			foreach (var perp in PerpFirstNames)
-            {
+			{
 				name += perp + " ";
-            }
+			}
 			if (name != " ")
 				return name;
 			else
@@ -167,8 +255,8 @@ namespace Child_Advocacy_Database {
 		}
 
 		public override string ToString()
-        {
+		{
 			return CaseNum + " - " + ChildFirst + " " + ChildLast;
-        }
-    }
+		}
+	}
 }
