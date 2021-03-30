@@ -237,7 +237,6 @@ namespace Child_Advocacy_Database
             }
             */
             siblingListBox.Items.Remove(siblingListBox.SelectedItem);
-            }
         }
 
         //
@@ -285,7 +284,7 @@ namespace Child_Advocacy_Database
             }
             */
             otherVictimListBox.Items.Remove(otherVictimListBox.SelectedItem);
-            }
+            
         }
         
         //
