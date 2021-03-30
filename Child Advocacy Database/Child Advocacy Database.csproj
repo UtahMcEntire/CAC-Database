@@ -112,6 +112,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Query.resx">
       <DependentUpon>Query.cs</DependentUpon>
@@ -143,6 +144,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CACMboro.png" />
     <Content Include="CACTNDB.ico" />
     <Content Include="ChildDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

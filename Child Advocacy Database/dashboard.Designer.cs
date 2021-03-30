@@ -38,12 +38,14 @@ namespace Child_Advocacy_Database
             this.PleaseTextBox = new System.Windows.Forms.TextBox();
             this.WelcomeTextBox = new System.Windows.Forms.TextBox();
             this.addTip = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // AddButton
             // 
             this.AddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.AddButton.Location = new System.Drawing.Point(95, 154);
+            this.AddButton.Location = new System.Drawing.Point(352, 344);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(184, 81);
             this.AddButton.TabIndex = 0;
@@ -52,11 +54,11 @@ namespace Child_Advocacy_Database
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // SearchButton
+            // QueryButton
             // 
             this.QueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.QueryButton.Location = new System.Drawing.Point(295, 154);
-            this.QueryButton.Name = "SearchButton";
+            this.QueryButton.Location = new System.Drawing.Point(567, 344);
+            this.QueryButton.Name = "QueryButton";
             this.QueryButton.Size = new System.Drawing.Size(183, 81);
             this.QueryButton.TabIndex = 2;
             this.QueryButton.Text = "Search Database";
@@ -72,7 +74,7 @@ namespace Child_Advocacy_Database
             // QuitButton
             // 
             this.QuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.QuitButton.Location = new System.Drawing.Point(440, 313);
+            this.QuitButton.Location = new System.Drawing.Point(999, 528);
             this.QuitButton.Name = "QuitButton";
             this.QuitButton.Size = new System.Drawing.Size(123, 34);
             this.QuitButton.TabIndex = 3;
@@ -82,10 +84,10 @@ namespace Child_Advocacy_Database
             // 
             // PleaseTextBox
             // 
-            this.PleaseTextBox.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.PleaseTextBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.PleaseTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PleaseTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.PleaseTextBox.Location = new System.Drawing.Point(95, 121);
+            this.PleaseTextBox.Location = new System.Drawing.Point(433, 295);
             this.PleaseTextBox.Name = "PleaseTextBox";
             this.PleaseTextBox.Size = new System.Drawing.Size(383, 16);
             this.PleaseTextBox.TabIndex = 4;
@@ -93,10 +95,10 @@ namespace Child_Advocacy_Database
             // 
             // WelcomeTextBox
             // 
-            this.WelcomeTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.WelcomeTextBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.WelcomeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.WelcomeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.WelcomeTextBox.Location = new System.Drawing.Point(95, 72);
+            this.WelcomeTextBox.Location = new System.Drawing.Point(352, 268);
             this.WelcomeTextBox.Multiline = true;
             this.WelcomeTextBox.Name = "WelcomeTextBox";
             this.WelcomeTextBox.Size = new System.Drawing.Size(383, 21);
@@ -104,11 +106,23 @@ namespace Child_Advocacy_Database
             this.WelcomeTextBox.Text = "Welcome to the CAC File System Manager!";
             this.WelcomeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ImageLocation = "";
+            this.pictureBox1.Location = new System.Drawing.Point(291, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(508, 259);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(575, 359);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(1134, 574);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.WelcomeTextBox);
             this.Controls.Add(this.PleaseTextBox);
             this.Controls.Add(this.QuitButton);
@@ -117,7 +131,9 @@ namespace Child_Advocacy_Database
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Dashboard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CAC File System Dashboard";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,5 +148,6 @@ namespace Child_Advocacy_Database
         private System.Windows.Forms.TextBox PleaseTextBox;
         private System.Windows.Forms.TextBox WelcomeTextBox;
         private System.Windows.Forms.ToolTip addTip;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

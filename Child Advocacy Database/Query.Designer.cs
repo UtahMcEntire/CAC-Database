@@ -103,7 +103,7 @@ namespace Child_Advocacy_Database
             this.searchBtn.Location = new System.Drawing.Point(261, 430);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(109, 40);
-            this.searchBtn.TabIndex = 14;
+            this.searchBtn.TabIndex = 17;
             this.searchBtn.Text = "Search";
             this.searchBtn.UseVisualStyleBackColor = false;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
@@ -128,6 +128,7 @@ namespace Child_Advocacy_Database
             this.childDobTxt.Name = "childDobTxt";
             this.childDobTxt.Size = new System.Drawing.Size(161, 20);
             this.childDobTxt.TabIndex = 3;
+            this.childDobTxt.TextChanged += new System.EventHandler(this.childDobTxt_TextChanged);
             // 
             // g1LastNameTxt
             // 
@@ -214,6 +215,7 @@ namespace Child_Advocacy_Database
             this.searchResultListBox.Size = new System.Drawing.Size(208, 290);
             this.searchResultListBox.TabIndex = 20;
             this.searchResultListBox.TabStop = false;
+            this.searchResultListBox.UseTabStops = false;
             this.searchResultListBox.SelectedIndexChanged += new System.EventHandler(this.searchResultListBox_SelectedIndexChanged);
             // 
             // perpLastNameLbl
@@ -239,7 +241,7 @@ namespace Child_Advocacy_Database
             this.perpNickTxt.Multiline = true;
             this.perpNickTxt.Name = "perpNickTxt";
             this.perpNickTxt.Size = new System.Drawing.Size(161, 20);
-            this.perpNickTxt.TabIndex = 13;
+            this.perpNickTxt.TabIndex = 11;
             // 
             // perpFirstTxt
             // 
@@ -247,7 +249,7 @@ namespace Child_Advocacy_Database
             this.perpFirstTxt.Multiline = true;
             this.perpFirstTxt.Name = "perpFirstTxt";
             this.perpFirstTxt.Size = new System.Drawing.Size(161, 20);
-            this.perpFirstTxt.TabIndex = 11;
+            this.perpFirstTxt.TabIndex = 9;
             // 
             // perpLastTxt
             // 
@@ -255,7 +257,7 @@ namespace Child_Advocacy_Database
             this.perpLastTxt.Multiline = true;
             this.perpLastTxt.Name = "perpLastTxt";
             this.perpLastTxt.Size = new System.Drawing.Size(161, 20);
-            this.perpLastTxt.TabIndex = 12;
+            this.perpLastTxt.TabIndex = 10;
             // 
             // dashboardBtn
             // 
@@ -263,7 +265,7 @@ namespace Child_Advocacy_Database
             this.dashboardBtn.Location = new System.Drawing.Point(721, 430);
             this.dashboardBtn.Name = "dashboardBtn";
             this.dashboardBtn.Size = new System.Drawing.Size(109, 40);
-            this.dashboardBtn.TabIndex = 15;
+            this.dashboardBtn.TabIndex = 21;
             this.dashboardBtn.Text = "Quit to Dashboard";
             this.dashboardBtn.UseVisualStyleBackColor = false;
             this.dashboardBtn.Click += new System.EventHandler(this.dashboardBtn_Click);
@@ -294,7 +296,7 @@ namespace Child_Advocacy_Database
             this.g2LastNameLbl.Location = new System.Drawing.Point(226, 321);
             this.g2LastNameLbl.Name = "g2LastNameLbl";
             this.g2LastNameLbl.Size = new System.Drawing.Size(113, 13);
-            this.g2LastNameLbl.TabIndex = 31;
+            this.g2LastNameLbl.TabIndex = 15;
             this.g2LastNameLbl.Text = "Guardian2 Last Name:";
             // 
             // g2FirstNameLbl
@@ -311,14 +313,14 @@ namespace Child_Advocacy_Database
             this.g2LastNameTxt.Location = new System.Drawing.Point(229, 337);
             this.g2LastNameTxt.Name = "g2LastNameTxt";
             this.g2LastNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.g2LastNameTxt.TabIndex = 8;
+            this.g2LastNameTxt.TabIndex = 7;
             // 
             // g2FirstNameTxt
             // 
             this.g2FirstNameTxt.Location = new System.Drawing.Point(229, 298);
             this.g2FirstNameTxt.Name = "g2FirstNameTxt";
             this.g2FirstNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.g2FirstNameTxt.TabIndex = 7;
+            this.g2FirstNameTxt.TabIndex = 6;
             // 
             // selectHddListBox
             // 
@@ -327,6 +329,8 @@ namespace Child_Advocacy_Database
             this.selectHddListBox.Name = "selectHddListBox";
             this.selectHddListBox.Size = new System.Drawing.Size(175, 147);
             this.selectHddListBox.TabIndex = 33;
+            this.selectHddListBox.TabStop = false;
+            this.selectHddListBox.UseTabStops = false;
             this.selectHddListBox.SelectedIndexChanged += new System.EventHandler(this.selectHddListBox_SelectedIndexChanged);
             // 
             // siblingFirstNameTxt
@@ -335,7 +339,7 @@ namespace Child_Advocacy_Database
             this.siblingFirstNameTxt.Multiline = true;
             this.siblingFirstNameTxt.Name = "siblingFirstNameTxt";
             this.siblingFirstNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.siblingFirstNameTxt.TabIndex = 35;
+            this.siblingFirstNameTxt.TabIndex = 12;
             // 
             // siblingLastNameTxt
             // 
@@ -343,7 +347,7 @@ namespace Child_Advocacy_Database
             this.siblingLastNameTxt.Multiline = true;
             this.siblingLastNameTxt.Name = "siblingLastNameTxt";
             this.siblingLastNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.siblingLastNameTxt.TabIndex = 36;
+            this.siblingLastNameTxt.TabIndex = 13;
             // 
             // siblingFirstNameLbl
             // 
@@ -369,7 +373,7 @@ namespace Child_Advocacy_Database
             this.otherVictimFirstNameTxt.Multiline = true;
             this.otherVictimFirstNameTxt.Name = "otherVictimFirstNameTxt";
             this.otherVictimFirstNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.otherVictimFirstNameTxt.TabIndex = 39;
+            this.otherVictimFirstNameTxt.TabIndex = 14;
             // 
             // otherVictimLastNameTxt
             // 
@@ -377,7 +381,7 @@ namespace Child_Advocacy_Database
             this.otherVictimLastNameTxt.Multiline = true;
             this.otherVictimLastNameTxt.Name = "otherVictimLastNameTxt";
             this.otherVictimLastNameTxt.Size = new System.Drawing.Size(161, 20);
-            this.otherVictimLastNameTxt.TabIndex = 40;
+            this.otherVictimLastNameTxt.TabIndex = 15;
             // 
             // otherVictimFirstNameLbl
             // 
@@ -403,7 +407,7 @@ namespace Child_Advocacy_Database
             this.deleteBtn.Location = new System.Drawing.Point(491, 430);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(109, 40);
-            this.deleteBtn.TabIndex = 43;
+            this.deleteBtn.TabIndex = 19;
             this.deleteBtn.Text = "Delete";
             this.deleteBtn.UseVisualStyleBackColor = false;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
@@ -436,6 +440,8 @@ namespace Child_Advocacy_Database
             this.confirmHddListBox.Name = "confirmHddListBox";
             this.confirmHddListBox.Size = new System.Drawing.Size(174, 95);
             this.confirmHddListBox.TabIndex = 49;
+            this.confirmHddListBox.TabStop = false;
+            this.confirmHddListBox.UseTabStops = false;
             // 
             // clearFormBtn
             // 
@@ -443,7 +449,7 @@ namespace Child_Advocacy_Database
             this.clearFormBtn.Location = new System.Drawing.Point(606, 430);
             this.clearFormBtn.Name = "clearFormBtn";
             this.clearFormBtn.Size = new System.Drawing.Size(109, 40);
-            this.clearFormBtn.TabIndex = 50;
+            this.clearFormBtn.TabIndex = 20;
             this.clearFormBtn.Text = "Clear Form";
             this.clearFormBtn.UseVisualStyleBackColor = false;
             this.clearFormBtn.Click += new System.EventHandler(this.clearFormBtn_Click);
@@ -475,6 +481,7 @@ namespace Child_Advocacy_Database
             this.removeHddBtn.Name = "removeHddBtn";
             this.removeHddBtn.Size = new System.Drawing.Size(122, 23);
             this.removeHddBtn.TabIndex = 53;
+            this.removeHddBtn.TabStop = false;
             this.removeHddBtn.Text = "Remove Hard Drive";
             this.removeHddBtn.UseVisualStyleBackColor = false;
             this.removeHddBtn.Click += new System.EventHandler(this.removeHddBtn_Click);
@@ -484,7 +491,8 @@ namespace Child_Advocacy_Database
             this.interviewTxt.Location = new System.Drawing.Point(424, 64);
             this.interviewTxt.Name = "interviewTxt";
             this.interviewTxt.Size = new System.Drawing.Size(161, 20);
-            this.interviewTxt.TabIndex = 54;
+            this.interviewTxt.TabIndex = 8;
+            this.interviewTxt.TextChanged += new System.EventHandler(this.interviewTxt_TextChanged);
             // 
             // editBtn
             // 
@@ -492,7 +500,7 @@ namespace Child_Advocacy_Database
             this.editBtn.Location = new System.Drawing.Point(376, 430);
             this.editBtn.Name = "editBtn";
             this.editBtn.Size = new System.Drawing.Size(109, 40);
-            this.editBtn.TabIndex = 55;
+            this.editBtn.TabIndex = 18;
             this.editBtn.Text = "Edit";
             this.editBtn.UseVisualStyleBackColor = false;
             this.editBtn.Click += new System.EventHandler(this.editBtn_Click);
@@ -503,7 +511,7 @@ namespace Child_Advocacy_Database
             this.openFileBtn.Location = new System.Drawing.Point(676, 357);
             this.openFileBtn.Name = "openFileBtn";
             this.openFileBtn.Size = new System.Drawing.Size(154, 39);
-            this.openFileBtn.TabIndex = 89;
+            this.openFileBtn.TabIndex = 16;
             this.openFileBtn.Text = "Open File";
             this.openFileBtn.UseVisualStyleBackColor = false;
             this.openFileBtn.Click += new System.EventHandler(this.openFileBtn_Click);
@@ -564,7 +572,7 @@ namespace Child_Advocacy_Database
             this.Controls.Add(this.childFirstNameLbl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Query";
-            this.Text = " Query Database";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
 
