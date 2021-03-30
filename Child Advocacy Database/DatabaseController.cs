@@ -183,7 +183,7 @@ public class DatabaseController
                             if (Guardian2Last != null && !reader.IsDBNull(index))
                                 c.Guardian2Last = reader.GetString(reader.GetOrdinal("Guard2Last"));
 
-
+                            Console.WriteLine("Made it to add");
                             cases.Add(c);
                         }
                     }

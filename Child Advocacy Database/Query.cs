@@ -15,7 +15,7 @@ namespace Child_Advocacy_Database
     public partial class Query : Form
     {
         // Most of this form is in testing phase. 
-  
+
         // TODO: Link database to search
         // TODO: Figure out edit options
         // TODO: Link 'open file' to listbox selection
@@ -36,6 +36,7 @@ namespace Child_Advocacy_Database
             InitializeComponent();
             queryCases = new List<Case>();
             queryCase = new Case();
+
             try
             {
                 DriveInfo[] myDrives = DriveInfo.GetDrives();
@@ -45,9 +46,9 @@ namespace Child_Advocacy_Database
                     selectHddListBox.Items.Add(drive.Name + " " + drive.VolumeLabel);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                MessageBox.Show("Exception message: " + e.Message);
             }
         }
 
@@ -112,19 +113,19 @@ namespace Child_Advocacy_Database
         //
         private void removeHddBtn_Click(object sender, EventArgs e)
         {
-            if(confirmHddListBox.SelectedIndex != -1)
-            {     
+            if (confirmHddListBox.SelectedIndex != -1)
+            {
                 string deletedHdd = confirmHddListBox.SelectedItem.ToString();
-          
+
                 int indexToDelete = -1;
-                for(int i = 0; i < queryCase.HddList.Count; i++)
+                for (int i = 0; i < queryCase.HddList.Count; i++)
                 {
-                    if(deletedHdd == queryCase.HddList[i])
+                    if (deletedHdd == queryCase.HddList[i])
                     {
                         indexToDelete = i;
                     }
                 }
-                if(indexToDelete != -1)
+                if (indexToDelete != -1)
                 {
                     queryCase.HddList.RemoveAt(indexToDelete);
                 }
@@ -205,13 +206,15 @@ namespace Child_Advocacy_Database
             //
             // Add database query here 
             // A List<DatabaseItem> queryCases will be populated with the search results and added to the searchResultListBox
+            DatabaseController database = new DatabaseController();
+            queryCases = database.Query(queryCase.CaseNum, queryCase.ChildFirst, queryCase.ChildLast, queryCase.ChildDob, queryCase.InterviewDate, queryCase.Guardian1First, queryCase.Guardian1Last, queryCase.Guardian2First, queryCase.Guardian2Last, queryCase.PerpList, queryCase.SiblingList, queryCase.VictimList);
             // if(databaseSuccess){
             //   
 
             // This is for testing:
-            queryCases.Add(queryCase);
+            //queryCases.Add(queryCase);
             searchResultListBox.Items.Clear();
-            foreach(var caseList in queryCases)
+            foreach (var caseList in queryCases)
             {
                 searchResultListBox.Items.Add(caseList.ToString()); // Overloaded ToString for queryCase class to print out the NCA and child first/last name
             }
