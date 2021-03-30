@@ -29,7 +29,7 @@ namespace Child_Advocacy_Database
 
 
         Case addCase;
-        
+
 
         //
         // Initialization of HDD list and form
@@ -82,7 +82,7 @@ namespace Child_Advocacy_Database
 
             for (i = 0; i < addCase.PerpFirstNames.Count; i++)
             {
-                perpListBox.Items.Add(addCase.PerpFirstNames[i].Trim() + ' ' + 
+                perpListBox.Items.Add(addCase.PerpFirstNames[i].Trim() + ' ' +
                     addCase.PerpLastNames[i].Trim() + ' ' + addCase.PerpNicks[i].Trim());
             }
 
@@ -148,6 +148,11 @@ namespace Child_Advocacy_Database
             addCase.PerpLastNames.Add(perpLast);
             addCase.PerpNicks.Add(perpNick);
 
+            // New code using the Perp class
+            if (perpFirst.Trim() != "" || perpLast.Trim() != "" || perpNick.Trim() != "")
+                addCase.PerpList.Add(new Perp(perpFirst, perpLast, perpNick));
+
+
             if (perpFirst.Trim() != "" || perpLast.Trim() != "" || perpNick.Trim() != "")
                 perpListBox.Items.Add((perpFirst.Trim() + ' ' + perpLast.Trim() + ' ' + perpNick.Trim()).Trim());
 
@@ -161,26 +166,30 @@ namespace Child_Advocacy_Database
         //
         private void removePerpBtn_Click(object sender, EventArgs e)
         {
-            if(perpListBox.SelectedIndex != -1) { 
+            if (perpListBox.SelectedIndex != -1)
+            {
                 addCase.PerpFirstNames.RemoveAt(perpListBox.SelectedIndex);
                 addCase.PerpLastNames.RemoveAt(perpListBox.SelectedIndex);
                 addCase.PerpNicks.RemoveAt(perpListBox.SelectedIndex);
 
-            /* Testing
-            foreach(var x in addCase.PerpFirstNames)
-            {
-                MessageBox.Show("Testing names left in list perp first name: " + x);
-            }
-            foreach(var x in addCase.PerpLastNames)
-            {
-                MessageBox.Show("Testing names left in list last perp name: " + x);
-            }
-            foreach(var x in addCase.PerpNicks)
-            {
-                MessageBox.Show("Testing names left in list perp nick name: " + x);
-            }
-            */
-            perpListBox.Items.Remove(perpListBox.SelectedItem);
+                // New code using the Perp class
+                addCase.PerpList.RemoveAt(perpListBox.SelectedIndex);
+
+                /* Testing
+                foreach(var x in addCase.PerpFirstNames)
+                {
+                    MessageBox.Show("Testing names left in list perp first name: " + x);
+                }
+                foreach(var x in addCase.PerpLastNames)
+                {
+                    MessageBox.Show("Testing names left in list last perp name: " + x);
+                }
+                foreach(var x in addCase.PerpNicks)
+                {
+                    MessageBox.Show("Testing names left in list perp nick name: " + x);
+                }
+                */
+                perpListBox.Items.Remove(perpListBox.SelectedItem);
             }
         }
 
@@ -194,6 +203,10 @@ namespace Child_Advocacy_Database
 
             addCase.SiblingFirstNames.Add(siblingFirst);
             addCase.SiblingLastNames.Add(siblingLast);
+
+            // New code using the Sibling class
+            if (siblingFirst.Trim() != "" || siblingLast.Trim() != "")
+                addCase.SiblingList.Add(new Sibling(siblingFirst, siblingLast));
 
             if (siblingFirst.Trim() != "" || siblingLast.Trim() != "")
             {
@@ -210,13 +223,10 @@ namespace Child_Advocacy_Database
         {
             addCase.SiblingFirstNames.RemoveAt(siblingListBox.SelectedIndex);
             addCase.SiblingLastNames.RemoveAt(siblingListBox.SelectedIndex);
-<<<<<<< HEAD
 
             // New code using the Sibling class
             addCase.SiblingList.RemoveAt(siblingListBox.SelectedIndex);
 
-=======
->>>>>>> parent of bc20749 (Query Set up. Database integrated.)
             /* Testing
             foreach(var x in addCase.SiblingFirstNames)
             {
@@ -241,6 +251,10 @@ namespace Child_Advocacy_Database
             addCase.OtherVictimFirstNames.Add(victimFirst);
             addCase.OtherVictimLastNames.Add(victimLast);
 
+            // New code using the Perp class
+            if (victimFirst.Trim() != "" || victimLast.Trim() != "")
+                addCase.VictimList.Add(new Victim(victimFirst, victimLast));
+
             if (victimFirst.Trim() != "" || victimLast.Trim() != "")
             {
                 otherVictimListBox.Items.Add((victimFirst.Trim() + ' ' + victimLast.Trim()).Trim());
@@ -256,6 +270,10 @@ namespace Child_Advocacy_Database
         {
             addCase.OtherVictimFirstNames.RemoveAt(otherVictimListBox.SelectedIndex);
             addCase.OtherVictimLastNames.RemoveAt(otherVictimListBox.SelectedIndex);
+
+            // New code using the Victim class
+            addCase.VictimList.RemoveAt(otherVictimListBox.SelectedIndex);
+
             /* Testing 
             foreach(var x in addCase.OtherVictimFirstNames)
             {
@@ -267,9 +285,9 @@ namespace Child_Advocacy_Database
             }
             */
             otherVictimListBox.Items.Remove(otherVictimListBox.SelectedItem);
-            
+
         }
-        
+
         //
         // Add a mp4 file to the mp4 list view
         //
@@ -415,7 +433,7 @@ namespace Child_Advocacy_Database
             var stream = items.First(x => (x.Key as string) == resName.ToLower()).Value;
             return (UnmanagedMemoryStream)stream;
         }
-        */          
+        */
 
         //
         // Add the case to the database
@@ -436,7 +454,7 @@ namespace Child_Advocacy_Database
                 }
             }*/
 
-            if(addCase.HddList.Count == 0)
+            if (addCase.HddList.Count == 0)
             {
                 statusLbl.ForeColor = Color.Red;
                 statusLbl.Text = "**Status: Please choose which hard drive to save the database entry.";
@@ -448,7 +466,7 @@ namespace Child_Advocacy_Database
                 statusLbl.ForeColor = Color.Red;
                 statusLbl.Text = "**Status: A NCA number is required to add a case to the database.";
             }
-            else if(!checkDateFormat(childDobTxt.Text) && childDobTxt.Text != "")
+            else if (!checkDateFormat(childDobTxt.Text) && childDobTxt.Text != "")
             {
                 statusLbl.ForeColor = Color.Red;
                 statusLbl.Text = "**Status: Please enter child DOB in the exact format MM/DD/YYYY or leave blank if unknown.";
@@ -485,12 +503,14 @@ namespace Child_Advocacy_Database
                 {
                     fileSuccess = addDirectory();
                 }
-                
+
 
                 if (fileSuccess)
                 {
                     //
                     // Enter entry addCase into database here
+                    DatabaseController database = new DatabaseController();
+                    database.Insert(addCase.CaseNum, addCase.ChildFirst, addCase.ChildLast, addCase.ChildDob, addCase.InterviewDate, addCase.Guardian1First, addCase.Guardian1Last, addCase.Guardian2First, addCase.Guardian2Last, addCase.PerpList, addCase.SiblingList, addCase.VictimList, targetPath);
                     // database(targetPath)
                     // if(success){
                     statusLbl.ForeColor = Color.Blue;
@@ -529,12 +549,12 @@ namespace Child_Advocacy_Database
                     try
                     {
                         string targetPath = addCase.HddList[0] + ncaNumTxt.Text;
-                         
+
                         Directory.Delete(targetPath, true);
                         //
                         // Need to remove from database here
                         //
-                        
+
                         // if(database delete success) {
                         MessageBox.Show("NCA# " + ncaNumTxt.Text + " deleted!");
                     }
@@ -556,16 +576,16 @@ namespace Child_Advocacy_Database
             if (date.Length == 10)
             {
                 if (
-                    (date[0] >= '0'  && date[0] <= '9') &&
-                    (date[1] >= '0'  && date[1] <= '9') &&
+                    (date[0] >= '0' && date[0] <= '9') &&
+                    (date[1] >= '0' && date[1] <= '9') &&
                     (date[2] == '/') &&
-                    (date[3] >= '0'  && date[3] <= '9') &&
-                    (date[4] >= '0'  && date[4] <= '9') &&
+                    (date[3] >= '0' && date[3] <= '9') &&
+                    (date[4] >= '0' && date[4] <= '9') &&
                     (date[5] == '/') &&
-                    (date[6] >= '0'  && date[6] <= '9') &&
-                    (date[7] >= '0'  && date[7] <= '9') &&
-                    (date[8] >= '0'  && date[8] <= '9') &&
-                    (date[9] >= '0'  && date[9] <= '9')
+                    (date[6] >= '0' && date[6] <= '9') &&
+                    (date[7] >= '0' && date[7] <= '9') &&
+                    (date[8] >= '0' && date[8] <= '9') &&
+                    (date[9] >= '0' && date[9] <= '9')
                    )
                 {
                     return true;
@@ -621,7 +641,7 @@ namespace Child_Advocacy_Database
         private void dashboardBtn_Click(object sender, EventArgs e)
         {
             Application.OpenForms["dashboard"].BringToFront();
-            addCase = null; 
+            addCase = null;
             Close();
         }
     }
