@@ -36,7 +36,6 @@ namespace Child_Advocacy_Database
             InitializeComponent();
             queryCases = new List<Case>();
             queryCase = new Case();
-
             try
             {
                 DriveInfo[] myDrives = DriveInfo.GetDrives();
@@ -44,11 +43,11 @@ namespace Child_Advocacy_Database
                 foreach (DriveInfo drive in myDrives)
                 {
                     selectHddListBox.Items.Add(drive.Name + " " + drive.VolumeLabel);
-                }   
+                }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                MessageBox.Show("Exception message: " + e.Message);
+                throw;
             }
         }
 
@@ -203,13 +202,11 @@ namespace Child_Advocacy_Database
             //
             // Add database query here 
             // A List<DatabaseItem> queryCases will be populated with the search results and added to the searchResultListBox
-            DatabaseController database = new DatabaseController();
-            queryCases = database.Query(queryCase.CaseNum, queryCase.ChildFirst, queryCase.ChildLast, queryCase.ChildDob, queryCase.InterviewDate, queryCase.Guardian1First, queryCase.Guardian1Last, queryCase.Guardian2First, queryCase.Guardian2Last, queryCase.PerpList, queryCase.SiblingList, queryCase.VictimList);
             // if(databaseSuccess){
             //   
 
             // This is for testing:
-            //queryCases.Add(queryCase);
+            queryCases.Add(queryCase);
             searchResultListBox.Items.Clear();
             foreach(var caseList in queryCases)
             {
