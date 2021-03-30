@@ -56,6 +56,8 @@ namespace Child_Advocacy_Database
         //
         private void selectHddListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (selectHddListBox.SelectedIndex == -1)
+                return;
             bool addHddFlag;
             string addHdd;
             string tempHdd;
@@ -67,6 +69,7 @@ namespace Child_Advocacy_Database
 
 
             addHddFlag = false;
+
             tempHdd = selectHddListBox.SelectedItem.ToString();
             addHdd = "";
             if (tempHdd.Length > 3)
@@ -160,7 +163,7 @@ namespace Child_Advocacy_Database
             //
             // queryCase data members to search for
             //
-            
+
             if (!checkDateFormat(childDobTxt.Text) && childDobTxt.Text != "")
             {
                 statusLbl.ForeColor = Color.Red;
@@ -325,13 +328,15 @@ namespace Child_Advocacy_Database
             // On this form choose only 1 hard drive, enter the NCA number of the previous folder and press search, then press open file -
             // Clicking the listbox does nothing right now
             // It should bring up the folder with the files in file explorer if you followed the steps correctly, otherwise it brings up default location 
-            try
+
+            // Opens File Explorer after confirming item is selected in list box. 
+            if (searchResultListBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an Item first!");
+            }
+            else
             {
                 Process.Start("explorer.exe", queryCase.HddList[0] + queryCase.CaseNum);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 
@@ -365,13 +370,14 @@ namespace Child_Advocacy_Database
         {
             // This will change to be when a listboxitem is selected and populates the textboxes,
             // that will be the query to send to edit, there needs to be a flag to check if the search was completed
-            if (queryCase != null)
+            if (searchResultListBox.SelectedIndex != -1)
             {
+                Close();
                 AddCaseForm editCase = new AddCaseForm(queryCase);
                 statusLbl.ForeColor = Color.Green;
                 statusLbl.Text = "**Status: Editing the most recently searched case.";
                 editCase.Show();
-                Close();
+                editCase.BringToFront();
             }
             else
             {
