@@ -45,7 +45,7 @@ namespace Child_Advocacy_Database
             // AddButton
             // 
             this.AddButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.AddButton.Location = new System.Drawing.Point(352, 344);
+            this.AddButton.Location = new System.Drawing.Point(361, 398);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(184, 81);
             this.AddButton.TabIndex = 0;
@@ -57,7 +57,7 @@ namespace Child_Advocacy_Database
             // QueryButton
             // 
             this.QueryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.QueryButton.Location = new System.Drawing.Point(567, 344);
+            this.QueryButton.Location = new System.Drawing.Point(576, 398);
             this.QueryButton.Name = "QueryButton";
             this.QueryButton.Size = new System.Drawing.Size(183, 81);
             this.QueryButton.TabIndex = 2;
@@ -79,6 +79,7 @@ namespace Child_Advocacy_Database
             this.QuitButton.Size = new System.Drawing.Size(123, 34);
             this.QuitButton.TabIndex = 3;
             this.QuitButton.Text = "Quit";
+            this.searchTip.SetToolTip(this.QuitButton, "Get outta dodge!");
             this.QuitButton.UseVisualStyleBackColor = true;
             this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
             // 
@@ -87,9 +88,9 @@ namespace Child_Advocacy_Database
             this.PleaseTextBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.PleaseTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.PleaseTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.PleaseTextBox.Location = new System.Drawing.Point(433, 295);
+            this.PleaseTextBox.Location = new System.Drawing.Point(470, 346);
             this.PleaseTextBox.Name = "PleaseTextBox";
-            this.PleaseTextBox.Size = new System.Drawing.Size(383, 16);
+            this.PleaseTextBox.Size = new System.Drawing.Size(195, 16);
             this.PleaseTextBox.TabIndex = 4;
             this.PleaseTextBox.Text = "Please choose an action below:";
             // 
@@ -98,7 +99,7 @@ namespace Child_Advocacy_Database
             this.WelcomeTextBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.WelcomeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.WelcomeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.WelcomeTextBox.Location = new System.Drawing.Point(352, 268);
+            this.WelcomeTextBox.Location = new System.Drawing.Point(376, 319);
             this.WelcomeTextBox.Multiline = true;
             this.WelcomeTextBox.Name = "WelcomeTextBox";
             this.WelcomeTextBox.Size = new System.Drawing.Size(383, 21);
@@ -110,7 +111,7 @@ namespace Child_Advocacy_Database
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(291, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(313, 54);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(508, 259);
             this.pictureBox1.TabIndex = 6;
