@@ -250,7 +250,7 @@ namespace Child_Advocacy_Database
             addCase.OtherVictimFirstNames.Add(victimFirst);
             addCase.OtherVictimLastNames.Add(victimLast);
 
-            // New code using the Perp class
+            // New code using the Victim class
             if (victimFirst.Trim() != "" || victimLast.Trim() != "")
                 addCase.VictimList.Add(new Victim(victimFirst, victimLast));
 
@@ -510,6 +510,8 @@ namespace Child_Advocacy_Database
                     // Enter entry addCase into database here
                     DatabaseController database = new DatabaseController();
                     database.Insert(addCase.CaseNum, addCase.ChildFirst, addCase.ChildLast, addCase.ChildDob, addCase.InterviewDate, addCase.Guardian1First, addCase.Guardian1Last, addCase.Guardian2First, addCase.Guardian2Last, addCase.PerpList, addCase.SiblingList, addCase.VictimList, targetPath);
+                    
+                    
                     // database(targetPath)
                     // if(success){
                     statusLbl.ForeColor = Color.Blue;

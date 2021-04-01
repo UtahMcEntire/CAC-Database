@@ -37,16 +37,19 @@ public class DatabaseController
             {
                 command.CommandType = System.Data.CommandType.Text;
 
-                DBNull.Value.ToString();
+                if (ChildFirst == "")
+                    Console.WriteLine("ChildFirst Null");
+                else
+                    Console.WriteLine(ChildFirst);
                 command.Parameters.AddWithValue("case", CaseNum); // Required Parameter
-                command.Parameters.AddWithValue("childFirst", ChildFirst == null ? (object)DBNull.Value : ChildFirst);
-                command.Parameters.AddWithValue("childLast", ChildLast == null ? (object)DBNull.Value : ChildLast);
-                command.Parameters.AddWithValue("childDob", ChildDob == null ? (object)DBNull.Value : ChildDob);
-                command.Parameters.AddWithValue("interview", InterviewDate == null ? (object)DBNull.Value : InterviewDate);
-                command.Parameters.AddWithValue("guard1First", Guardian1First == null ? (object)DBNull.Value : Guardian2First);
-                command.Parameters.AddWithValue("guard1Last", Guardian1Last == null ? (object)DBNull.Value : Guardian1Last);
-                command.Parameters.AddWithValue("guard2First", Guardian2First == null ? (object)DBNull.Value : Guardian2First);
-                command.Parameters.AddWithValue("guard2Last", Guardian2Last == null ? (object)DBNull.Value : Guardian2Last);
+                command.Parameters.AddWithValue("childFirst", ChildFirst == "" ? (object)DBNull.Value : ChildFirst);
+                command.Parameters.AddWithValue("childLast", ChildLast == "" ? (object)DBNull.Value : ChildLast);
+                command.Parameters.AddWithValue("childDob", ChildDob == "" ? (object)DBNull.Value : ChildDob);
+                command.Parameters.AddWithValue("interview", InterviewDate == "" ? (object)DBNull.Value : InterviewDate);
+                command.Parameters.AddWithValue("guard1First", Guardian1First == "" ? (object)DBNull.Value : Guardian2First);
+                command.Parameters.AddWithValue("guard1Last", Guardian1Last == "" ? (object)DBNull.Value : Guardian1Last);
+                command.Parameters.AddWithValue("guard2First", Guardian2First == "" ? (object)DBNull.Value : Guardian2First);
+                command.Parameters.AddWithValue("guard2Last", Guardian2Last == "" ? (object)DBNull.Value : Guardian2Last);
 
                 // Add Perps to DB
                 Console.WriteLine(PerpList.Count);
@@ -146,41 +149,77 @@ public class DatabaseController
 
                             index = reader.GetOrdinal("CaseNum");
                             if (CaseNum != null && !reader.IsDBNull(index))
-                                c.CaseNum = reader.GetString(reader.GetOrdinal("CaseNum"));
+                            {
+                                string readInfo = reader.GetString(reader.GetOrdinal("CaseNum"));
+                                if (CaseNum == readInfo)
+                                    c.CaseNum = readInfo;
+                            }
                             else
                                 continue;
 
                             index = reader.GetOrdinal("ChildFirst");
-                            if (ChildFirst != null && !reader.IsDBNull(index))
-                                c.ChildFirst = reader.GetString(reader.GetOrdinal("ChildFirst"));
+                            if (ChildFirst != null && !reader.IsDBNull(index)) 
+                            {
+                                string readInfo = reader.GetString(reader.GetOrdinal("ChildFirst"));
+                                if (ChildFirst == readInfo)
+                                    c.ChildFirst = readInfo;
+                            }
 
                             index = reader.GetOrdinal("ChildLast");
                             if (ChildLast != null && !reader.IsDBNull(index))
-                                c.ChildLast = reader.GetString(reader.GetOrdinal("ChildLast"));
+                            {
+                                string readInfo = reader.GetString(reader.GetOrdinal("ChildLast"));
+                                if (ChildLast == readInfo)
+                                    c.ChildLast = readInfo;
+                            }
 
                             index = reader.GetOrdinal("ChildDob");
                             if (ChildDob != null && !reader.IsDBNull(index))
-                                c.ChildDob = reader.GetString(reader.GetOrdinal("ChildDob"));
+                            {
+                                string readInfo = reader.GetString(reader.GetOrdinal("ChildDob"));
+                                if (ChildDob == readInfo)
+                                    c.ChildDob = readInfo;
+                            }
 
                             index = reader.GetOrdinal("InterviewDate");
                             if (InterviewDate != null && !reader.IsDBNull(index))
-                                c.InterviewDate = reader.GetString(reader.GetOrdinal("Interview"));
+                            {
+                                string readInfo = reader.GetString(reader.GetOrdinal("InterviewDate"));
+                                if (InterviewDate == readInfo)
+                                    c.InterviewDate = readInfo;
+                            }
 
                             index = reader.GetOrdinal("Guardian1First");
                             if (Guardian1First != null && !reader.IsDBNull(index))
-                                c.Guardian1First = reader.GetString(reader.GetOrdinal("Guard1First"));
+                            {
+                                string readInfo = reader.GetString(reader.GetOrdinal("Guardian1First"));
+                                if (Guardian1First == readInfo)
+                                    c.Guardian1First = readInfo;
+                            }
 
                             index = reader.GetOrdinal("Guardian1First");
                             if (Guardian1Last != null && !reader.IsDBNull(index))
-                                c.Guardian1Last = reader.GetString(reader.GetOrdinal("Guard1Last"));
+                            {
+                                string readInfo = reader.GetString(reader.GetOrdinal("Guardian1Last"));
+                                if (Guardian1Last == readInfo)
+                                    c.Guardian1Last = readInfo;
+                            }
 
                             index = reader.GetOrdinal("Guardian2First");
                             if (Guardian2First != null && !reader.IsDBNull(index))
-                                c.Guardian2First = reader.GetString(reader.GetOrdinal("Guard2First"));
+                            {
+                                string readInfo = reader.GetString(reader.GetOrdinal("Guardian2First"));
+                                if (Guardian2First == readInfo)
+                                    c.Guardian2First = readInfo;
+                            }
 
                             index = reader.GetOrdinal("Guardian2Last");
                             if (Guardian2Last != null && !reader.IsDBNull(index))
-                                c.Guardian2Last = reader.GetString(reader.GetOrdinal("Guard2Last"));
+                            {
+                                string readInfo = reader.GetString(reader.GetOrdinal("Guardian2Last"));
+                                if (Guardian2Last == readInfo)
+                                    c.Guardian2Last = readInfo;
+                            }
 
                             
                             cases.Add(c);
@@ -189,10 +228,38 @@ public class DatabaseController
                 }
             }
         }
+        
+        // Debug
         foreach (Case cs in cases) {
             cs.ToString();
         }
+
         return cases;
+    }
+
+
+    public string GetNextUnknown(string year)
+    {
+        List<Case> cases = new List<Case>();
+        int index; // Index of current ordinal read by reader
+
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            using (SqlCommand command = new SqlCommand("SELECT ChildDataTable.* FROM ChildDataTable", connection))
+            {
+                connection.Open();
+                if (connection.State == System.Data.ConnectionState.Open)
+                    Console.WriteLine("connected");
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    int count = 1;
+
+
+                    return year + "-9999" + count.ToString();
+                }
+            }
+        }
     }
 
 
