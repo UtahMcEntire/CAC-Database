@@ -237,7 +237,6 @@ public class DatabaseController
                         // Reads the DB until there's nothing left to read
                         while (reader.Read())
                         {
-                            isCaseFound = false;
                             Console.WriteLine("reading");
                             
                             // Creates a dummy case to 
