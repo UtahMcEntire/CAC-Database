@@ -15,7 +15,7 @@ namespace Child_Advocacy_Database
     public partial class Query : Form
     {
         // Most of this form is in testing phase. 
-  
+
         // TODO: Link database to search
         // TODO: Figure out edit options
         // TODO: Link 'open file' to listbox selection
@@ -45,7 +45,7 @@ namespace Child_Advocacy_Database
                 foreach (DriveInfo drive in myDrives)
                 {
                     selectHddListBox.Items.Add(drive.Name + " " + drive.VolumeLabel);
-                }   
+                }
             }
             catch (Exception e)
             {
@@ -114,10 +114,10 @@ namespace Child_Advocacy_Database
         //
         private void removeHddBtn_Click(object sender, EventArgs e)
         {
-            if(confirmHddListBox.SelectedIndex != -1)
-            {     
+            if (confirmHddListBox.SelectedIndex != -1)
+            {
                 string deletedHdd = confirmHddListBox.SelectedItem.ToString();
-          
+
                 int indexToDelete = -1;
                 for(int i = 0; i < hdd.Count; i++)
                 {
@@ -126,7 +126,7 @@ namespace Child_Advocacy_Database
                         indexToDelete = i;
                     }
                 }
-                if(indexToDelete != -1)
+                if (indexToDelete != -1)
                 {
                     hdd.RemoveAt(indexToDelete);
                 }
@@ -206,10 +206,7 @@ namespace Child_Advocacy_Database
                 queryCase.OtherVictimLastNames.Add(otherVictimLastNameTxt.Text);
 
                 DatabaseController database = new DatabaseController();
-                queryCases = database.Query(queryCase.CaseNum, queryCase.ChildFirst, queryCase.ChildLast, 
-                    queryCase.ChildDob, queryCase.InterviewDate, queryCase.Guardian1First, 
-                    queryCase.Guardian1Last, queryCase.Guardian2First, queryCase.Guardian2Last, 
-                    queryCase.PerpList, queryCase.SiblingList, queryCase.VictimList);
+                queryCases = database.Query(queryCase);
  
                 searchResultListBox.Items.Clear();
                 foreach (var caseList in queryCases)

@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Child_Advocacy_Database {
+namespace Child_Advocacy_Database
+{
 
 	public class Perp
-    {
+	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public string Nick { get; set; }
 
 		public Perp(string FName, string LName, string Nick)
-        {
+		{
 			this.FirstName = FName;
 			this.LastName = LName;
 			this.Nick = Nick;
-        }
+		}
 
 		public override string ToString()
 		{
@@ -23,7 +24,7 @@ namespace Child_Advocacy_Database {
 
 		// A function used to convert the class into a XML string
 		public String ToXmlString()
-        {
+		{
 			string toXML = "<perp>";
 			if (this.FirstName != null)
 				toXML += "<first>" + this.FirstName + "</first>";
@@ -34,12 +35,12 @@ namespace Child_Advocacy_Database {
 			toXML += "</perp>";
 
 			return toXML;
-        }
+		}
 	}
 
 
 	public class Sibling
-    {
+	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 
