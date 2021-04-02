@@ -119,8 +119,7 @@ namespace Child_Advocacy_Database {
 		public List<string> SiblingLastNames { get; set; }
 		public List<string> OtherVictimFirstNames { get; set; }
 		public List<string> OtherVictimLastNames { get; set; }
-		public List<string> HddList { get; set; }
-		string[] AddCaseHdd { get; set; }
+		//public List<string> HddList { get; set; }
 
 
 		public List<Perp> PerpList = new List<Perp>();
@@ -153,7 +152,7 @@ namespace Child_Advocacy_Database {
 		 */
 		public Case()
 		{
-			HddList = new List<string>();
+			//HddList = new List<string>();
 			PerpFirstNames = new List<string>();
 			PerpLastNames = new List<string>();
 			PerpNicks = new List<string>();

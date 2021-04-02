@@ -521,7 +521,7 @@ namespace Child_Advocacy_Database
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(853, 505);
+            this.ClientSize = new System.Drawing.Size(853, 519);
             this.Controls.Add(this.openFileBtn);
             this.Controls.Add(this.editBtn);
             this.Controls.Add(this.interviewTxt);

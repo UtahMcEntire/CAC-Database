@@ -29,6 +29,8 @@ namespace Child_Advocacy_Database
 
 
         Case addCase;
+        bool isEditForm = false;
+        string hdd = "";
         
 
         //
@@ -70,6 +72,7 @@ namespace Child_Advocacy_Database
         private void EditCaseFunc()
         {
             int i;
+            isEditForm = true;
             ncaNumTxt.Text = addCase.CaseNum;
             childFirstNameTxt.Text = addCase.ChildFirst;
             childLastNameTxt.Text = addCase.ChildLast;
@@ -119,10 +122,7 @@ namespace Child_Advocacy_Database
                     {
                         addHdd += tempHdd[j];
                     }
-                    if (addCase.HddList.Count == 0)
-                        addCase.HddList.Add(addHdd);
-                    else
-                        addCase.HddList[0] = addHdd;
+                    hdd = addHdd;
                 }
 
 
@@ -130,7 +130,7 @@ namespace Child_Advocacy_Database
                 statusLbl.Text = "**Status: Enter case information to add to database.";
             }
             // for testing purposes
-            //MessageBox.Show("Testing HDD: " + addCase.HddList[0]);
+            //MessageBox.Show("Testing HDD: " + hdd[0]);
 
         }
 
@@ -166,29 +166,30 @@ namespace Child_Advocacy_Database
         //
         private void removePerpBtn_Click(object sender, EventArgs e)
         {
-            if(perpListBox.SelectedIndex != -1) { 
+            if(perpListBox.SelectedIndex != -1) 
+            { 
                 addCase.PerpFirstNames.RemoveAt(perpListBox.SelectedIndex);
                 addCase.PerpLastNames.RemoveAt(perpListBox.SelectedIndex);
                 addCase.PerpNicks.RemoveAt(perpListBox.SelectedIndex);
 
-            // New code using the Perp class
-            addCase.PerpList.RemoveAt(perpListBox.SelectedIndex);
+                // New code using the Perp class
+                addCase.PerpList.RemoveAt(perpListBox.SelectedIndex);
 
-            /* Testing
-            foreach(var x in addCase.PerpFirstNames)
-            {
-                MessageBox.Show("Testing names left in list perp first name: " + x);
-            }
-            foreach(var x in addCase.PerpLastNames)
-            {
-                MessageBox.Show("Testing names left in list last perp name: " + x);
-            }
-            foreach(var x in addCase.PerpNicks)
-            {
-                MessageBox.Show("Testing names left in list perp nick name: " + x);
-            }
-            */
-            perpListBox.Items.Remove(perpListBox.SelectedItem);
+                /* Testing
+                foreach(var x in addCase.PerpFirstNames)
+                {
+                    MessageBox.Show("Testing names left in list perp first name: " + x);
+                }
+                foreach(var x in addCase.PerpLastNames)
+                {
+                    MessageBox.Show("Testing names left in list last perp name: " + x);
+                }
+                foreach(var x in addCase.PerpNicks)
+                {
+                    MessageBox.Show("Testing names left in list perp nick name: " + x);
+                }
+                */
+                perpListBox.Items.Remove(perpListBox.SelectedItem);
             }
         }
 
@@ -220,23 +221,26 @@ namespace Child_Advocacy_Database
         //
         private void removeSiblingBtn_Click(object sender, EventArgs e)
         {
-            addCase.SiblingFirstNames.RemoveAt(siblingListBox.SelectedIndex);
-            addCase.SiblingLastNames.RemoveAt(siblingListBox.SelectedIndex);
-
-            // New code using the Sibling class
-            addCase.SiblingList.RemoveAt(siblingListBox.SelectedIndex);
-
-            /* Testing
-            foreach(var x in addCase.SiblingFirstNames)
+            if (siblingListBox.SelectedIndex != -1)
             {
-                MessageBox.Show("Testing names left in list sibling first name: " + x);
+                addCase.SiblingFirstNames.RemoveAt(siblingListBox.SelectedIndex);
+                addCase.SiblingLastNames.RemoveAt(siblingListBox.SelectedIndex);
+
+                // New code using the Sibling class
+                addCase.SiblingList.RemoveAt(siblingListBox.SelectedIndex);
+
+                /* Testing
+                foreach(var x in addCase.SiblingFirstNames)
+                {
+                    MessageBox.Show("Testing names left in list sibling first name: " + x);
+                }
+                foreach(var x in addCase.SiblingLastNames)
+                {
+                    MessageBox.Show("Testing names left in list sibling last name: " + x);
+                }
+                */
+                siblingListBox.Items.Remove(siblingListBox.SelectedItem);
             }
-            foreach(var x in addCase.SiblingLastNames)
-            {
-                MessageBox.Show("Testing names left in list sibling last name: " + x);
-            }
-            */
-            siblingListBox.Items.Remove(siblingListBox.SelectedItem);
         }
 
         //
@@ -267,24 +271,26 @@ namespace Child_Advocacy_Database
         //
         private void removeVictimBtn_Click(object sender, EventArgs e)
         {
-            addCase.OtherVictimFirstNames.RemoveAt(otherVictimListBox.SelectedIndex);
-            addCase.OtherVictimLastNames.RemoveAt(otherVictimListBox.SelectedIndex);
-
-            // New code using the Victim class
-            addCase.VictimList.RemoveAt(otherVictimListBox.SelectedIndex);
-
-            /* Testing 
-            foreach(var x in addCase.OtherVictimFirstNames)
+            if (otherVictimListBox.SelectedIndex != -1)
             {
-                MessageBox.Show("Testing names left in list other victim first name: " + x);
+                addCase.OtherVictimFirstNames.RemoveAt(otherVictimListBox.SelectedIndex);
+                addCase.OtherVictimLastNames.RemoveAt(otherVictimListBox.SelectedIndex);
+
+                // New code using the Victim class
+                addCase.VictimList.RemoveAt(otherVictimListBox.SelectedIndex);
+
+                /* Testing 
+                foreach(var x in addCase.OtherVictimFirstNames)
+                {
+                    MessageBox.Show("Testing names left in list other victim first name: " + x);
+                }
+                foreach(var x in addCase.OtherVictimLastNames)
+                {
+                    MessageBox.Show("Testing names left in list other victim last name: " + x);
+                }
+                */
+                otherVictimListBox.Items.Remove(otherVictimListBox.SelectedItem);
             }
-            foreach(var x in addCase.OtherVictimLastNames)
-            {
-                MessageBox.Show("Testing names left in list other victim last name: " + x);
-            }
-            */
-            otherVictimListBox.Items.Remove(otherVictimListBox.SelectedItem);
-            
         }
         
         //
@@ -406,7 +412,7 @@ namespace Child_Advocacy_Database
             pdfFilesListView.BackColor = Color.White;
             mp4FilesListView.BackColor = Color.White;
             selectHddListBox.ClearSelected();
-            addCase.HddList = null;
+            hdd = "";
             addCase.PerpFirstNames = null;
             addCase.PerpLastNames = null;
             addCase.PerpNicks = null;
@@ -453,7 +459,7 @@ namespace Child_Advocacy_Database
                 }
             }*/
 
-            if(addCase.HddList.Count == 0)
+            if(hdd == "")
             {
                 statusLbl.ForeColor = Color.Red;
                 statusLbl.Text = "**Status: Please choose which hard drive to save the database entry.";
@@ -480,7 +486,7 @@ namespace Child_Advocacy_Database
             else
             {
 
-                string targetPath = addCase.HddList[0] + ncaNumTxt.Text;
+                string targetPath = hdd + ncaNumTxt.Text;
                 addCase.CaseNum = ncaNumTxt.Text;
                 addCase.ChildFirst = childFirstNameTxt.Text;
                 addCase.ChildLast = childLastNameTxt.Text;
@@ -529,7 +535,7 @@ namespace Child_Advocacy_Database
         //
         private void removeCaseBtn_Click(object sender, EventArgs e)
         {
-            if (addCase.HddList.Count == 0)
+            if (hdd == "")
             {
                 statusLbl.ForeColor = Color.Red;
                 statusLbl.Text = "**Status: Please choose which hard drive to remove the database entry.";
@@ -549,7 +555,7 @@ namespace Child_Advocacy_Database
                 {
                     try
                     {
-                        string targetPath = addCase.HddList[0] + ncaNumTxt.Text;
+                        string targetPath = hdd + ncaNumTxt.Text;
                          
                         Directory.Delete(targetPath, true);
                         //
@@ -600,12 +606,26 @@ namespace Child_Advocacy_Database
         //
         private bool addDirectory()
         {
-            string targetPath = addCase.HddList[0] + ncaNumTxt.Text;
+            string targetPath = hdd + ncaNumTxt.Text;
             string sourcePath;
             string fileName;
             string destPath;
             try
             {
+                if (isEditForm == false)
+                {
+                    try
+                    {
+                        Directory.Delete(targetPath, true);
+                    }
+                    catch(Exception ex)
+                    {
+                        statusLbl.ForeColor = Color.Red;
+                        statusLbl.Text = "**Status: " + ex.Message;
+                    }
+                }
+
+                
                 System.IO.Directory.CreateDirectory(targetPath);
 
                 foreach (ListViewItem item in pdfFilesListView.Items)
@@ -630,8 +650,8 @@ namespace Child_Advocacy_Database
                 pdfFilesListView.BackColor = Color.Red;
                 mp4FilesListView.BackColor = Color.Red;
                 statusLbl.ForeColor = Color.Red;
-                statusLbl.Text = "**Status: Error adding files to folder, please see exception message for details.";
-                MessageBox.Show("Exception message: " + ex.Message);
+                statusLbl.Text = "**Status: " + ex.Message;
+                //MessageBox.Show("Exception message: " + ex.Message);
                 return false;
             }
         }

@@ -134,6 +134,7 @@ public class DatabaseController
             using (SqlCommand command = new SqlCommand("SELECT ChildDataTable.* FROM ChildDataTable", connection))
             { 
                 connection.Open();
+                bool isCaseFound = false;
                 if (connection.State == System.Data.ConnectionState.Open)
                     Console.WriteLine("connected");
 
@@ -144,6 +145,7 @@ public class DatabaseController
                         Console.WriteLine("has rows");
                         while (reader.Read())
                         {
+                            isCaseFound = false;
                             Console.WriteLine("reading");
                             Case c = new Case();
 
@@ -152,7 +154,11 @@ public class DatabaseController
                             {
                                 string readInfo = reader.GetString(reader.GetOrdinal("CaseNum"));
                                 if (CaseNum == readInfo)
+                                {
                                     c.CaseNum = readInfo;
+                                    isCaseFound = true;
+                                }
+                                    
                             }
                             else
                                 continue;
@@ -162,7 +168,10 @@ public class DatabaseController
                             {
                                 string readInfo = reader.GetString(reader.GetOrdinal("ChildFirst"));
                                 if (ChildFirst == readInfo)
+                                { 
                                     c.ChildFirst = readInfo;
+                                    isCaseFound = true;
+                                }
                             }
 
                             index = reader.GetOrdinal("ChildLast");
@@ -170,7 +179,10 @@ public class DatabaseController
                             {
                                 string readInfo = reader.GetString(reader.GetOrdinal("ChildLast"));
                                 if (ChildLast == readInfo)
+                                { 
                                     c.ChildLast = readInfo;
+                                    isCaseFound = true;
+                                }
                             }
 
                             index = reader.GetOrdinal("ChildDob");
@@ -178,7 +190,10 @@ public class DatabaseController
                             {
                                 string readInfo = reader.GetString(reader.GetOrdinal("ChildDob"));
                                 if (ChildDob == readInfo)
+                                { 
                                     c.ChildDob = readInfo;
+                                    isCaseFound = true;
+                                }
                             }
 
                             index = reader.GetOrdinal("InterviewDate");
@@ -186,7 +201,10 @@ public class DatabaseController
                             {
                                 string readInfo = reader.GetString(reader.GetOrdinal("InterviewDate"));
                                 if (InterviewDate == readInfo)
+                                { 
                                     c.InterviewDate = readInfo;
+                                    isCaseFound = true;
+                                }
                             }
 
                             index = reader.GetOrdinal("Guardian1First");
@@ -194,7 +212,10 @@ public class DatabaseController
                             {
                                 string readInfo = reader.GetString(reader.GetOrdinal("Guardian1First"));
                                 if (Guardian1First == readInfo)
+                                { 
                                     c.Guardian1First = readInfo;
+                                    isCaseFound = true;
+                                }
                             }
 
                             index = reader.GetOrdinal("Guardian1First");
@@ -202,7 +223,10 @@ public class DatabaseController
                             {
                                 string readInfo = reader.GetString(reader.GetOrdinal("Guardian1Last"));
                                 if (Guardian1Last == readInfo)
+                                { 
                                     c.Guardian1Last = readInfo;
+                                    isCaseFound = true;
+                                }
                             }
 
                             index = reader.GetOrdinal("Guardian2First");
@@ -210,7 +234,10 @@ public class DatabaseController
                             {
                                 string readInfo = reader.GetString(reader.GetOrdinal("Guardian2First"));
                                 if (Guardian2First == readInfo)
+                                { 
                                     c.Guardian2First = readInfo;
+                                    isCaseFound = true;
+                                }
                             }
 
                             index = reader.GetOrdinal("Guardian2Last");
@@ -218,11 +245,23 @@ public class DatabaseController
                             {
                                 string readInfo = reader.GetString(reader.GetOrdinal("Guardian2Last"));
                                 if (Guardian2Last == readInfo)
+                                { 
                                     c.Guardian2Last = readInfo;
+                                    isCaseFound = true;
+                                }
                             }
 
-                            
-                            cases.Add(c);
+                            if (isCaseFound == true)
+                            {
+                                cases.Add(c);
+                                /*foreach (var ca in cases)
+                                {
+                                    Console.WriteLine(ca.CaseNum);
+                                    Console.WriteLine(ca.ChildFirst);
+                                    Console.WriteLine(ca.ChildLast);
+                                    Console.WriteLine(ca.ChildDob);
+                                }*/
+                            }
                         }
                     }
                 }

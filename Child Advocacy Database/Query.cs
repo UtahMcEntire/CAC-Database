@@ -27,6 +27,7 @@ namespace Child_Advocacy_Database
 
         Case queryCase;
         List<Case> queryCases;
+        List<string> hdd = new List<string>();
 
         //
         // Intitialization and add drive list to the select hdd listbox
@@ -57,11 +58,9 @@ namespace Child_Advocacy_Database
         //
         private void selectHddListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectHddListBox.SelectedIndex == -1)
-                return;
             bool addHddFlag;
             string addHdd;
-            string tempHdd;
+            string tempHdd = "";
 
 
             statusLbl.ForeColor = Color.Green;
@@ -70,8 +69,10 @@ namespace Child_Advocacy_Database
 
 
             addHddFlag = false;
-
-            tempHdd = selectHddListBox.SelectedItem.ToString();
+            if (selectHddListBox.SelectedIndex != -1)
+            {
+                tempHdd = selectHddListBox.SelectedItem.ToString();
+            }
             addHdd = "";
             if (tempHdd.Length > 3)
             {
@@ -80,16 +81,16 @@ namespace Child_Advocacy_Database
                     addHdd += tempHdd[j];
                 }
 
-                if (queryCase.HddList.Count == 0)
+                if (hdd.Count == 0)
                 {
-                    queryCase.HddList.Add(addHdd);
+                    hdd.Add(addHdd);
                 }
                 else
                 {
                     addHddFlag = true;
-                    for (int i = 0; i < queryCase.HddList.Count; i++)
+                    for (int i = 0; i < hdd.Count; i++)
                     {
-                        if (queryCase.HddList[i].Contains(addHdd))
+                        if (hdd[i].Contains(addHdd))
                         {
                             addHddFlag = false;
                         }
@@ -98,13 +99,13 @@ namespace Child_Advocacy_Database
             }
             if (addHddFlag)
             {
-                queryCase.HddList.Add(addHdd);
+                hdd.Add(addHdd);
             }
 
             confirmHddListBox.Items.Clear();
-            foreach (var hdd in queryCase.HddList)
+            foreach (var h in hdd)
             {
-                confirmHddListBox.Items.Add(hdd);
+                confirmHddListBox.Items.Add(h);
             }
         }
 
@@ -118,23 +119,23 @@ namespace Child_Advocacy_Database
                 string deletedHdd = confirmHddListBox.SelectedItem.ToString();
           
                 int indexToDelete = -1;
-                for(int i = 0; i < queryCase.HddList.Count; i++)
+                for(int i = 0; i < hdd.Count; i++)
                 {
-                    if(deletedHdd == queryCase.HddList[i])
+                    if(deletedHdd == hdd[i])
                     {
                         indexToDelete = i;
                     }
                 }
                 if(indexToDelete != -1)
                 {
-                    queryCase.HddList.RemoveAt(indexToDelete);
+                    hdd.RemoveAt(indexToDelete);
                 }
                 confirmHddListBox.Items.RemoveAt(confirmHddListBox.SelectedIndex);
 
                 confirmHddListBox.Items.Clear();
-                foreach (var hdd in queryCase.HddList)
+                foreach (var h in hdd)
                 {
-                    confirmHddListBox.Items.Add(hdd);
+                    confirmHddListBox.Items.Add(h);
                 }
                 statusLbl.ForeColor = Color.Green;
                 statusLbl.Text = "**Status: Enter search criteria.";
@@ -177,51 +178,47 @@ namespace Child_Advocacy_Database
                 statusLbl.Text = "**Status: Please enter interview date in the exact format MM/DD/YYYY or leave blank if unknown.";
                 interviewTxt.BackColor = Color.Red;
             }
-
-            // For testing:
-            List<string> tempHDD = new List<string>();
-            tempHDD = queryCase.HddList;
-
-            queryCase = new Case();
-            queryCase.HddList = tempHDD;
-            queryCase.CaseNum = ncaNumTxt.Text;
-            queryCase.ChildFirst = childFirstNameTxt.Text;
-            queryCase.ChildLast = childLastNameTxt.Text;
-            queryCase.ChildDob = childDobTxt.Text;
-            queryCase.Guardian1First = g1FirstNameTxt.Text;
-            queryCase.Guardian1Last = g1LastNameTxt.Text;
-            queryCase.Guardian2First = g2FirstNameTxt.Text;
-            queryCase.Guardian2Last = g2LastNameTxt.Text;
-            queryCase.InterviewDate = interviewTxt.Text;
-            queryCase.PerpFirstNames.Add(perpFirstTxt.Text);
-            queryCase.PerpLastNames.Add(perpLastTxt.Text);
-            queryCase.PerpNicks.Add(perpNickTxt.Text);
-            queryCase.SiblingFirstNames.Add(siblingFirstNameTxt.Text);
-            queryCase.SiblingLastNames.Add(siblingLastNameTxt.Text);
-            queryCase.OtherVictimFirstNames.Add(otherVictimFirstNameTxt.Text);
-            queryCase.OtherVictimLastNames.Add(otherVictimLastNameTxt.Text);
-            /*queryCase.PerpFirstNames.Add("PressDownArrow");
-            queryCase.PerpFirstNames.Add("ToSeeMoreNames");*/
-
-            //
-            // Add database query here 
-            // A List<DatabaseItem> queryCases will be populated with the search results and added to the searchResultListBox
-            DatabaseController database = new DatabaseController();
-            queryCases = database.Query(queryCase.CaseNum, queryCase.ChildFirst, queryCase.ChildLast, queryCase.ChildDob, queryCase.InterviewDate, queryCase.Guardian1First, queryCase.Guardian1Last, queryCase.Guardian2First, queryCase.Guardian2Last, queryCase.PerpList, queryCase.SiblingList, queryCase.VictimList);
-            // if(databaseSuccess){
-            //   
-
-            // This is for testing:
-            //queryCases.Add(queryCase);
-            searchResultListBox.Items.Clear();
-            foreach(var caseList in queryCases)
+            else if (hdd.Count == 0)
             {
-                searchResultListBox.Items.Add(caseList.ToString()); // Overloaded ToString for queryCase class to print out the NCA and child first/last name
+                statusLbl.ForeColor = Color.Red;
+                statusLbl.Text = "**Status: Please add the hard drive(s) to search.";
+                selectHddListBox.BackColor = Color.Red;
             }
-            //      }   
-            // }else{
-            //
+            else
+            {
 
+                queryCase = new Case();
+                queryCase.CaseNum = ncaNumTxt.Text;
+                queryCase.ChildFirst = childFirstNameTxt.Text;
+                queryCase.ChildLast = childLastNameTxt.Text;
+                queryCase.ChildDob = childDobTxt.Text;
+                queryCase.Guardian1First = g1FirstNameTxt.Text;
+                queryCase.Guardian1Last = g1LastNameTxt.Text;
+                queryCase.Guardian2First = g2FirstNameTxt.Text;
+                queryCase.Guardian2Last = g2LastNameTxt.Text;
+                queryCase.InterviewDate = interviewTxt.Text;
+                queryCase.PerpFirstNames.Add(perpFirstTxt.Text);
+                queryCase.PerpLastNames.Add(perpLastTxt.Text);
+                queryCase.PerpNicks.Add(perpNickTxt.Text);
+                queryCase.SiblingFirstNames.Add(siblingFirstNameTxt.Text);
+                queryCase.SiblingLastNames.Add(siblingLastNameTxt.Text);
+                queryCase.OtherVictimFirstNames.Add(otherVictimFirstNameTxt.Text);
+                queryCase.OtherVictimLastNames.Add(otherVictimLastNameTxt.Text);
+
+                DatabaseController database = new DatabaseController();
+                queryCases = database.Query(queryCase.CaseNum, queryCase.ChildFirst, queryCase.ChildLast, 
+                    queryCase.ChildDob, queryCase.InterviewDate, queryCase.Guardian1First, 
+                    queryCase.Guardian1Last, queryCase.Guardian2First, queryCase.Guardian2Last, 
+                    queryCase.PerpList, queryCase.SiblingList, queryCase.VictimList);
+ 
+                searchResultListBox.Items.Clear();
+                foreach (var caseList in queryCases)
+                {
+                    searchResultListBox.Items.Add(caseList.ToString()); // Overloaded ToString for queryCase class to print out the NCA and child first/last name
+                }
+                statusLbl.ForeColor = Color.Blue;
+                statusLbl.Text = "**Status: Search complete, if any cases were found they have been added to the list.";
+            }
         }
 
         //
@@ -230,7 +227,7 @@ namespace Child_Advocacy_Database
         private void deleteBtn_Click(object sender, EventArgs e)
         {
             bool deletedSuccess = false;
-            if (queryCase.HddList.Count == 0)
+            if (hdd.Count == 0)
             {
                 statusLbl.ForeColor = Color.Red;
                 statusLbl.Text = "**Status: Please choose which hard drive to remove the database entry.";
@@ -251,11 +248,11 @@ namespace Child_Advocacy_Database
                 {
                     try
                     {
-                        for (int i = 0; i < queryCase.HddList.Count; i++)
+                        for (int i = 0; i < hdd.Count; i++)
                         {
-                            if (Directory.Exists(queryCase.HddList[i] + ncaNumTxt.Text))
+                            if (Directory.Exists(hdd[i] + ncaNumTxt.Text))
                             {
-                                Directory.Delete(queryCase.HddList[i] + ncaNumTxt.Text, true); // 'true' means to delete subfiles
+                                Directory.Delete(hdd[i] + ncaNumTxt.Text, true); // 'true' means to delete subfiles
                                 //
                                 // Need to remove from database here
                                 //
@@ -335,11 +332,38 @@ namespace Child_Advocacy_Database
             // Opens File Explorer after confirming item is selected in list box. 
             if (searchResultListBox.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select an Item first!");
+                statusLbl.ForeColor = Color.Red;
+                statusLbl.Text = "**Status: Please select a case from the list to open.";
             }
             else
             {
-                Process.Start("explorer.exe", queryCase.HddList[0] + queryCase.CaseNum);
+                bool isDirectoryFound = false;
+                try
+                {
+                    foreach (var h in hdd)
+                    {
+                        if (Directory.Exists(h + ncaNumTxt.Text))
+                        {
+                            Process.Start("explorer.exe", h + ncaNumTxt.Text);
+                            isDirectoryFound = true;
+                        }
+                    }
+                    if (isDirectoryFound)
+                    {
+                        statusLbl.ForeColor = Color.Blue;
+                        statusLbl.Text = "**Status: Directory found, opening...";
+                    }
+                    else
+                    {
+                        statusLbl.ForeColor = Color.Red;
+                        statusLbl.Text = "**Status: Directory with NCA# " + ncaNumTxt.Text + " was not found, try adding another hard drive to the list to search";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    statusLbl.ForeColor = Color.Red;
+                    statusLbl.Text = "**Status: " + ex.Message;
+                }
             }
         }
 
