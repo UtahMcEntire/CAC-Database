@@ -318,13 +318,6 @@ namespace Child_Advocacy_Database
 
         private void openFileBtn_Click(object sender, EventArgs e)
         {
-            // Needs the Hdd associated with the searchResultListBox.SelectedItem
-            // This needs to come from the database search and stored in the List<DatabaseItems> queryCases
-
-            // This is for testing, need to have added a folder from the addform (or manually )
-            // On this form choose only 1 hard drive, enter the NCA number of the previous folder and press search, then press open file -
-            // Clicking the listbox does nothing right now
-            // It should bring up the folder with the files in file explorer if you followed the steps correctly, otherwise it brings up default location 
 
             // Opens File Explorer after confirming item is selected in list box. 
             if (searchResultListBox.SelectedIndex == -1)
@@ -353,7 +346,7 @@ namespace Child_Advocacy_Database
                     else
                     {
                         statusLbl.ForeColor = Color.Red;
-                        statusLbl.Text = "**Status: Directory with NCA# " + ncaNumTxt.Text + " was not found, try adding another hard drive to the list to search";
+                        statusLbl.Text = "**Status: Directory with NCA# " + ncaNumTxt.Text + " was not found, try adding another hard drive to the list to search.";
                     }
                 }
                 catch (Exception ex)
