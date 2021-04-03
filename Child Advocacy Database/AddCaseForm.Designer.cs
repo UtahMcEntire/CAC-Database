@@ -93,7 +93,6 @@
             this.commitLbl = new System.Windows.Forms.Label();
             this.clearFormBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.removeCaseBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.interviewTxt = new System.Windows.Forms.TextBox();
@@ -683,17 +682,6 @@
             this.label1.TabIndex = 70;
             this.label1.Text = "*";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(1105, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(26, 33);
-            this.label2.TabIndex = 71;
-            this.label2.Text = "*";
-            // 
             // removeCaseBtn
             // 
             this.removeCaseBtn.BackColor = System.Drawing.Color.Firebrick;
@@ -739,7 +727,6 @@
             this.Controls.Add(this.interviewTxt);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.removeCaseBtn);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.clearFormBtn);
             this.Controls.Add(this.commitLbl);
@@ -876,7 +863,6 @@
         private System.Windows.Forms.Label commitLbl;
         private System.Windows.Forms.Button clearFormBtn;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button removeCaseBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox interviewTxt;

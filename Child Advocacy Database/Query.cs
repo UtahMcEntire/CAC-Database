@@ -293,6 +293,7 @@ namespace Child_Advocacy_Database
             perpFirstTxt.Clear();
             perpLastTxt.Clear();
             perpNickTxt.Clear();
+            interviewTxt.Clear();
             siblingFirstNameTxt.Clear();
             siblingLastNameTxt.Clear();
             otherVictimFirstNameTxt.Clear();
@@ -390,7 +391,7 @@ namespace Child_Advocacy_Database
             if (searchResultListBox.SelectedIndex != -1)
             {
                 Close();
-                AddCaseForm editCase = new AddCaseForm(queryCase);
+                AddCaseForm editCase = new AddCaseForm(queryCases[searchResultListBox.SelectedIndex]);
                 statusLbl.ForeColor = Color.Green;
                 statusLbl.Text = "**Status: Editing the most recently searched case.";
                 editCase.Show();
@@ -399,7 +400,7 @@ namespace Child_Advocacy_Database
             else
             {
                 statusLbl.ForeColor = Color.Red;
-                statusLbl.Text = "**Status: Please search for a case before attempting to edit.";
+                statusLbl.Text = "**Status: Please search for a case and choose it from the list box before attempting to edit.";
             }
         }
 
