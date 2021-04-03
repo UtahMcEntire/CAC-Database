@@ -10,6 +10,10 @@ namespace Child_Advocacy_Database
 		public string LastName { get; set; }
 		public string Nick { get; set; }
 
+		public Perp()
+        {
+			// Default Constructor
+        }
 		public Perp(string FName, string LName, string Nick)
 		{
 			this.FirstName = FName;
@@ -19,7 +23,7 @@ namespace Child_Advocacy_Database
 
 		public override string ToString()
 		{
-			return FirstName + " " + LastName + " \"" + Nick + "\"";
+			return FirstName + " " + LastName + " " + Nick;
 		}
 
 		// A function used to convert the class into a XML string
@@ -44,6 +48,10 @@ namespace Child_Advocacy_Database
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 
+		public Sibling()
+        {
+			// Default Constructor
+        }
 		public Sibling(string FName, string LName)
 		{
 			this.FirstName = FName;
@@ -73,6 +81,11 @@ namespace Child_Advocacy_Database
 	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
+
+		public Victim()
+        {
+			// Default Constructor
+        }
 
 		public Victim(string FName, string LName)
 		{
@@ -113,19 +126,21 @@ namespace Child_Advocacy_Database
 		public string Guardian2Last { get; set; }
 
 
-		public List<string> PerpFirstNames { get; set; }
-		public List<string> PerpLastNames { get; set; }
-		public List<string> PerpNicks { get; set; }
-		public List<string> SiblingFirstNames { get; set; }
-		public List<string> SiblingLastNames { get; set; }
-		public List<string> OtherVictimFirstNames { get; set; }
-		public List<string> OtherVictimLastNames { get; set; }
+		// All of these below are only to be populated for query.
+		// If you need to add a single perp, sibling, or victim use the lists defined further down.
+		public string PerpFirstName { get; set; }
+		public string PerpLastName { get; set; }
+		public string PerpNick { get; set; }
+		public string SiblingFirstName { get; set; }
+		public string SiblingLastName { get; set; }
+		public string OtherVictimFirstName { get; set; }
+		public string OtherVictimLastName { get; set; }
 		//public List<string> HddList { get; set; }
 
 
-		public List<Perp> PerpList = new List<Perp>();
-		public List<Sibling> SiblingList = new List<Sibling>();
-		public List<Victim> VictimList = new List<Victim>();
+		public List<Perp> PerpList;
+		public List<Sibling> SiblingList;
+		public List<Victim> VictimList;
 
 
 
@@ -154,21 +169,24 @@ namespace Child_Advocacy_Database
 		public Case()
 		{
 			//HddList = new List<string>();
-			PerpFirstNames = new List<string>();
-			PerpLastNames = new List<string>();
-			PerpNicks = new List<string>();
-			SiblingFirstNames = new List<string>();
-			SiblingLastNames = new List<string>();
-			OtherVictimFirstNames = new List<string>();
-			OtherVictimLastNames = new List<string>();
+			//PerpFirstName = new List<string>();
+			//PerpLastName = new List<string>();
+			//PerpNick = new List<string>();
+			//SiblingFirstName = new List<string>();
+			//SiblingLastName = new List<string>();
+			//OtherVictimFirstName = new List<string>();
+			//OtherVictimLastName = new List<string>();
+			PerpList = new List<Perp>();
+			SiblingList = new List<Sibling>();
+			VictimList = new List<Victim>();
 		}
 
 		public string printPerpFirst()
 		{
 			string name = "";
-			foreach (var perp in PerpFirstNames)
+			foreach (Perp p in PerpList)
 			{
-				name += perp + " ";
+				name += p.FirstName + " ";
 			}
 			if (name != " ")
 				return name;
@@ -179,9 +197,9 @@ namespace Child_Advocacy_Database
 		public string printPerpLast()
 		{
 			string name = "";
-			foreach (var perp in PerpLastNames)
+			foreach (Perp p in PerpList)
 			{
-				name += perp + " ";
+				name += p.LastName + " ";
 			}
 			if (name != " ")
 				return name;
@@ -192,9 +210,9 @@ namespace Child_Advocacy_Database
 		public string printPerpNick()
 		{
 			string name = "";
-			foreach (var perp in PerpNicks)
+			foreach (Perp p in PerpList)
 			{
-				name += perp + " ";
+				name += p.Nick + " ";
 			}
 			if (name != " ")
 				return name;
@@ -205,9 +223,9 @@ namespace Child_Advocacy_Database
 		public string printSiblingFirst()
 		{
 			string name = "";
-			foreach (var sibling in SiblingFirstNames)
+			foreach (Sibling s in SiblingList)
 			{
-				name += sibling + " ";
+				name += s.FirstName + " ";
 			}
 			if (name != " ")
 				return name;
@@ -218,9 +236,9 @@ namespace Child_Advocacy_Database
 		public string printSiblingLast()
 		{
 			string name = "";
-			foreach (var sibling in SiblingLastNames)
+			foreach (Sibling s in SiblingList)
 			{
-				name += sibling + " ";
+				name += s.LastName + " ";
 			}
 			if (name != " ")
 				return name;
@@ -231,9 +249,9 @@ namespace Child_Advocacy_Database
 		public string printOtherVictimFirst()
 		{
 			string name = "";
-			foreach (var vic in OtherVictimFirstNames)
+			foreach (Victim v in VictimList)
 			{
-				name += vic + " ";
+				name += v.FirstName + " ";
 			}
 			if (name != " ")
 				return name;
@@ -244,9 +262,9 @@ namespace Child_Advocacy_Database
 		public string printOtherVictimLast()
 		{
 			string name = "";
-			foreach (var vic in OtherVictimLastNames)
+			foreach (Victim v in VictimList)
 			{
-				name += vic + " ";
+				name += v.LastName + " ";
 			}
 			if (name != " ")
 				return name;

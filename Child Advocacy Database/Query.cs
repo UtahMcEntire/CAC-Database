@@ -197,13 +197,13 @@ namespace Child_Advocacy_Database
                 queryCase.Guardian2First = g2FirstNameTxt.Text;
                 queryCase.Guardian2Last = g2LastNameTxt.Text;
                 queryCase.InterviewDate = interviewTxt.Text;
-                queryCase.PerpFirstNames.Add(perpFirstTxt.Text);
-                queryCase.PerpLastNames.Add(perpLastTxt.Text);
-                queryCase.PerpNicks.Add(perpNickTxt.Text);
-                queryCase.SiblingFirstNames.Add(siblingFirstNameTxt.Text);
-                queryCase.SiblingLastNames.Add(siblingLastNameTxt.Text);
-                queryCase.OtherVictimFirstNames.Add(otherVictimFirstNameTxt.Text);
-                queryCase.OtherVictimLastNames.Add(otherVictimLastNameTxt.Text);
+                queryCase.PerpFirstName = perpFirstTxt.Text;
+                queryCase.PerpLastName = perpLastTxt.Text;
+                queryCase.PerpNick = perpNickTxt.Text;
+                queryCase.SiblingFirstName = siblingFirstNameTxt.Text;
+                queryCase.SiblingLastName = siblingLastNameTxt.Text;
+                queryCase.OtherVictimFirstName = otherVictimFirstNameTxt.Text;
+                queryCase.OtherVictimLastName = otherVictimLastNameTxt.Text;
 
                 DatabaseController database = new DatabaseController();
                 queryCases = database.Query(queryCase);
