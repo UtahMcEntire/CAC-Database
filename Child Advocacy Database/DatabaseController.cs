@@ -47,7 +47,7 @@ public class DatabaseController
                 command.Parameters.AddWithValue("childLast", ChildLast == "" ? (object)DBNull.Value : ChildLast);
                 command.Parameters.AddWithValue("childDob", ChildDob == "" ? (object)DBNull.Value : ChildDob);
                 command.Parameters.AddWithValue("interview", InterviewDate == "" ? (object)DBNull.Value : InterviewDate);
-                command.Parameters.AddWithValue("guard1First", Guardian1First == "" ? (object)DBNull.Value : Guardian2First);
+                command.Parameters.AddWithValue("guard1First", Guardian1First == "" ? (object)DBNull.Value : Guardian1First);
                 command.Parameters.AddWithValue("guard1Last", Guardian1Last == "" ? (object)DBNull.Value : Guardian1Last);
                 command.Parameters.AddWithValue("guard2First", Guardian2First == "" ? (object)DBNull.Value : Guardian2First);
                 command.Parameters.AddWithValue("guard2Last", Guardian2Last == "" ? (object)DBNull.Value : Guardian2Last);
@@ -323,15 +323,15 @@ public class DatabaseController
                             
                             index = reader.GetOrdinal("ChildLast");
                             if (!reader.IsDBNull(index))
-                                c.ChildLast = reader.GetString(reader.GetOrdinal("ChildFirst"));
+                                c.ChildLast = reader.GetString(reader.GetOrdinal("ChildLast"));
                             
                             index = reader.GetOrdinal("ChildDob");
                             if (!reader.IsDBNull(index))
-                                c.ChildDob = reader.GetString(reader.GetOrdinal("ChildFirst"));
+                                c.ChildDob = reader.GetString(reader.GetOrdinal("ChildDob"));
                             
                             index = reader.GetOrdinal("InterviewDate");
                             if (!reader.IsDBNull(index))
-                                c.InterviewDate = reader.GetString(reader.GetOrdinal("ChildFirst"));
+                                c.InterviewDate = reader.GetString(reader.GetOrdinal("InterviewDate"));
                             
                             index = reader.GetOrdinal("Guardian1First");
                             if (!reader.IsDBNull(index))

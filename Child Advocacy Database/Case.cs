@@ -30,11 +30,11 @@ namespace Child_Advocacy_Database
 		public String ToXmlString()
 		{
 			string toXML = "<perp>";
-			if (this.FirstName != null)
+			if (this.FirstName != "")
 				toXML += "<first>" + this.FirstName + "</first>";
-			if (this.LastName != null)
+			if (this.LastName != "")
 				toXML += "<last>" + this.LastName + "</last>";
-			if (this.Nick != null)
+			if (this.Nick != "")
 				toXML += "<nick>" + this.Nick + "</nick>";
 			toXML += "</perp>";
 
@@ -67,9 +67,9 @@ namespace Child_Advocacy_Database
 		public String ToXmlString()
 		{
 			string toXML = "<sibling>";
-			if (this.FirstName != null)
+			if (this.FirstName != "")
 				toXML += "<first>" + this.FirstName + "</first>";
-			if (this.LastName != null)
+			if (this.LastName != "")
 				toXML += "<last>" + this.LastName + "</last>";
 			toXML += "</sibling>";
 
@@ -102,9 +102,9 @@ namespace Child_Advocacy_Database
 		public String ToXmlString()
 		{
 			string toXML = "<victim>";
-			if (this.FirstName != null)
+			if (this.FirstName != "")
 				toXML += "<first>" + this.FirstName + "</first>";
-			if (this.LastName != null)
+			if (this.LastName != "")
 				toXML += "<last>" + this.LastName + "</last>";
 			toXML += "</victim>";
 
