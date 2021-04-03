@@ -18,6 +18,15 @@ public class DatabaseController
 
 
     {
+        Console.WriteLine("casenum " + CaseNum);
+        Console.WriteLine("childfirst " + ChildFirst);
+        Console.WriteLine("childlast " + ChildLast);
+        Console.WriteLine("ChildDob " + ChildDob);
+        Console.WriteLine("interview " + InterviewDate);
+        Console.WriteLine("guardian1first " + Guardian1First);
+        Console.WriteLine("guardian1last " + Guardian1Last);
+        Console.WriteLine("guardian2first " + Guardian2First);
+        Console.WriteLine("guardian2last " + Guardian2Last);
         SqlCommand command;
         SqlConnection connection;
 

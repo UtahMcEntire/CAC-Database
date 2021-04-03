@@ -293,6 +293,7 @@ namespace Child_Advocacy_Database
             perpFirstTxt.Clear();
             perpLastTxt.Clear();
             perpNickTxt.Clear();
+            interviewTxt.Clear();
             siblingFirstNameTxt.Clear();
             siblingLastNameTxt.Clear();
             otherVictimFirstNameTxt.Clear();
@@ -318,13 +319,6 @@ namespace Child_Advocacy_Database
 
         private void openFileBtn_Click(object sender, EventArgs e)
         {
-            // Needs the Hdd associated with the searchResultListBox.SelectedItem
-            // This needs to come from the database search and stored in the List<DatabaseItems> queryCases
-
-            // This is for testing, need to have added a folder from the addform (or manually )
-            // On this form choose only 1 hard drive, enter the NCA number of the previous folder and press search, then press open file -
-            // Clicking the listbox does nothing right now
-            // It should bring up the folder with the files in file explorer if you followed the steps correctly, otherwise it brings up default location 
 
             // Opens File Explorer after confirming item is selected in list box. 
             if (searchResultListBox.SelectedIndex == -1)
@@ -353,7 +347,7 @@ namespace Child_Advocacy_Database
                     else
                     {
                         statusLbl.ForeColor = Color.Red;
-                        statusLbl.Text = "**Status: Directory with NCA# " + ncaNumTxt.Text + " was not found, try adding another hard drive to the list to search";
+                        statusLbl.Text = "**Status: Directory with NCA# " + ncaNumTxt.Text + " was not found, try adding another hard drive to the list to search.";
                     }
                 }
                 catch (Exception ex)
@@ -397,7 +391,7 @@ namespace Child_Advocacy_Database
             if (searchResultListBox.SelectedIndex != -1)
             {
                 Close();
-                AddCaseForm editCase = new AddCaseForm(queryCase);
+                AddCaseForm editCase = new AddCaseForm(queryCases[searchResultListBox.SelectedIndex]);
                 statusLbl.ForeColor = Color.Green;
                 statusLbl.Text = "**Status: Editing the most recently searched case.";
                 editCase.Show();
@@ -406,7 +400,7 @@ namespace Child_Advocacy_Database
             else
             {
                 statusLbl.ForeColor = Color.Red;
-                statusLbl.Text = "**Status: Please search for a case before attempting to edit.";
+                statusLbl.Text = "**Status: Please search for a case and choose it from the list box before attempting to edit.";
             }
         }
 
