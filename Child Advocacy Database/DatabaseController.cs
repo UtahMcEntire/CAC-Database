@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Xml;
 
 public class DatabaseController
 {
@@ -134,6 +135,7 @@ public class DatabaseController
 
         List<Case> cases;
         List<Case> foundCases = new List<Case>();
+        bool done; // Used with the Perp/Sibling/Victim list parsing
 
         cases = GetAllDB();
 
@@ -201,13 +203,75 @@ public class DatabaseController
                 continue;
             }
 
+
+            // Test the Perp/Sibling/Victim lists
+            // Perps
+            done = false;
+            foreach(Perp p in cs.PerpList)
+            {
+                if (done)
+                    break;
+                if (queryCase.PerpFirstName != "" && p.FirstName.Contains(queryCase.PerpFirstName))
+                {
+                    foundCases.Add(cs);
+                    done = true;
+                }
+                else if (queryCase.PerpLastName != "" && p.LastName.Contains(queryCase.PerpLastName))
+                {
+                    foundCases.Add(cs);
+                    done = true;
+                }
+                else if (queryCase.PerpNick != "" && p.Nick.Contains(queryCase.PerpNick))
+                {
+                    foundCases.Add(cs);
+                    done = true;
+                }
+            }
+
+            // Sibling
+            done = false;
+            foreach (Sibling s in cs.SiblingList)
+            {
+                if (done)
+                    break;
+                if (queryCase.SiblingFirstName != "" && s.FirstName.Contains(queryCase.SiblingFirstName))
+                {
+                    foundCases.Add(cs);
+                    done = true;
+                }
+                else if (queryCase.SiblingLastName != "" && s.LastName.Contains(queryCase.SiblingLastName))
+                {
+                    foundCases.Add(cs);
+                    done = true;
+                }
+            }
+
+            // Victim
+            done = false;
+            foreach (Victim v in cs.VictimList)
+            {
+                if (done)
+                    break;
+                if (queryCase.OtherVictimFirstName != "" && v.FirstName.Contains(queryCase.OtherVictimFirstName))
+                {
+                    foundCases.Add(cs);
+                    done = true;
+                }
+                else if (queryCase.OtherVictimLastName != "" && v.LastName.Contains(queryCase.OtherVictimLastName))
+                {
+                    foundCases.Add(cs);
+                    done = true;
+                }
+            }
+
+
         }
 
         return foundCases;
     }
 
-
-    private List<Case> GetAllDB()
+    // Make private
+    public List<Case> GetAllDB()
     {
         List<Case> cases = new List<Case>();
         int index; // Index of current ordinal read by reader
@@ -239,8 +303,13 @@ public class DatabaseController
                         {
                             Console.WriteLine("reading");
                             
-                            // Creates a dummy case to 
+                            // Creates a dummy case to store all data into
                             Case c = new Case();
+                            
+                            // Parsing the XML and converting it to List<>
+                            XmlReader xmlReader;
+                            string name;
+
 
                             index = reader.GetOrdinal("CaseNum");
                             if (!reader.IsDBNull(index))
@@ -279,9 +348,146 @@ public class DatabaseController
                             index = reader.GetOrdinal("Guardian2Last");
                             if (!reader.IsDBNull(index))
                                 c.Guardian2Last = reader.GetString(reader.GetOrdinal("Guardian2Last"));
-                            
 
-                            Console.WriteLine("Made it to add");
+
+                            // Parse XML entries
+                            // Perps
+                            index = reader.GetOrdinal("Perps");
+                            if (!reader.IsDBNull(index))
+                            {
+                                // Creates a dummy Perps list
+                                List<Perp> perps = new List<Perp>();
+                                Perp p = new Perp();
+
+                                // Gets the XML from the DB
+                                xmlReader = reader.GetXmlReader(index);
+
+                                // Parses the XML to extract needed data
+                                while (xmlReader.Read())
+                                {
+                                    if (xmlReader.NodeType == XmlNodeType.Element)
+                                    {
+                                        name = xmlReader.Name;
+                                        xmlReader.Read(); // Moves the reader forward
+                                        switch (name)
+                                        {
+                                            case "first":
+                                                p.FirstName = xmlReader.Value.ToString();
+                                                break;
+                                            case "last":
+                                                p.LastName = xmlReader.Value.ToString();
+                                                break;
+                                            case "nick":
+                                                p.Nick = xmlReader.Value.ToString();
+                                                break;
+                                        }
+                                    }
+                                    if (xmlReader.NodeType == XmlNodeType.EndElement)
+                                    {
+                                        if (xmlReader.Name == "perp")
+                                        {
+                                            perps.Add(p);
+                                            Console.WriteLine("Perp found: " + p.ToString());
+                                            p = new Perp();
+                                        }
+                                        if (xmlReader.Name == "perps")
+                                        {
+                                            c.PerpList = perps;
+                                        }
+                                    }
+                                }
+                            }
+
+
+						    // Siblings
+						    index = reader.GetOrdinal("Siblings");
+						    if (!reader.IsDBNull(index))
+						{
+							// Creates a dummy Siblings list
+							List<Sibling> siblings = new List<Sibling>();
+							Sibling s = new Sibling();
+
+							// Gets the XML from the DB
+							xmlReader = reader.GetXmlReader(index);
+
+							// Parses the XML to extract needed data
+							while (xmlReader.Read())
+							{
+								if (xmlReader.NodeType == XmlNodeType.Element)
+								{
+									name = xmlReader.Name;
+									xmlReader.Read(); // Moves the reader forward
+									switch (name)
+									{
+										case "first":
+											s.FirstName = xmlReader.Value.ToString();
+											break;
+										case "last":
+											s.LastName = xmlReader.Value.ToString();
+											break;
+									}
+								}
+								if (xmlReader.NodeType == XmlNodeType.EndElement)
+								{
+									if (xmlReader.Name == "sibling")
+									{
+										siblings.Add(s);
+										Console.WriteLine("Sibling found: " + s.ToString());
+										s = new Sibling();
+									}
+									if (xmlReader.Name == "siblings")
+									{
+										c.SiblingList = siblings;
+									}
+								}
+							}
+						}
+
+
+                            // Victims
+                            index = reader.GetOrdinal("Victims");
+                            if (!reader.IsDBNull(index))
+                            {
+                                // Creates a dummy Victims list
+                                List<Victim> victims = new List<Victim>();
+                                Victim v = new Victim();
+
+                                // Gets the XML from the DB
+                                xmlReader = reader.GetXmlReader(index);
+
+                                // Parses the XML to extract needed data
+                                while (xmlReader.Read())
+                                {
+                                    if (xmlReader.NodeType == XmlNodeType.Element)
+                                    {
+                                        name = xmlReader.Name;
+                                        xmlReader.Read(); // Moves the reader forward
+                                        switch (name)
+                                        {
+                                            case "first":
+                                                v.FirstName = xmlReader.Value.ToString();
+                                                break;
+                                            case "last":
+                                                v.LastName = xmlReader.Value.ToString();
+                                                break;
+                                        }
+                                    }
+                                    if (xmlReader.NodeType == XmlNodeType.EndElement)
+                                    {
+                                        if (xmlReader.Name == "victim")
+                                        {
+                                            victims.Add(v);
+                                            Console.WriteLine("Victim found: " + v.ToString());
+                                            v = new Victim();
+                                        }
+                                        if (xmlReader.Name == "victims")
+                                        {
+                                            c.VictimList = victims;
+                                        }
+                                    }
+                                }
+                            }
+
                             cases.Add(c);
                         }
                     }
@@ -328,6 +534,4 @@ public class DatabaseController
     {
 
     }
-
-
 }

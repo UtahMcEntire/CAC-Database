@@ -83,22 +83,17 @@ namespace Child_Advocacy_Database
             g2LastNameTxt.Text = addCase.Guardian2Last;
             interviewTxt.Text = addCase.InterviewDate;
 
-            for (i = 0; i < addCase.PerpFirstNames.Count; i++)
+            foreach (Perp p in addCase.PerpList)
             {
-                perpListBox.Items.Add(addCase.PerpFirstNames[i].Trim() + ' ' +
-                    addCase.PerpLastNames[i].Trim() + ' ' + addCase.PerpNicks[i].Trim());
+                perpListBox.Items.Add(p.ToString());
             }
-
-            for (i = 0; i < addCase.SiblingFirstNames.Count; i++)
+            foreach (Sibling s in addCase.SiblingList)
             {
-                siblingListBox.Items.Add(addCase.SiblingFirstNames[i].Trim() + ' ' +
-                    addCase.SiblingLastNames[i].Trim());
+                siblingListBox.Items.Add(s.ToString());
             }
-
-            for (i = 0; i < addCase.OtherVictimFirstNames.Count; i++)
+            foreach (Victim v in addCase.VictimList)
             {
-                otherVictimListBox.Items.Add(addCase.OtherVictimFirstNames[i].Trim() + ' ' +
-                    addCase.OtherVictimLastNames[i].Trim());
+                otherVictimListBox.Items.Add(v.ToString());
             }
         }
 
@@ -143,11 +138,7 @@ namespace Child_Advocacy_Database
             string perpLast = perpLastTxt.Text;
             string perpNick = perpNickTxt.Text;
 
-            // Adds "" (empty string) if nothing was added to the text box, this is important for removal
-            addCase.PerpFirstNames.Add(perpFirst);
-            addCase.PerpLastNames.Add(perpLast);
-            addCase.PerpNicks.Add(perpNick);
-
+            //// Adds "" (empty string) if nothing was added to the text box, this is important for removal
             // New code using the Perp class
             if (perpFirst.Trim() != "" || perpLast.Trim() != "" || perpNick.Trim() != "")
                 addCase.PerpList.Add(new Perp(perpFirst, perpLast, perpNick));
@@ -168,23 +159,23 @@ namespace Child_Advocacy_Database
         {
             if (perpListBox.SelectedIndex != -1)
             {
-                addCase.PerpFirstNames.RemoveAt(perpListBox.SelectedIndex);
-                addCase.PerpLastNames.RemoveAt(perpListBox.SelectedIndex);
-                addCase.PerpNicks.RemoveAt(perpListBox.SelectedIndex);
+                //addCase.PerpFirstName.RemoveAt(perpListBox.SelectedIndex);
+                //addCase.PerpLastName.RemoveAt(perpListBox.SelectedIndex);
+                //addCase.PerpNick.RemoveAt(perpListBox.SelectedIndex);
 
                 // New code using the Perp class
                 addCase.PerpList.RemoveAt(perpListBox.SelectedIndex);
 
                 /* Testing
-                foreach(var x in addCase.PerpFirstNames)
+                foreach(var x in addCase.PerpFirstName)
                 {
                     MessageBox.Show("Testing names left in list perp first name: " + x);
                 }
-                foreach(var x in addCase.PerpLastNames)
+                foreach(var x in addCase.PerpLastName)
                 {
                     MessageBox.Show("Testing names left in list last perp name: " + x);
                 }
-                foreach(var x in addCase.PerpNicks)
+                foreach(var x in addCase.PerpNick)
                 {
                     MessageBox.Show("Testing names left in list perp nick name: " + x);
                 }
@@ -200,9 +191,6 @@ namespace Child_Advocacy_Database
         {
             string siblingFirst = siblingFirstNameTxt.Text;
             string siblingLast = siblingLastNameTxt.Text;
-
-            addCase.SiblingFirstNames.Add(siblingFirst);
-            addCase.SiblingLastNames.Add(siblingLast);
 
             // New code using the Sibling class
             if (siblingFirst.Trim() != "" || siblingLast.Trim() != "")
@@ -223,18 +211,15 @@ namespace Child_Advocacy_Database
         {
             if (siblingListBox.SelectedIndex != -1)
             {
-                addCase.SiblingFirstNames.RemoveAt(siblingListBox.SelectedIndex);
-                addCase.SiblingLastNames.RemoveAt(siblingListBox.SelectedIndex);
-
                 // New code using the Sibling class
                 addCase.SiblingList.RemoveAt(siblingListBox.SelectedIndex);
 
                 /* Testing
-                foreach(var x in addCase.SiblingFirstNames)
+                foreach(var x in addCase.SiblingFirstName)
                 {
                     MessageBox.Show("Testing names left in list sibling first name: " + x);
                 }
-                foreach(var x in addCase.SiblingLastNames)
+                foreach(var x in addCase.SiblingLastName)
                 {
                     MessageBox.Show("Testing names left in list sibling last name: " + x);
                 }
@@ -250,9 +235,6 @@ namespace Child_Advocacy_Database
         {
             string victimFirst = otherVictimFirstNameTxt.Text;
             string victimLast = otherVictimLastNameTxt.Text;
-
-            addCase.OtherVictimFirstNames.Add(victimFirst);
-            addCase.OtherVictimLastNames.Add(victimLast);
 
             // New code using the Victim class
             if (victimFirst.Trim() != "" || victimLast.Trim() != "")
@@ -273,18 +255,15 @@ namespace Child_Advocacy_Database
         {
             if (otherVictimListBox.SelectedIndex != -1)
             {
-                addCase.OtherVictimFirstNames.RemoveAt(otherVictimListBox.SelectedIndex);
-                addCase.OtherVictimLastNames.RemoveAt(otherVictimListBox.SelectedIndex);
-
                 // New code using the Victim class
                 addCase.VictimList.RemoveAt(otherVictimListBox.SelectedIndex);
 
                 /* Testing 
-                foreach(var x in addCase.OtherVictimFirstNames)
+                foreach(var x in addCase.OtherVictimFirstName)
                 {
                     MessageBox.Show("Testing names left in list other victim first name: " + x);
                 }
-                foreach(var x in addCase.OtherVictimLastNames)
+                foreach(var x in addCase.OtherVictimLastName)
                 {
                     MessageBox.Show("Testing names left in list other victim last name: " + x);
                 }
@@ -413,13 +392,13 @@ namespace Child_Advocacy_Database
             mp4FilesListView.BackColor = Color.White;
             selectHddListBox.ClearSelected();
             hdd = "";
-            addCase.PerpFirstNames = null;
-            addCase.PerpLastNames = null;
-            addCase.PerpNicks = null;
-            addCase.SiblingFirstNames = null;
-            addCase.SiblingLastNames = null;
-            addCase.OtherVictimFirstNames = null;
-            addCase.OtherVictimLastNames = null;
+            addCase.PerpFirstName = null;
+            addCase.PerpLastName = null;
+            addCase.PerpNick = null;
+            addCase.SiblingFirstName = null;
+            addCase.SiblingLastName = null;
+            addCase.OtherVictimFirstName = null;
+            addCase.OtherVictimLastName = null;
             addCase = null;
             addCase = new Case();
             statusLbl.ForeColor = Color.Green;
@@ -516,6 +495,7 @@ namespace Child_Advocacy_Database
                     // Enter entry addCase into database here
                     DatabaseController database = new DatabaseController();
                     database.Insert(addCase.CaseNum, addCase.ChildFirst, addCase.ChildLast, addCase.ChildDob, addCase.InterviewDate, addCase.Guardian1First, addCase.Guardian1Last, addCase.Guardian2First, addCase.Guardian2Last, addCase.PerpList, addCase.SiblingList, addCase.VictimList, targetPath);
+                    database.GetAllDB();
                     
                     
                     // database(targetPath)
