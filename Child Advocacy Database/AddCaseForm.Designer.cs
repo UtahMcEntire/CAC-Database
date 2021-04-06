@@ -94,7 +94,6 @@
             this.clearFormBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.removeCaseBtn = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.interviewTxt = new System.Windows.Forms.TextBox();
             this.childDobTxt = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -693,15 +692,6 @@
             this.removeCaseBtn.UseVisualStyleBackColor = false;
             this.removeCaseBtn.Click += new System.EventHandler(this.removeCaseBtn_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(846, 350);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(219, 13);
-            this.label3.TabIndex = 73;
-            this.label3.Text = "At least one file of any format must be added.";
-            // 
             // interviewTxt
             // 
             this.interviewTxt.Location = new System.Drawing.Point(35, 519);
@@ -725,7 +715,6 @@
             this.ClientSize = new System.Drawing.Size(1134, 574);
             this.Controls.Add(this.childDobTxt);
             this.Controls.Add(this.interviewTxt);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.removeCaseBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.clearFormBtn);
@@ -864,7 +853,6 @@
         private System.Windows.Forms.Button clearFormBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button removeCaseBtn;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox interviewTxt;
         private System.Windows.Forms.TextBox childDobTxt;
     }

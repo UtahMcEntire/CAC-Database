@@ -597,21 +597,7 @@ namespace Child_Advocacy_Database
             string fileName;
             string destPath;
             try
-            {
-                if (isEditForm == false)
-                {
-                    try
-                    {
-                        Directory.Delete(targetPath, true);
-                    }
-                    catch(Exception ex)
-                    {
-                        statusLbl.ForeColor = Color.Red;
-                        statusLbl.Text = "**Status: " + ex.Message;
-                    }
-                }
-
-                
+            {              
                 System.IO.Directory.CreateDirectory(targetPath);
 
                 foreach (ListViewItem item in pdfFilesListView.Items)
