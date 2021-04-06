@@ -319,7 +319,6 @@ public class DatabaseController
                             XmlReader xmlReader;
                             string name;
 
-
                             index = reader.GetOrdinal("CaseNum");
                             if (!reader.IsDBNull(index))
                                 c.CaseNum = reader.GetString(reader.GetOrdinal("CaseNum"));
@@ -377,80 +376,87 @@ public class DatabaseController
                                     if (xmlReader.NodeType == XmlNodeType.Element)
                                     {
                                         name = xmlReader.Name;
-                                        xmlReader.Read(); // Moves the reader forward
                                         switch (name)
                                         {
                                             case "first":
+                                                xmlReader.Read();
                                                 p.FirstName = xmlReader.Value.ToString();
                                                 break;
                                             case "last":
+                                                xmlReader.Read();
                                                 p.LastName = xmlReader.Value.ToString();
-                                                break;
-                                            case "nick":
-                                                p.Nick = xmlReader.Value.ToString();
                                                 break;
                                         }
                                     }
+
                                     if (xmlReader.NodeType == XmlNodeType.EndElement)
                                     {
                                         if (xmlReader.Name == "perp")
                                         {
                                             perps.Add(p);
-                                            Console.WriteLine("Perp found: " + p.ToString());
                                             p = new Perp();
                                         }
                                         if (xmlReader.Name == "perps")
                                         {
                                             c.PerpList = perps;
+
+                                            // Debug Print
+                                            foreach (Perp test in perps)
+                                                Console.WriteLine(test.ToString());
                                         }
                                     }
                                 }
                             }
 
 
-						    // Siblings
-						    index = reader.GetOrdinal("Siblings");
+                            // Siblings
+                            index = reader.GetOrdinal("Siblings");
 						    if (!reader.IsDBNull(index))
-						{
-							// Creates a dummy Siblings list
-							List<Sibling> siblings = new List<Sibling>();
-							Sibling s = new Sibling();
+						    {
+							    // Creates a dummy Siblings list
+							    List<Sibling> siblings = new List<Sibling>();
+							    Sibling s = new Sibling();
 
-							// Gets the XML from the DB
-							xmlReader = reader.GetXmlReader(index);
+							    // Gets the XML from the DB
+							    xmlReader = reader.GetXmlReader(index);
 
-							// Parses the XML to extract needed data
-							while (xmlReader.Read())
-							{
-								if (xmlReader.NodeType == XmlNodeType.Element)
-								{
-									name = xmlReader.Name;
-									xmlReader.Read(); // Moves the reader forward
-									switch (name)
-									{
-										case "first":
-											s.FirstName = xmlReader.Value.ToString();
-											break;
-										case "last":
-											s.LastName = xmlReader.Value.ToString();
-											break;
-									}
-								}
-								if (xmlReader.NodeType == XmlNodeType.EndElement)
-								{
-									if (xmlReader.Name == "sibling")
-									{
-										siblings.Add(s);
-										Console.WriteLine("Sibling found: " + s.ToString());
-										s = new Sibling();
-									}
-									if (xmlReader.Name == "siblings")
-									{
-										c.SiblingList = siblings;
-									}
-								}
-							}
-						}
+							    // Parses the XML to extract needed data
+							    while (xmlReader.Read())
+    							{
+                                    if (xmlReader.NodeType == XmlNodeType.Element)
+                                    {
+                                        name = xmlReader.Name;
+                                        switch (name)
+                                        {
+                                            case "first":
+                                                xmlReader.Read();
+                                                s.FirstName = xmlReader.Value.ToString();
+                                                break;
+                                            case "last":
+                                                xmlReader.Read();
+                                                s.LastName = xmlReader.Value.ToString();
+                                                break;
+                                        }
+                                    }
+
+								    if (xmlReader.NodeType == XmlNodeType.EndElement)
+								    {
+									    if (xmlReader.Name == "sibling")
+									    {
+    										siblings.Add(s);
+										    s = new Sibling();
+									    }
+									    if (xmlReader.Name == "siblings")
+									    {
+										    c.SiblingList = siblings;
+                                            
+                                            // Debug Print
+                                            foreach (Sibling test in siblings)
+                                                Console.WriteLine(test.ToString());
+									    }
+								    }
+    							}   
+						    }
 
 
                             // Victims
@@ -470,28 +476,33 @@ public class DatabaseController
                                     if (xmlReader.NodeType == XmlNodeType.Element)
                                     {
                                         name = xmlReader.Name;
-                                        xmlReader.Read(); // Moves the reader forward
                                         switch (name)
                                         {
                                             case "first":
+                                                xmlReader.Read();
                                                 v.FirstName = xmlReader.Value.ToString();
                                                 break;
                                             case "last":
+                                                xmlReader.Read();
                                                 v.LastName = xmlReader.Value.ToString();
                                                 break;
                                         }
                                     }
+
                                     if (xmlReader.NodeType == XmlNodeType.EndElement)
                                     {
                                         if (xmlReader.Name == "victim")
                                         {
                                             victims.Add(v);
-                                            Console.WriteLine("Victim found: " + v.ToString());
                                             v = new Victim();
                                         }
                                         if (xmlReader.Name == "victims")
                                         {
                                             c.VictimList = victims;
+
+                                            // Debug Print
+                                            foreach (Victim test in victims)
+                                                Console.WriteLine(test.ToString());
                                         }
                                     }
                                 }
