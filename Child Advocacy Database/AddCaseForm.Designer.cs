@@ -780,7 +780,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddCaseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add Case Form";
+            this.Text = "                                                   ";
             this.ResumeLayout(false);
             this.PerformLayout();
 
