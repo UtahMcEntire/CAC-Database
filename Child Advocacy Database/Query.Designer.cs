@@ -408,7 +408,7 @@ namespace Child_Advocacy_Database
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(109, 40);
             this.deleteBtn.TabIndex = 19;
-            this.deleteBtn.Text = "Delete";
+            this.deleteBtn.Text = "Remove Case";
             this.deleteBtn.UseVisualStyleBackColor = false;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
