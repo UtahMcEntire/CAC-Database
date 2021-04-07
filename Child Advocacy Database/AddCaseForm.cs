@@ -425,6 +425,7 @@ namespace Child_Advocacy_Database
         private void addCaseBtn_Click(object sender, EventArgs e)
         {
             bool fileSuccess = false;
+            DatabaseController database = new DatabaseController();
             /*if(ncaNumTxt.Text.Length == 4) Thinking to use database instead
             {
                 string resName = "CaseCount.txt";
@@ -438,7 +439,7 @@ namespace Child_Advocacy_Database
                 }
             }*/
 
-            if(hdd == "")
+            if (hdd == "")
             {
                 statusLbl.ForeColor = Color.Red;
                 statusLbl.Text = "**Status: Please choose which hard drive to save the database entry.";
@@ -485,6 +486,10 @@ namespace Child_Advocacy_Database
                             //
                             // Remove old database entry here if it exists (for edit functionality)
                             // 
+
+                            
+                            if (database.Exists(ncaNumTxt.Text))
+                                database.Delete(ncaNumTxt.Text);
                         }
                         fileSuccess = addDirectory();
                     }
@@ -499,9 +504,7 @@ namespace Child_Advocacy_Database
                 {
                     //
                     // Enter entry addCase into database here
-                    DatabaseController database = new DatabaseController();
                     database.Insert(addCase.CaseNum, addCase.ChildFirst, addCase.ChildLast, addCase.ChildDob, addCase.InterviewDate, addCase.Guardian1First, addCase.Guardian1Last, addCase.Guardian2First, addCase.Guardian2Last, addCase.PerpList, addCase.SiblingList, addCase.VictimList, targetPath);
-                    database.GetAllDB();
                     
                     
                     // database(targetPath)
@@ -544,11 +547,15 @@ namespace Child_Advocacy_Database
                         string targetPath = hdd + ncaNumTxt.Text;
                          
                         Directory.Delete(targetPath, true);
+
                         //
                         // Need to remove from database here
                         //
+                        DatabaseController database = new DatabaseController();
+                        database.Delete(ncaNumTxt.Text);
 
                         // if(database delete success) {
+                        if (!database.Exists(ncaNumTxt.Text))
                         MessageBox.Show("NCA# " + ncaNumTxt.Text + " deleted!");
                     }
                     catch (Exception ex)

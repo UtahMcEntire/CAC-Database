@@ -18,15 +18,15 @@ public class DatabaseController
 
 
     {
-        Console.WriteLine("casenum " + CaseNum);
-        Console.WriteLine("childfirst " + ChildFirst);
-        Console.WriteLine("childlast " + ChildLast);
-        Console.WriteLine("ChildDob " + ChildDob);
-        Console.WriteLine("interview " + InterviewDate);
-        Console.WriteLine("guardian1first " + Guardian1First);
-        Console.WriteLine("guardian1last " + Guardian1Last);
-        Console.WriteLine("guardian2first " + Guardian2First);
-        Console.WriteLine("guardian2last " + Guardian2Last);
+        //Console.WriteLine("casenum " + CaseNum);
+        //Console.WriteLine("childfirst " + ChildFirst);
+        //Console.WriteLine("childlast " + ChildLast);
+        //Console.WriteLine("ChildDob " + ChildDob);
+        //Console.WriteLine("interview " + InterviewDate);
+        //Console.WriteLine("guardian1first " + Guardian1First);
+        //Console.WriteLine("guardian1last " + Guardian1Last);
+        //Console.WriteLine("guardian2first " + Guardian2First);
+        //Console.WriteLine("guardian2last " + Guardian2Last);
         SqlCommand command;
         SqlConnection connection;
 
@@ -136,151 +136,120 @@ public class DatabaseController
     }
 
 
+    public int getSuppliedSearchAmount(Case queryCase)
+    {
+        int count = 0;
+
+        count += queryCase.CaseNum != "" ? 1 : 0;
+        count += queryCase.ChildFirst != "" ? 1 : 0;
+        count += queryCase.ChildLast != "" ? 1 : 0;
+        count += queryCase.ChildDob != "" ? 1 : 0;
+        count += queryCase.InterviewDate != "" ? 1 : 0;
+        count += queryCase.Guardian1First != "" ? 1 : 0;
+        count += queryCase.Guardian1Last != "" ? 1 : 0;
+        count += queryCase.Guardian2First != "" ? 1 : 0;
+        count += queryCase.Guardian2Last != "" ? 1 : 0;
+        count += queryCase.PerpFirstName != "" ? 1 : 0;
+        count += queryCase.PerpLastName != "" ? 1 : 0;
+        count += queryCase.PerpNick != "" ? 1 : 0;
+        count += queryCase.SiblingFirstName != "" ? 1 : 0;
+        count += queryCase.SiblingLastName != "" ? 1 : 0;
+        count += queryCase.OtherVictimFirstName != "" ? 1 : 0;
+        count += queryCase.OtherVictimLastName != "" ? 1 : 0;
+
+        return count;
+    }
+
     // Function to query entire DB
-    // TODO: Implement query of the XML fields
     public List<Case> Query(Case queryCase)
     {
         //string CaseNum, string ChildFirst, string ChildLast, string ChildDob, string InterviewDate, string Guardian1First, string Guardian1Last, string Guardian2First, string Guardian2Last, List<Perp> Perps, List<Sibling> Siblings, List<Victim> Victims
 
-        List<Case> cases;
+        List<Case> cases = GetAllDB();
         List<Case> foundCases = new List<Case>();
-        bool done; // Used with the Perp/Sibling/Victim list parsing
-
-        cases = GetAllDB();
+        int suppliedSearchAmount = getSuppliedSearchAmount(queryCase);
+        int foundSearchAmounts;
 
         foreach (Case cs in cases)
         {
+            foundSearchAmounts = 0;
+            
             // Tests if the current CaseNum contains the query CaseNum
             if (queryCase.CaseNum != "" && cs.CaseNum.Contains(queryCase.CaseNum))
-            {
-                foundCases.Add(cs);
-                continue;
-            }
+                foundSearchAmounts++;
 
             // Tests if the current CaseNum contains the query CaseNum
             if (queryCase.ChildFirst != "" && cs.ChildFirst.Contains(queryCase.ChildFirst))
-            {
-                foundCases.Add(cs);
-                continue;
-            }
+                foundSearchAmounts++;
+
             // Tests if the current CaseNum contains the query CaseNum
             if (queryCase.ChildLast != "" && cs.ChildLast.Contains(queryCase.ChildLast))
-            {
-                foundCases.Add(cs);
-                continue;
-            }
+                foundSearchAmounts++;
 
             // Tests if the current CaseNum contains the query CaseNum
             if (queryCase.ChildDob != "" && cs.ChildDob.Contains(queryCase.ChildDob))
-            {
-                foundCases.Add(cs);
-                continue;
-            }
+                foundSearchAmounts++;
 
             // Tests if the current CaseNum contains the query CaseNum
             if (queryCase.InterviewDate != "" && cs.InterviewDate.Contains(queryCase.InterviewDate))
-            {
-                foundCases.Add(cs);
-                continue;
-            }
+                foundSearchAmounts++;
 
             // Tests if the current Guardian1First contains the query Guardian1First
             if (queryCase.Guardian1First != "" && (cs.Guardian1First.Contains(queryCase.Guardian1First) || cs.Guardian1First.Contains(queryCase.Guardian2First)))
-            {
-                foundCases.Add(cs);
-                continue;
-            }
+                foundSearchAmounts++;
 
             // Tests if the current Guardian1Last contains the query Guardian1Last
             if (queryCase.Guardian1Last != "" && (cs.Guardian1Last.Contains(queryCase.Guardian1Last) || cs.Guardian1Last.Contains(queryCase.Guardian2Last)))
-            {
-                foundCases.Add(cs);
-                continue;
-            }
+                foundSearchAmounts++;
 
             // Tests if the current Guardian1First contains the query Guardian1First
             if (queryCase.Guardian2First != "" && (cs.Guardian2First.Contains(queryCase.Guardian2First) || cs.Guardian2First.Contains(queryCase.Guardian1First)))
-            {
-                foundCases.Add(cs);
-                continue;
-            }
+                foundSearchAmounts++;
 
             // Tests if the current Guardian1Last contains the query Guardian1Last
             if (queryCase.Guardian2Last != "" && (cs.Guardian2Last.Contains(queryCase.Guardian2Last) || cs.Guardian2Last.Contains(queryCase.Guardian1Last)))
-            {
-                foundCases.Add(cs);
-                continue;
-            }
+                foundSearchAmounts++;
 
 
             // Test the Perp/Sibling/Victim lists
             // Perps
-            done = false;
             foreach(Perp p in cs.PerpList)
             {
-                if (done)
-                    break;
                 if (queryCase.PerpFirstName != "" && p.FirstName.Contains(queryCase.PerpFirstName))
-                {
-                    foundCases.Add(cs);
-                    done = true;
-                }
-                else if (queryCase.PerpLastName != "" && p.LastName.Contains(queryCase.PerpLastName))
-                {
-                    foundCases.Add(cs);
-                    done = true;
-                }
-                else if (queryCase.PerpNick != "" && p.Nick.Contains(queryCase.PerpNick))
-                {
-                    foundCases.Add(cs);
-                    done = true;
-                }
+                    foundSearchAmounts++;
+                if (queryCase.PerpLastName != "" && p.LastName.Contains(queryCase.PerpLastName))
+                    foundSearchAmounts++;
+                if (queryCase.PerpNick != "" && p.Nick.Contains(queryCase.PerpNick))
+                    foundSearchAmounts++;
             }
 
             // Sibling
-            done = false;
             foreach (Sibling s in cs.SiblingList)
             {
-                if (done)
-                    break;
+                
                 if (queryCase.SiblingFirstName != "" && s.FirstName.Contains(queryCase.SiblingFirstName))
-                {
-                    foundCases.Add(cs);
-                    done = true;
-                }
+                    foundSearchAmounts++;
                 else if (queryCase.SiblingLastName != "" && s.LastName.Contains(queryCase.SiblingLastName))
-                {
-                    foundCases.Add(cs);
-                    done = true;
-                }
+                    foundSearchAmounts++;
             }
 
             // Victim
-            done = false;
             foreach (Victim v in cs.VictimList)
             {
-                if (done)
-                    break;
                 if (queryCase.OtherVictimFirstName != "" && v.FirstName.Contains(queryCase.OtherVictimFirstName))
-                {
-                    foundCases.Add(cs);
-                    done = true;
-                }
+                    foundSearchAmounts++;
                 else if (queryCase.OtherVictimLastName != "" && v.LastName.Contains(queryCase.OtherVictimLastName))
-                {
-                    foundCases.Add(cs);
-                    done = true;
-                }
+                    foundSearchAmounts++;
             }
 
-
+            if (foundSearchAmounts == suppliedSearchAmount)
+                foundCases.Add(cs);
         }
-
         return foundCases;
     }
 
     // Make private
-    public List<Case> GetAllDB()
+    private List<Case> GetAllDB()
     {
         List<Case> cases = new List<Case>();
         int index; // Index of current ordinal read by reader
@@ -305,12 +274,12 @@ public class DatabaseController
                     // Makes sure the reader has something to read
                     if (reader.HasRows)
                     {
-                        Console.WriteLine("has rows");
+                        //Console.WriteLine("has rows");
 
                         // Reads the DB until there's nothing left to read
                         while (reader.Read())
                         {
-                            Console.WriteLine("reading");
+                            //Console.WriteLine("reading");
                             
                             // Creates a dummy case to store all data into
                             Case c = new Case();
@@ -386,6 +355,10 @@ public class DatabaseController
                                                 xmlReader.Read();
                                                 p.LastName = xmlReader.Value.ToString();
                                                 break;
+                                            case "nick":
+                                                xmlReader.Read();
+                                                p.Nick = xmlReader.Value.ToString();
+                                                break;
                                         }
                                     }
 
@@ -401,8 +374,8 @@ public class DatabaseController
                                             c.PerpList = perps;
 
                                             // Debug Print
-                                            foreach (Perp test in perps)
-                                                Console.WriteLine(test.ToString());
+                                            //foreach (Perp test in perps)
+                                            //    Console.WriteLine(test.ToString());
                                         }
                                     }
                                 }
@@ -451,8 +424,8 @@ public class DatabaseController
 										    c.SiblingList = siblings;
                                             
                                             // Debug Print
-                                            foreach (Sibling test in siblings)
-                                                Console.WriteLine(test.ToString());
+                                            //foreach (Sibling test in siblings)
+                                            //    Console.WriteLine(test.ToString());
 									    }
 								    }
     							}   
@@ -501,8 +474,8 @@ public class DatabaseController
                                             c.VictimList = victims;
 
                                             // Debug Print
-                                            foreach (Victim test in victims)
-                                                Console.WriteLine(test.ToString());
+                                            //foreach (Victim test in victims)
+                                            //    Console.WriteLine(test.ToString());
                                         }
                                     }
                                 }
@@ -525,25 +498,114 @@ public class DatabaseController
     }
 
 
+    // Gets an NCA number for a year when NCA numbers are not present
     public string GetNextUnknown(string year)
     {
-        List<Case> cases = new List<Case>();
         int index; // Index of current ordinal read by reader
 
+        // Sets up DB connection
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
+            // Executes a generic search
             using (SqlCommand command = new SqlCommand("SELECT ChildDataTable.* FROM ChildDataTable", connection))
             {
+
+                // Connect to DB and verify connection
                 connection.Open();
                 if (connection.State == System.Data.ConnectionState.Open)
                     Console.WriteLine("connected");
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    int count = 1;
+                    string temp;
+                    List<int> indices = new List<int>();
+                    List<string> existingItems = new List<string>();
+                    string finalOutput;
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            index = reader.GetOrdinal("CaseNum");
+                            if (!reader.IsDBNull(index))
+                                temp = reader.GetString(reader.GetOrdinal("CaseNum"));
+                            else
+                                continue;
+
+                            if (temp.StartsWith(year) && temp.Contains("9999"))
+                            {
+                                existingItems.Add(temp);
+                                indices.Add(Int32.Parse(temp.Substring(9)));
+                                Console.WriteLine("index:" + Int32.Parse(temp.Substring(9)));
+                            }
+                                
+                        }
+                    }
+
+                    indices.Sort();
+                    finalOutput = year + "-9999" + (existingItems.Count + 1).ToString();
+                    if (existingItems.Contains(finalOutput) && indices.Count != 0)
+                    {
+                        int nextExpected = 1;
+                        foreach (int i in indices)
+                        {
+                            if (i == nextExpected)
+                                nextExpected++;
+                            else
+                            {
+                                finalOutput = year + "-9999" + nextExpected.ToString();
+                                break;
+                            }
+                                
+                        }
+                    }
+
+                    Console.WriteLine(finalOutput);
+                    return finalOutput;
+                }
+            }
+        }
+    }
 
 
-                    return year + "-9999" + count.ToString();
+    public void Delete(string CaseNum)
+    {
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            string deleteCommand = "DELETE FROM ChildDataTable WHERE CaseNum='" + CaseNum + "'";
+
+            // Executes a generic search
+            using (SqlCommand command = new SqlCommand(deleteCommand, connection))
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+    }
+
+
+    public bool Exists(string CaseNum)
+    {
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            string existCommand = "SELECT * FROM ChildDataTable WHERE CaseNum='" + CaseNum + "'";
+
+            // Executes a generic search
+            using (SqlCommand command = new SqlCommand(existCommand, connection))
+            {
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+
+                        if (!reader.IsDBNull(reader.GetOrdinal("CaseNum")))
+                            return reader.GetString(reader.GetOrdinal("CaseNum")) == CaseNum;
+
+                    }
+                    return false;
                 }
             }
         }
