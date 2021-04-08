@@ -24,7 +24,6 @@ namespace Child_Advocacy_Database
 
 
         Case addCase;
-        bool isEditForm = false;
         string hdd = "";
         
 
@@ -66,7 +65,6 @@ namespace Child_Advocacy_Database
         //
         private void EditCaseFunc()
         {
-            isEditForm = true;
             ncaNumTxt.Text = addCase.CaseNum;
             childFirstNameTxt.Text = addCase.ChildFirst;
             childLastNameTxt.Text = addCase.ChildLast;
@@ -414,14 +412,9 @@ namespace Child_Advocacy_Database
                     if (MessageBox.Show("Folder " + ncaNumTxt.Text + " already exists. Overwrite?\nThis cannot be undone!", "Entry already exists",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
-                        if (isEditForm == true)
-                        {
-                            //
-                            // Remove old database entry here if it exists (for edit functionality)
-                            // 
-                            if (database.Exists(ncaNumTxt.Text))
-                                database.Delete(ncaNumTxt.Text);
-                        }
+                        if (database.Exists(ncaNumTxt.Text))
+                            database.Delete(ncaNumTxt.Text);
+                        
                         fileSuccess = addDirectory();
                     }
                 }
