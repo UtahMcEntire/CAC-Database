@@ -21,7 +21,6 @@ namespace Child_Advocacy_Database
         // TODO: Link 'open file' to listbox selection
         // TODO: Link search button to status and check for problems
         // TODO: Link database to delete (deleteBtn_Click function)
-        // TODO: Reorder the functions
         // TODO: ?? lots more
 
 
@@ -178,12 +177,6 @@ namespace Child_Advocacy_Database
                 statusLbl.Text = "**Status: Please enter interview date in the exact format MM/DD/YYYY or leave blank if unknown.";
                 interviewTxt.BackColor = Color.Red;
             }
-            else if (hdd.Count == 0)
-            {
-                statusLbl.ForeColor = Color.Red;
-                statusLbl.Text = "**Status: Please add the hard drive(s) to search.";
-                selectHddListBox.BackColor = Color.Red;
-            }
             else
             {
 
@@ -253,6 +246,9 @@ namespace Child_Advocacy_Database
                                 //
                                 // Need to remove from database here
                                 //
+                                DatabaseController database = new DatabaseController();
+                                database.Delete(ncaNumTxt.Text);
+
                                 deletedSuccess = true;
                             }
                         }
@@ -325,6 +321,12 @@ namespace Child_Advocacy_Database
             {
                 statusLbl.ForeColor = Color.Red;
                 statusLbl.Text = "**Status: Please select a case from the list to open.";
+            }
+            else if (hdd.Count == 0)
+            {
+                statusLbl.ForeColor = Color.Red;
+                statusLbl.Text = "**Status: Please add the hard drive(s) to search.";
+                selectHddListBox.BackColor = Color.Red;
             }
             else
             {

@@ -532,7 +532,7 @@ public class DatabaseController
                             else
                                 continue;
 
-                            if (temp.StartsWith(year) && temp.Contains("9999"))
+                            if (temp.StartsWith(year) && temp.Contains("0000"))
                             {
                                 existingItems.Add(temp);
                                 indices.Add(Int32.Parse(temp.Substring(9)));
@@ -543,7 +543,7 @@ public class DatabaseController
                     }
 
                     indices.Sort();
-                    finalOutput = year + "-9999" + (existingItems.Count + 1).ToString();
+                    finalOutput = year + "-0000" + (existingItems.Count + 1).ToString();
                     if (existingItems.Contains(finalOutput) && indices.Count != 0)
                     {
                         int nextExpected = 1;
@@ -553,7 +553,7 @@ public class DatabaseController
                                 nextExpected++;
                             else
                             {
-                                finalOutput = year + "-9999" + nextExpected.ToString();
+                                finalOutput = year + "-0000" + nextExpected.ToString();
                                 break;
                             }
                                 

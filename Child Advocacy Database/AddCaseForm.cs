@@ -18,13 +18,8 @@ namespace Child_Advocacy_Database
 {
     public partial class AddCaseForm : Form
     {
-        // TODO: Solidify the DatabaseItem class or make a class to store the data members below and link the class to the database
         // TODO: Remove testing code
-        // TODO: Find out if there will always be files associated with a case (a new folder is only made if files are added right now)
         // TODO: Test functionality, colors, resets, tab index, status information, 
-        // TODO: Add the case to the database (see addCaseBtn_Click function comments below)
-        // TODO: Remove from database after deletion from hard drive (see removeCaseBtn_Click function comments below)
-        // TODO: Reset tab order to 0 in function clearFormBtn_Click
         // TODO: ?? more
 
 
@@ -71,7 +66,6 @@ namespace Child_Advocacy_Database
         //
         private void EditCaseFunc()
         {
-            int i;
             isEditForm = true;
             ncaNumTxt.Text = addCase.CaseNum;
             childFirstNameTxt.Text = addCase.ChildFirst;
@@ -106,7 +100,6 @@ namespace Child_Advocacy_Database
             string tempHdd;
             string addHdd;
             selectHddListBox.BackColor = Color.White;
-            //hdd = selectHddListBox.SelectedItem.ToString().Split();
             if (selectHddListBox.SelectedIndex != -1)
             {
                 tempHdd = selectHddListBox.SelectedItem.ToString();
@@ -124,8 +117,6 @@ namespace Child_Advocacy_Database
                 statusLbl.ForeColor = Color.Green;
                 statusLbl.Text = "**Status: Enter case information to add to database.";
             }
-            // for testing purposes
-            //MessageBox.Show("Testing HDD: " + hdd[0]);
 
         }
 
@@ -159,27 +150,10 @@ namespace Child_Advocacy_Database
         {
             if (perpListBox.SelectedIndex != -1)
             {
-                //addCase.PerpFirstName.RemoveAt(perpListBox.SelectedIndex);
-                //addCase.PerpLastName.RemoveAt(perpListBox.SelectedIndex);
-                //addCase.PerpNick.RemoveAt(perpListBox.SelectedIndex);
 
                 // New code using the Perp class
                 addCase.PerpList.RemoveAt(perpListBox.SelectedIndex);
 
-                /* Testing
-                foreach(var x in addCase.PerpFirstName)
-                {
-                    MessageBox.Show("Testing names left in list perp first name: " + x);
-                }
-                foreach(var x in addCase.PerpLastName)
-                {
-                    MessageBox.Show("Testing names left in list last perp name: " + x);
-                }
-                foreach(var x in addCase.PerpNick)
-                {
-                    MessageBox.Show("Testing names left in list perp nick name: " + x);
-                }
-                */
                 perpListBox.Items.Remove(perpListBox.SelectedItem);
             }
         }
@@ -214,16 +188,6 @@ namespace Child_Advocacy_Database
                 // New code using the Sibling class
                 addCase.SiblingList.RemoveAt(siblingListBox.SelectedIndex);
 
-                /* Testing
-                foreach(var x in addCase.SiblingFirstName)
-                {
-                    MessageBox.Show("Testing names left in list sibling first name: " + x);
-                }
-                foreach(var x in addCase.SiblingLastName)
-                {
-                    MessageBox.Show("Testing names left in list sibling last name: " + x);
-                }
-                */
                 siblingListBox.Items.Remove(siblingListBox.SelectedItem);
             }
         }
@@ -258,16 +222,6 @@ namespace Child_Advocacy_Database
                 // New code using the Victim class
                 addCase.VictimList.RemoveAt(otherVictimListBox.SelectedIndex);
 
-                /* Testing 
-                foreach(var x in addCase.OtherVictimFirstName)
-                {
-                    MessageBox.Show("Testing names left in list other victim first name: " + x);
-                }
-                foreach(var x in addCase.OtherVictimLastName)
-                {
-                    MessageBox.Show("Testing names left in list other victim last name: " + x);
-                }
-                */
                 otherVictimListBox.Items.Remove(otherVictimListBox.SelectedItem);
             }
         }
@@ -403,21 +357,7 @@ namespace Child_Advocacy_Database
             addCase = new Case();
             statusLbl.ForeColor = Color.Green;
             statusLbl.Text = "**Status: Enter case information to add to database.";
-            // Would be nice to reset tab order to 0 here but not especially needed as it only takes 2 tabs to be back at the start from here
         }
-
-        /* Can read from a resource file, cannot figure out how to write. Thinking to use database instead
-        private static UnmanagedMemoryStream GetResourceStream(string resName)
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            var strResources = assembly.GetName().Name + ".g.resources";
-            var rStream = assembly.GetManifestResourceStream(strResources);
-            var resourceReader = new ResourceReader(rStream);
-            var items = resourceReader.OfType<DictionaryEntry>();
-            var stream = items.First(x => (x.Key as string) == resName.ToLower()).Value;
-            return (UnmanagedMemoryStream)stream;
-        }
-        */
 
         //
         // Add the case to the database
@@ -426,18 +366,11 @@ namespace Child_Advocacy_Database
         {
             bool fileSuccess = false;
             DatabaseController database = new DatabaseController();
-            /*if(ncaNumTxt.Text.Length == 4) Thinking to use database instead
+
+            if(ncaNumTxt.Text.Length == 4 && (Int32.Parse(ncaNumTxt.Text) > 999 && Int32.Parse(ncaNumTxt.Text) < 10000))
             {
-                string resName = "CaseCount.txt";
-                var file = GetResourceStream(resName);
-                using (var reader = new StreamReader(file))
-                {
-                    var line = reader.ReadLine();
-                    int count = Int32.Parse(line);
-                    count++;
-                    MessageBox.Show(count.ToString());
-                }
-            }*/
+                ncaNumTxt.Text = database.GetNextUnknown(ncaNumTxt.Text);
+            }
 
             if (hdd == "")
             {
@@ -486,8 +419,6 @@ namespace Child_Advocacy_Database
                             //
                             // Remove old database entry here if it exists (for edit functionality)
                             // 
-
-                            
                             if (database.Exists(ncaNumTxt.Text))
                                 database.Delete(ncaNumTxt.Text);
                         }
@@ -506,15 +437,9 @@ namespace Child_Advocacy_Database
                     // Enter entry addCase into database here
                     database.Insert(addCase.CaseNum, addCase.ChildFirst, addCase.ChildLast, addCase.ChildDob, addCase.InterviewDate, addCase.Guardian1First, addCase.Guardian1Last, addCase.Guardian2First, addCase.Guardian2Last, addCase.PerpList, addCase.SiblingList, addCase.VictimList, targetPath);
                     
-                    
-                    // database(targetPath)
-                    // if(success){
                     statusLbl.ForeColor = Color.Blue;
                     statusLbl.Text = "**Status: NCA#: " + addCase.CaseNum + " was successfully added to the database!";
-                    // } else {
-                    // statusLbl.ForeColor = Color.Red;
-                    // statusLbl.Text = "**Status: Error adding NCA#: " + addCase.CaseNum + " to the database.";
-                    // }
+
                 }
             }
         }
@@ -554,7 +479,6 @@ namespace Child_Advocacy_Database
                         DatabaseController database = new DatabaseController();
                         database.Delete(ncaNumTxt.Text);
 
-                        // if(database delete success) {
                         if (!database.Exists(ncaNumTxt.Text))
                         MessageBox.Show("NCA# " + ncaNumTxt.Text + " deleted!");
                     }

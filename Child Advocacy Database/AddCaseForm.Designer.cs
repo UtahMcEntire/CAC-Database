@@ -112,9 +112,9 @@
             this.dcaNumLbl.AutoSize = true;
             this.dcaNumLbl.Location = new System.Drawing.Point(33, 191);
             this.dcaNumLbl.Name = "dcaNumLbl";
-            this.dcaNumLbl.Size = new System.Drawing.Size(72, 13);
+            this.dcaNumLbl.Size = new System.Drawing.Size(136, 13);
             this.dcaNumLbl.TabIndex = 1;
-            this.dcaNumLbl.Text = "NCA Number:";
+            this.dcaNumLbl.Text = "NCA Number or Case Year:";
             // 
             // childFirstNameLbl
             // 
