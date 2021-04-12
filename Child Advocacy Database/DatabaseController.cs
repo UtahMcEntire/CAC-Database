@@ -123,6 +123,7 @@ public class DatabaseController
                     int err;
                     connection.Open();
                     err = command.ExecuteNonQuery();
+                    connection.Close();
                     Console.WriteLine(err);
                 }
                 catch (SqlException ex)
@@ -485,6 +486,8 @@ public class DatabaseController
                         }
                     }
                 }
+
+                connection.Close();
             }
         }
 
@@ -561,6 +564,7 @@ public class DatabaseController
                     }
 
                     Console.WriteLine(finalOutput);
+                    connection.Close();
                     return finalOutput;
                 }
             }
@@ -579,6 +583,7 @@ public class DatabaseController
             {
                 connection.Open();
                 command.ExecuteNonQuery();
+                connection.Close();
             }
         }
     }
@@ -602,9 +607,15 @@ public class DatabaseController
                         reader.Read();
 
                         if (!reader.IsDBNull(reader.GetOrdinal("CaseNum")))
-                            return reader.GetString(reader.GetOrdinal("CaseNum")) == CaseNum;
+                        {
+                            bool exists = reader.GetString(reader.GetOrdinal("CaseNum")) == CaseNum;
+                            connection.Close();
+                            return exists;
+                        }
+                            
 
                     }
+                    connection.Close();
                     return false;
                 }
             }
