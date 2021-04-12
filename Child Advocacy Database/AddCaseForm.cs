@@ -42,7 +42,8 @@ namespace Child_Advocacy_Database
 
                 foreach (DriveInfo drive in myDrives)
                 {
-                    selectHddListBox.Items.Add(drive.Name + " " + drive.VolumeLabel);
+                    if (drive.IsReady)
+                        selectHddListBox.Items.Add(drive.Name + " " + drive.VolumeLabel);
                 }
             }
             catch (Exception e)
