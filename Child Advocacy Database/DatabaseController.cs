@@ -6,7 +6,7 @@ using System.Xml;
 
 public class DatabaseController
 {
-    private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ChildDatabase.mdf;Integrated Security=True;Connect Timeout=30";
+    private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ChildDatabase.mdf;Integrated Security=True;Connect Timeout=30;Pooling=false";
 
 
 
@@ -28,9 +28,8 @@ public class DatabaseController
         //Console.WriteLine("guardian2first " + Guardian2First);
         //Console.WriteLine("guardian2last " + Guardian2Last);
         SqlCommand command;
-        SqlConnection connection;
 
-        using (connection = new SqlConnection(connectionString))
+        using (SqlConnection connection = new SqlConnection(connectionString))
         {
             using (command = new SqlCommand("INSERT INTO " +
                 "ChildDataTable " +
@@ -489,6 +488,8 @@ public class DatabaseController
 
                 connection.Close();
             }
+
+            connection.Close();
         }
 
         // Debug
