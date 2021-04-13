@@ -27,6 +27,7 @@ namespace Child_Advocacy_Database
         Case queryCase;
         List<Case> queryCases;
         List<string> hdd = new List<string>();
+        public bool editFlag;
 
         //
         // Intitialization and add drive list to the select hdd listbox
@@ -36,6 +37,7 @@ namespace Child_Advocacy_Database
             InitializeComponent();
             queryCases = new List<Case>();
             queryCase = new Case();
+            editFlag = false;
 
             try
             {
@@ -310,8 +312,9 @@ namespace Child_Advocacy_Database
         //
         private void dashboardBtn_Click(object sender, EventArgs e)
         {
-            Application.OpenForms["dashboard"].BringToFront();
-            Close();
+            Dashboard dashForm = new Dashboard();
+            dashForm.Show();
+            this.Close();
         }
 
         private void openFileBtn_Click(object sender, EventArgs e)
@@ -393,12 +396,13 @@ namespace Child_Advocacy_Database
             // that will be the query to send to edit, there needs to be a flag to check if the search was completed
             if (searchResultListBox.SelectedIndex != -1)
             {
-                Close();
+                editFlag = true;
                 AddCaseForm editCase = new AddCaseForm(queryCases[searchResultListBox.SelectedIndex]);
                 statusLbl.ForeColor = Color.Green;
                 statusLbl.Text = "**Status: Editing the most recently searched case.";
                 editCase.Show();
                 editCase.BringToFront();
+                this.Close();
             }
             else
             {

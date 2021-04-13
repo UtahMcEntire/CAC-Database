@@ -18,7 +18,10 @@ namespace Child_Advocacy_Database
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Dashboard());
+            var main_form = new Dashboard();
+            main_form.Show();
+            Application.Run();
+
         }
     }
 }
