@@ -20,10 +20,11 @@ namespace Child_Advocacy_Database
         private void AddButton_Click(object sender, EventArgs e)
         {
             var AddCaseForm = new AddCaseForm(null); // Bring up add form onclick
-            AddCaseForm.FormClosed += AddCaseForm_FormClosing;
-            AddButton.Enabled = false;
-            Hide();
+            //AddCaseForm.FormClosed += AddCaseForm_FormClosing;
+            //AddButton.Enabled = false;
             AddCaseForm.Show();
+            this.Close();
+            
         }
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)
@@ -34,13 +35,13 @@ namespace Child_Advocacy_Database
         private void QueryButton_Click(object sender, EventArgs e)
         {
             var QueryForm = new Query(); // Bring up search form onclick
-            QueryForm.FormClosed += Query_FormClosing;
-            QueryButton.Enabled = false;
-            Hide();
+            //QueryForm.FormClosed += Query_FormClosing;
+            //QueryButton.Enabled = false;
             QueryForm.Show();
+            this.Close();
         }
 
-        private void AddCaseForm_FormClosing(object sender, EventArgs e)
+        /*private void AddCaseForm_FormClosing(object sender, EventArgs e)
         {
             AddButton.Enabled = true; // re-enables add button on dashboard
             this.Show();
@@ -50,7 +51,7 @@ namespace Child_Advocacy_Database
         {
             QueryButton.Enabled = true; // re-enables query button on dashboard
             this.Show();
-        }
+        }*/
 
         private void QuitButton_Click(object sender, EventArgs e)
         {

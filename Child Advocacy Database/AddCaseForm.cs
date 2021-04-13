@@ -558,9 +558,10 @@ namespace Child_Advocacy_Database
         //
         private void dashboardBtn_Click(object sender, EventArgs e)
         {
-            Application.OpenForms["dashboard"].BringToFront();
+            Dashboard dashForm = new Dashboard();
+            dashForm.Show();
             addCase = null;
-            Close();
+            this.Close();
         }
     }
 }
