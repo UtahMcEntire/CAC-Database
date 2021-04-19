@@ -1,117 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Child_Advocacy_Database
 {
-	public class Perp
-	{
-		public string FirstName { get; set; }
-		public string LastName { get; set; }
-		public string Nick { get; set; }
-
-		public Perp()
-        {
-			// Default Constructor
-        }
-		public Perp(string FName, string LName, string Nick)
-		{
-			this.FirstName = FName;
-			this.LastName = LName;
-			this.Nick = Nick;
-		}
-
-		public override string ToString()
-		{
-			return FirstName + " " + LastName + " " + Nick;
-		}
-
-		// A function used to convert the class into a XML string
-		public String ToXmlString()
-		{
-			string toXML = "<perp>";
-			if (this.FirstName != "")
-				toXML += "<first>" + this.FirstName + "</first>";
-			if (this.LastName != "")
-				toXML += "<last>" + this.LastName + "</last>";
-			if (this.Nick != "")
-				toXML += "<nick>" + this.Nick + "</nick>";
-			toXML += "</perp>";
-
-			return toXML;
-		}
-	}
-
-
-	public class Sibling
-	{
-		public string FirstName { get; set; }
-		public string LastName { get; set; }
-
-		public Sibling()
-        {
-			// Default Constructor
-        }
-		public Sibling(string FName, string LName)
-		{
-			this.FirstName = FName;
-			this.LastName = LName;
-		}
-
-		public override string ToString()
-		{
-			return FirstName + " " + LastName;
-		}
-
-		// A function used to convert the class into a XML string
-		public String ToXmlString()
-		{
-			string toXML = "<sibling>";
-			if (this.FirstName != "")
-				toXML += "<first>" + this.FirstName + "</first>";
-			if (this.LastName != "")
-				toXML += "<last>" + this.LastName + "</last>";
-			toXML += "</sibling>";
-
-			return toXML;
-		}
-	}
-
-	public class Victim
-	{
-		public string FirstName { get; set; }
-		public string LastName { get; set; }
-
-		public Victim()
-        {
-			// Default Constructor
-        }
-
-		public Victim(string FName, string LName)
-		{
-			this.FirstName = FName;
-			this.LastName = LName;
-		}
-
-		public override string ToString()
-		{
-			return FirstName + " " + LastName;
-		}
-
-		// A function used to convert the class into a XML string
-		public String ToXmlString()
-		{
-			string toXML = "<victim>";
-			if (this.FirstName != "")
-				toXML += "<first>" + this.FirstName + "</first>";
-			if (this.LastName != "")
-				toXML += "<last>" + this.LastName + "</last>";
-			toXML += "</victim>";
-
-			return toXML;
-		}
-	}
-
-
+	[Serializable()]
 	public class Case
 	{
 		public string CaseNum { get; set; }
@@ -134,6 +27,9 @@ namespace Child_Advocacy_Database
 		public string SiblingLastName { get; set; }
 		public string OtherVictimFirstName { get; set; }
 		public string OtherVictimLastName { get; set; }
+
+
+		public string Location { get; set; }
 		//public List<string> HddList { get; set; }
 
 
@@ -178,7 +74,15 @@ namespace Child_Advocacy_Database
 			PerpList = new List<Perp>();
 			SiblingList = new List<Sibling>();
 			VictimList = new List<Victim>();
-		}
+
+			//PerpFirstName = "";
+			//PerpLastName = "";
+			//PerpNick = "";
+   //         SiblingFirstName = "";
+   //         SiblingLastName = "";
+   //         OtherVictimFirstName = "";
+   //         OtherVictimLastName = "";
+        }
 
 		public string printPerpFirst()
 		{
@@ -274,6 +178,117 @@ namespace Child_Advocacy_Database
 		public override string ToString()
 		{
 			return CaseNum + " - " + ChildFirst + " " + ChildLast;
+		}
+	}
+
+
+	[Serializable()]
+	public class Perp
+	{
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		public string Nick { get; set; }
+
+		public Perp()
+		{
+			// Default Constructor
+		}
+		public Perp(string FName, string LName, string Nick)
+		{
+			this.FirstName = FName;
+			this.LastName = LName;
+			this.Nick = Nick;
+		}
+
+		public override string ToString()
+		{
+			return FirstName + " " + LastName + " " + Nick;
+		}
+
+		// A function used to convert the class into a XML string
+		public String ToXmlString()
+		{
+			string toXML = "<perp>";
+			if (this.FirstName != "")
+				toXML += "<first>" + this.FirstName + "</first>";
+			if (this.LastName != "")
+				toXML += "<last>" + this.LastName + "</last>";
+			if (this.Nick != "")
+				toXML += "<nick>" + this.Nick + "</nick>";
+			toXML += "</perp>";
+
+			return toXML;
+		}
+	}
+
+	[Serializable()]
+	public class Sibling
+	{
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+
+		public Sibling()
+		{
+			// Default Constructor
+		}
+		public Sibling(string FName, string LName)
+		{
+			this.FirstName = FName;
+			this.LastName = LName;
+		}
+
+		public override string ToString()
+		{
+			return FirstName + " " + LastName;
+		}
+
+		// A function used to convert the class into a XML string
+		public String ToXmlString()
+		{
+			string toXML = "<sibling>";
+			if (this.FirstName != "")
+				toXML += "<first>" + this.FirstName + "</first>";
+			if (this.LastName != "")
+				toXML += "<last>" + this.LastName + "</last>";
+			toXML += "</sibling>";
+
+			return toXML;
+		}
+	}
+
+	[Serializable()]
+	public class Victim
+	{
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+
+		public Victim()
+		{
+			// Default Constructor
+		}
+
+		public Victim(string FName, string LName)
+		{
+			this.FirstName = FName;
+			this.LastName = LName;
+		}
+
+		public override string ToString()
+		{
+			return FirstName + " " + LastName;
+		}
+
+		// A function used to convert the class into a XML string
+		public String ToXmlString()
+		{
+			string toXML = "<victim>";
+			if (this.FirstName != "")
+				toXML += "<first>" + this.FirstName + "</first>";
+			if (this.LastName != "")
+				toXML += "<last>" + this.LastName + "</last>";
+			toXML += "</victim>";
+
+			return toXML;
 		}
 	}
 }

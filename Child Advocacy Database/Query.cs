@@ -201,7 +201,8 @@ namespace Child_Advocacy_Database
                 queryCase.OtherVictimFirstName = otherVictimFirstNameTxt.Text;
                 queryCase.OtherVictimLastName = otherVictimLastNameTxt.Text;
 
-                DatabaseController database = new DatabaseController();
+                //DatabaseController database = new DatabaseController();
+                XmlDb database = new XmlDb();
                 queryCases = database.Query(queryCase);
  
                 searchResultListBox.Items.Clear();
@@ -249,7 +250,8 @@ namespace Child_Advocacy_Database
                                 //
                                 // Need to remove from database here
                                 //
-                                DatabaseController database = new DatabaseController();
+                                XmlDb database = new XmlDb();
+                                //DatabaseController database = new DatabaseController();
                                 database.Delete(ncaNumTxt.Text);
 
                                 deletedSuccess = true;
