@@ -301,40 +301,45 @@ namespace Child_Advocacy_Database
             var currentDir = Directory.GetCurrentDirectory();
             var path = Path.Combine(currentDir, filename);
 
-            // Loads the db
-            XElement db = XElement.Load(path);
-            IEnumerable<XElement> cases = db.Elements();
-
-            foreach (var element in cases)
+            if (!File.Exists(path))
+                finalOutput = year + "-00001";
+            else
             {
-                temp = element.Element("CaseNum").Value;
-                if (temp.Contains("0000"))
+                // Loads the db
+                XElement db = XElement.Load(path);
+                IEnumerable<XElement> cases = db.Elements();
+
+                foreach (var element in cases)
                 {
-                    existingItems.Add(temp);
-                    indices.Add(Int32.Parse(temp.Substring(9)));
-                }
-            }
-
-
-
-            indices.Sort();
-            finalOutput = year + "-0000" + (existingItems.Count + 1).ToString();
-            if (existingItems.Contains(finalOutput) && indices.Count != 0)
-            {
-                int nextExpected = 1;
-                foreach (int i in indices)
-                {
-                    if (i == nextExpected)
-                        nextExpected++;
-                    else
+                    temp = element.Element("CaseNum").Value;
+                    if (temp.Contains("0000"))
                     {
-                        finalOutput = year + "-0000" + nextExpected.ToString();
-                        break;
+                        existingItems.Add(temp);
+                        indices.Add(Int32.Parse(temp.Substring(9)));
                     }
-
                 }
+
+
+
+                indices.Sort();
+                finalOutput = year + "-0000" + (existingItems.Count + 1).ToString();
+                if (existingItems.Contains(finalOutput) && indices.Count != 0)
+                {
+                    int nextExpected = 1;
+                    foreach (int i in indices)
+                    {
+                        if (i == nextExpected)
+                            nextExpected++;
+                        else
+                        {
+                            finalOutput = year + "-0000" + nextExpected.ToString();
+                            break;
+                        }
+
+                    }
+                }
+                Console.WriteLine(finalOutput);
             }
-            Console.WriteLine(finalOutput);
             return finalOutput;
         }
     }
