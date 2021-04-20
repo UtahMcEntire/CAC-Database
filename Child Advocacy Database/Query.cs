@@ -201,7 +201,6 @@ namespace Child_Advocacy_Database
                 queryCase.OtherVictimFirstName = otherVictimFirstNameTxt.Text;
                 queryCase.OtherVictimLastName = otherVictimLastNameTxt.Text;
 
-                //DatabaseController database = new DatabaseController();
                 XmlDb database = new XmlDb();
                 queryCases = database.Query(queryCase);
  
@@ -247,11 +246,9 @@ namespace Child_Advocacy_Database
                             if (Directory.Exists(hdd[i] + ncaNumTxt.Text))
                             {
                                 Directory.Delete(hdd[i] + ncaNumTxt.Text, true); // 'true' means to delete subfiles
-                                //
-                                // Need to remove from database here
-                                //
+                                
+                                // Remove from DB
                                 XmlDb database = new XmlDb();
-                                //DatabaseController database = new DatabaseController();
                                 database.Delete(ncaNumTxt.Text);
 
                                 deletedSuccess = true;

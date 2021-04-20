@@ -11,36 +11,32 @@ namespace Child_Advocacy_Database
 {
     class XmlDb
     {
+        // Variables related to DB name and location on the drive
+        private string filename;
+        private string currentDir;
+        private string path;
+
+        /*
+        * Constructor
+        * Sets the variables used to establish the DB name and location
+        */
+        public XmlDb()
+        {
+            // Sets the filename and path for the database
+            this.filename = "DB.xml";
+            this.currentDir = Directory.GetCurrentDirectory();
+            this.path = Path.Combine(currentDir, filename);
+        }
+        
+        /*
+        *  Function: Insert
+        *  Parameters: Case
+        *  Description: Function takes a single Case.
+        *       The information from the Case is analyzed 
+        *       and inserted into the correct spots in the Custom XML DB.
+        */
         public void Insert(Case addCase)
         {
-            //StringWriter xmlString = new StringWriter();
-            //XmlSerializer serializer = new XmlSerializer(typeof(Case));
-            //serializer.Serialize(xmlString, addCase);
-
-            //var path = Directory.GetCurrentDirectory() + "DB.xml";
-
-            ////System.IO.FileStream file = System.IO.File.Create(path);
-            ////serializer.Serialize(file, addCase);
-
-            //Console.WriteLine(xmlString.ToString());
-            //XmlDocument toAdd = new XmlDocument();
-            //toAdd.LoadXml(xmlString.ToString());
-
-            //XmlDocument db = new XmlDocument();
-            //db.Load(path);
-            //db.AppendChild(toAdd);
-            //var el = db.CreateElement("Case");
-            ////el.InnerXml = toAdd.DocumentType.InnerXml;
-            ////db.DocumentElement.AppendChild(el);
-
-            //db.Save(path);
-
-            // Sets the filename and path for the database
-            var filename = "DB.xml";
-            var currentDir = Directory.GetCurrentDirectory();
-            var path = Path.Combine(currentDir, filename);
-
-
             // Connects to the DB and adds the item to it
             XElement db;
             if (!File.Exists(path))
@@ -51,121 +47,19 @@ namespace Child_Advocacy_Database
                 db.Add(ToXElement(addCase));
             }
 
-            db.Save(path);
-            
-                
-            //// Not needed
-            IEnumerable<XElement> cases = db.Elements();
-            //foreach (var element in cases)
-            //{
-            //    //Console.WriteLine(element.Element("PerpList"));
-            //    if (element.Element("CaseNum").Value == "2020-1")
-            //    {
-            //        //Console.WriteLine(element);
-            //        element.DescendantsAndSelf().Remove();
-            //    }
-
-            //}
-
-            //// Not Needed
-            int count = 0;
-            foreach (var element in cases)
-            {
-                Console.WriteLine(element);
-                Console.WriteLine(count++);
-            }
-
-
-            //for (int i = 0; i < 45000; i++)
-            //    db.Add(ToXElement(addCase));
-
-            
-            //foreach (var element in cases)
-            //{
-            //    Console.WriteLine(element);
-            //}
-
-            //db.Save(path);
-        }
-
-        private XElement ToXElement(Case toCase)
-        {
-            // Allows for the production of the XML string
-            StringWriter xmlString = new StringWriter();
-            XmlSerializer serializer = new XmlSerializer(typeof(Case));
-
-            // Removes some junk from the serialization
-            var xmlSerializerNamespaces = new XmlSerializerNamespaces();
-            xmlSerializerNamespaces.Add(string.Empty, string.Empty);
-            
-            // Creates the actual XML string
-            serializer.Serialize(xmlString, toCase, xmlSerializerNamespaces);
-
-            return XElement.Parse(xmlString.ToString());
-        }
-
-
-        public void Delete(string CaseNum)
-        {
-            // Sets the filename and path for the database
-            var filename = "DB.xml";
-            var currentDir = Directory.GetCurrentDirectory();
-            var path = Path.Combine(currentDir, filename);
-
-            // Loads the db
-            if (!File.Exists(path))
-                return;
-            XElement db = XElement.Load(path);
-            IEnumerable<XElement> cases = db.Elements();
-            
-            // Iterates throught the DB
-            foreach (var element in cases)
-                //Deletes the unwanted case
-                if (element.Element("CaseNum").Value == CaseNum)
-                {
-                    //Console.WriteLine(element);
-                    element.DescendantsAndSelf().Remove();
-                    break;
-                }
-
-            // Debug Print
-            //foreach (var element in cases)
-            //    Console.WriteLine(element);
-
+            // Saves the DB
             db.Save(path);
         }
 
-        private int getSuppliedSearchAmount(Case queryCase)
-        {
-            int count = 0;
-
-            count += queryCase.CaseNum != "" ? 1 : 0;
-            count += queryCase.ChildFirst != "" ? 1 : 0;
-            count += queryCase.ChildLast != "" ? 1 : 0;
-            count += queryCase.ChildDob != "" ? 1 : 0;
-            count += queryCase.InterviewDate != "" ? 1 : 0;
-            count += queryCase.Guardian1First != "" ? 1 : 0;
-            count += queryCase.Guardian1Last != "" ? 1 : 0;
-            count += queryCase.Guardian2First != "" ? 1 : 0;
-            count += queryCase.Guardian2Last != "" ? 1 : 0;
-            count += queryCase.PerpFirstName != "" ? 1 : 0;
-            count += queryCase.PerpLastName != "" ? 1 : 0;
-            count += queryCase.PerpNick != "" ? 1 : 0;
-            count += queryCase.SiblingFirstName != "" ? 1 : 0;
-            count += queryCase.SiblingLastName != "" ? 1 : 0;
-            count += queryCase.OtherVictimFirstName != "" ? 1 : 0;
-            count += queryCase.OtherVictimLastName != "" ? 1 : 0;
-
-            return count;
-        }
-
+        /*
+        *  Function: Query
+        *  Parameters: Case
+        *  Description: Function takes a single Case as a parameter 
+        *      and checks a List of all Cases for any occurances of it.
+        *      **NOT CASE SENSITIVE**
+        */
         public List<Case> Query(Case queryCase)
         {
-            // Sets the filename and path for the database
-            var filename = "DB.xml";
-            var currentDir = Directory.GetCurrentDirectory();
-            var path = Path.Combine(currentDir, filename);
-
             // Sets up the returned list
             List<Case> foundCases = new List<Case>();
             int suppliedSearchAmount = getSuppliedSearchAmount(queryCase);
@@ -264,19 +158,75 @@ namespace Child_Advocacy_Database
             return foundCases;
         }
 
-        private Case DeSerializer(XElement element)
+        /*
+        *  Function: Delete
+        *  Parameters: string
+        *  Description: Function takes a single string as a parameter 
+        *      and deletes the DB entry that matches the CaseNumber to the string
+        */
+        public void Delete(string CaseNum)
         {
-            var serializer = new XmlSerializer(typeof(Case));
-            return (Case)serializer.Deserialize(element.CreateReader());
+            // Loads the db
+            if (!File.Exists(path))
+                return;
+            XElement db = XElement.Load(path);
+            IEnumerable<XElement> cases = db.Elements();
+            
+            // Iterates throught the DB
+            foreach (var element in cases)
+                //Deletes the unwanted case
+                if (element.Element("CaseNum").Value == CaseNum)
+                {
+                    //Console.WriteLine(element);
+                    element.DescendantsAndSelf().Remove();
+                    break;
+                }
+
+            db.Save(path);
         }
 
+        /*
+        *  Function: getSuppliedSearchAmount
+        *  Parameters: Case
+        *  Used By: Query()
+        *  Description: Function takes a single case as a parameter 
+        *      and counts how many parameters are not empty strings
+        *  Return: an integer of how many items are in a Case
+        */
+        private int getSuppliedSearchAmount(Case queryCase)
+        {
+            int count = 0;
+
+            count += queryCase.CaseNum != "" ? 1 : 0;
+            count += queryCase.ChildFirst != "" ? 1 : 0;
+            count += queryCase.ChildLast != "" ? 1 : 0;
+            count += queryCase.ChildDob != "" ? 1 : 0;
+            count += queryCase.InterviewDate != "" ? 1 : 0;
+            count += queryCase.Guardian1First != "" ? 1 : 0;
+            count += queryCase.Guardian1Last != "" ? 1 : 0;
+            count += queryCase.Guardian2First != "" ? 1 : 0;
+            count += queryCase.Guardian2Last != "" ? 1 : 0;
+            count += queryCase.PerpFirstName != "" ? 1 : 0;
+            count += queryCase.PerpLastName != "" ? 1 : 0;
+            count += queryCase.PerpNick != "" ? 1 : 0;
+            count += queryCase.SiblingFirstName != "" ? 1 : 0;
+            count += queryCase.SiblingLastName != "" ? 1 : 0;
+            count += queryCase.OtherVictimFirstName != "" ? 1 : 0;
+            count += queryCase.OtherVictimLastName != "" ? 1 : 0;
+
+            return count;
+        }
+
+        
+        /*
+        *  Function: Exists
+        *  Parameters: string
+        *  Description: Function takes a single string as a parameter 
+        *      and determines if a Case exists in the DB
+        *  Return: ture if item is in DB, false otherwise
+        */
         public bool Exists(string CaseNum)
         {
-            // Sets the filename and path for the database
-            var filename = "DB.xml";
-            var currentDir = Directory.GetCurrentDirectory();
-            var path = Path.Combine(currentDir, filename);
-
             // Loads the db
             if (!File.Exists(path))
                 return false;
@@ -291,18 +241,19 @@ namespace Child_Advocacy_Database
             return false;
         }
 
+        /*
+        *  Function: GetNextUnknown
+        *  Parameters: string
+        *  Description: Function takes a single string of a year as a parameter 
+        *      and counts how many parameters do not have a valid NCA number for them.
+        *  Return: a string that represents an unknown NCA number
+        */
         public string GetNextUnknown(string year)
         {
-            int count = 0;
             List<int> indices = new List<int>();
             List<string> existingItems = new List<string>();
             string finalOutput;
             string temp;
-
-            // Sets the filename and path for the database
-            var filename = "DB.xml";
-            var currentDir = Directory.GetCurrentDirectory();
-            var path = Path.Combine(currentDir, filename);
 
             if (!File.Exists(path))
                 finalOutput = year + "-00001";
@@ -345,5 +296,49 @@ namespace Child_Advocacy_Database
             }
             return finalOutput;
         }
+
+        /*
+        *  Function: ToXElement
+        *  Parameters: Case
+        *  Used By: Insert()
+        *  Description: Function takes a single Case.
+        *       The Case is converted to a XElement through the
+        *       built in XML serializer. 
+        *       **To convert from XElement to Case use DeSerializer**
+        *  Return: an XElement
+        */
+        private XElement ToXElement(Case toCase)
+        {
+            // Allows for the production of the XML string
+            StringWriter xmlString = new StringWriter();
+            XmlSerializer serializer = new XmlSerializer(typeof(Case));
+
+            // Removes some junk from the serialization
+            var xmlSerializerNamespaces = new XmlSerializerNamespaces();
+            xmlSerializerNamespaces.Add(string.Empty, string.Empty);
+
+            // Creates the actual XML string
+            serializer.Serialize(xmlString, toCase, xmlSerializerNamespaces);
+
+            return XElement.Parse(xmlString.ToString());
+        }
+
+        /*
+        *  Function: DeSerializer
+        *  Parameters: XElement
+        *  Used By: Query()
+        *  Description: Function takes a single XElement that represents a Case.
+        *       The XElement is converted to a Case through the
+        *       built in XML serializer. 
+        *       **To convert from Case to XElement use ToXElement**
+        *  Return: A Deserialized Case
+        */
+        private Case DeSerializer(XElement element)
+        {
+            var serializer = new XmlSerializer(typeof(Case));
+            return (Case)serializer.Deserialize(element.CreateReader());
+        }
+
+
     }
 }

@@ -364,7 +364,6 @@ namespace Child_Advocacy_Database
         private void addCaseBtn_Click(object sender, EventArgs e)
         {
             bool fileSuccess = false;
-            //DatabaseController database = new DatabaseController();
             XmlDb database = new XmlDb();
 
             if(ncaNumTxt.Text.Length == 4 && (Int32.Parse(ncaNumTxt.Text) > 999 && Int32.Parse(ncaNumTxt.Text) < 10000))
@@ -469,10 +468,7 @@ namespace Child_Advocacy_Database
                          
                         Directory.Delete(targetPath, true);
 
-                        //
-                        // Need to remove from database here
-                        //
-                        //DatabaseController database = new DatabaseController();
+                        //Removes from DB
                         XmlDb database = new XmlDb();
                         database.Delete(ncaNumTxt.Text);
 
