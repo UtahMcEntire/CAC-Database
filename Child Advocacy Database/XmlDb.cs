@@ -113,6 +113,8 @@ namespace Child_Advocacy_Database
             var path = Path.Combine(currentDir, filename);
 
             // Loads the db
+            if (!File.Exists(path))
+                return;
             XElement db = XElement.Load(path);
             IEnumerable<XElement> cases = db.Elements();
             
@@ -170,6 +172,9 @@ namespace Child_Advocacy_Database
             int foundSearchAmounts = 0;
 
             // Loads the db
+            if (!File.Exists(path))
+                return foundCases;
+
             XElement db = XElement.Load(path);
             IEnumerable<XElement> cases = db.Elements();
 
@@ -178,74 +183,73 @@ namespace Child_Advocacy_Database
                 foundSearchAmounts = 0;
 
                 // Tests if the current CaseNum contains the query CaseNum
-                if (queryCase.CaseNum != "" && element.Element("CaseNum").Value.Contains(queryCase.CaseNum))
+                if (queryCase.CaseNum != "" && element.Element("CaseNum").Value.ToLower().Contains(queryCase.CaseNum.ToLower()))
                     foundSearchAmounts++;
 
                 // Tests if the current CaseNum contains the query CaseNum
-                if (queryCase.ChildFirst != "" && element.Element("ChildFirst").Value.Contains(queryCase.ChildFirst))
+                if (queryCase.ChildFirst != "" && element.Element("ChildFirst").Value.ToLower().Contains(queryCase.ChildFirst.ToLower()))
                     foundSearchAmounts++;
 
                 // Tests if the current CaseNum contains the query CaseNum
-                if (queryCase.ChildLast != "" && element.Element("ChildLast").Value.Contains(queryCase.ChildLast))
+                if (queryCase.ChildLast != "" && element.Element("ChildLast").Value.ToLower().Contains(queryCase.ChildLast.ToLower()))
                     foundSearchAmounts++;
 
                 // Tests if the current CaseNum contains the query CaseNum
-                if (queryCase.ChildDob != "" && element.Element("ChildDob").Value.Contains(queryCase.ChildDob))
+                if (queryCase.ChildDob != "" && element.Element("ChildDob").Value.ToLower().Contains(queryCase.ChildDob.ToLower()))
                     foundSearchAmounts++;
 
                 // Tests if the current CaseNum contains the query CaseNum
-                if (queryCase.InterviewDate != "" && element.Element("InterviewDate").Value.Contains(queryCase.InterviewDate))
+                if (queryCase.InterviewDate != "" && element.Element("InterviewDate").Value.ToLower().Contains(queryCase.InterviewDate.ToLower()))
                     foundSearchAmounts++;
 
                 // Tests if the current Guardian1First contains the query Guardian1First
-                if (queryCase.Guardian1First != "" && (element.Element("Guardian1First").Value.Contains(queryCase.Guardian1First) || element.Element("Guardian2First").Value.Contains(queryCase.Guardian2First)))
+                if (queryCase.Guardian1First != "" && (element.Element("Guardian1First").Value.ToLower().Contains(queryCase.Guardian1First.ToLower()) || element.Element("Guardian2First").Value.ToLower().Contains(queryCase.Guardian2First.ToLower())))
                     foundSearchAmounts++;
 
                 // Tests if the current Guardian1Last contains the query Guardian1Last
-                if (queryCase.Guardian1Last != "" && (element.Element("Guardian1Last").Value.Contains(queryCase.Guardian1Last) || element.Element("Guardian2Last").Value.Contains(queryCase.Guardian2Last)))
+                if (queryCase.Guardian1Last != "" && (element.Element("Guardian1Last").Value.ToLower().Contains(queryCase.Guardian1Last.ToLower()) || element.Element("Guardian2Last").Value.ToLower().Contains(queryCase.Guardian2Last.ToLower())))
                     foundSearchAmounts++;
 
                 // Tests if the current Guardian1First contains the query Guardian1First
-                if (queryCase.Guardian2First != "" && (element.Element("Guardian2First").Value.Contains(queryCase.Guardian2First) || element.Element("Guardian2First").Value.Contains(queryCase.Guardian1First)))
+                if (queryCase.Guardian2First != "" && (element.Element("Guardian2First").Value.ToLower().Contains(queryCase.Guardian2First.ToLower()) || element.Element("Guardian2First").Value.ToLower().Contains(queryCase.Guardian1First.ToLower())))
                     foundSearchAmounts++;
 
                 // Tests if the current Guardian1Last contains the query Guardian1Last
-                if (queryCase.Guardian2Last != "" && (element.Element("Guardian2Last").Value.Contains(queryCase.Guardian2Last) || element.Element("Guardian2Last").Value.Contains(queryCase.Guardian1Last)))
+                if (queryCase.Guardian2Last != "" && (element.Element("Guardian2Last").Value.ToLower().Contains(queryCase.Guardian2Last.ToLower()) || element.Element("Guardian2Last").Value.ToLower().Contains(queryCase.Guardian1Last.ToLower())))
                     foundSearchAmounts++;
 
 
                 // Perps/Siblings/Victims
                 // Tests if the current CaseNum contains the query CaseNum
-                if (queryCase.PerpFirstName != "" && element.Element("PerpList").Element("Perp").Element("FirstName").Value.Contains(queryCase.PerpFirstName))
+                if (queryCase.PerpFirstName != "" && element.Element("PerpList").Element("Perp").Element("FirstName").Value.ToLower().Contains(queryCase.PerpFirstName.ToLower()))
                     foundSearchAmounts++;
 
                 // Tests if the current CaseNum contains the query CaseNum
-                if (queryCase.PerpLastName != "" && element.Element("PerpList").Element("Perp").Element("LastName").Value.Contains(queryCase.PerpLastName))
+                if (queryCase.PerpLastName != "" && element.Element("PerpList").Element("Perp").Element("LastName").Value.ToLower().Contains(queryCase.PerpLastName.ToLower()))
                     foundSearchAmounts++;
 
                 // Tests if the current CaseNum contains the query CaseNum
-                if (queryCase.PerpNick != "" && element.Element("PerpList").Element("Perp").Element("Nick").Value.Contains(queryCase.PerpNick))
+                if (queryCase.PerpNick != "" && element.Element("PerpList").Element("Perp").Element("Nick").Value.ToLower().Contains(queryCase.PerpNick.ToLower()))
                     foundSearchAmounts++;
 
 
                 // Sibling
                 // Tests if the current CaseNum contains the query CaseNum
-                if (queryCase.SiblingFirstName != "" && element.Element("SiblingList").Element("FirstName").Value.Contains(queryCase.SiblingFirstName))
+                if (queryCase.SiblingFirstName != "" && element.Element("SiblingList").Element("FirstName").Value.ToLower().Contains(queryCase.SiblingFirstName.ToLower()))
                     foundSearchAmounts++;
 
                 // Tests if the current CaseNum contains the query CaseNum
-                if (queryCase.SiblingLastName != "" && element.Element("SiblingList").Element("Sibling").Element("LastName").Value.Contains(queryCase.SiblingLastName))
+                if (queryCase.SiblingLastName != "" && element.Element("SiblingList").Element("Sibling").Element("LastName").Value.ToLower().Contains(queryCase.SiblingLastName.ToLower()))
                     foundSearchAmounts++;
 
                 // Victim
                 // Tests if the current CaseNum contains the query CaseNum
-                if (queryCase.OtherVictimFirstName != "" && element.Element("Victim").Element("FirstName").Value.Contains(queryCase.OtherVictimFirstName))
+                if (queryCase.OtherVictimFirstName != "" && element.Element("Victim").Element("FirstName").Value.ToLower().Contains(queryCase.OtherVictimFirstName.ToLower()))
                     foundSearchAmounts++;
 
                 // Tests if the current CaseNum contains the query CaseNum
-                if (queryCase.OtherVictimLastName != "" && element.Element("Victim").Element("LastName").Value.Contains(queryCase.OtherVictimLastName))
+                if (queryCase.OtherVictimLastName != "" && element.Element("Victim").Element("LastName").Value.ToLower().Contains(queryCase.OtherVictimLastName.ToLower()))
                     foundSearchAmounts++;
-
 
 
                 if (suppliedSearchAmount == foundSearchAmounts)
@@ -256,7 +260,6 @@ namespace Child_Advocacy_Database
                     Console.WriteLine("FOUND");
                     Console.WriteLine(DeSerializer(element).ToString());
                 }
-                    
             }
             return foundCases;
         }
