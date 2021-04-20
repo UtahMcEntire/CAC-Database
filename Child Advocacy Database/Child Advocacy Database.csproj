@@ -79,12 +79,6 @@
     <Compile Include="AddCaseForm.Designer.cs">
       <DependentUpon>AddCaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChildDatabaseDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ChildDatabaseDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DatabaseController.cs" />
     <Compile Include="Case.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -121,18 +115,6 @@
     <EmbeddedResource Include="Query.resx">
       <DependentUpon>Query.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Child Advocacy Database_TemporaryKey.pfx" />
-    <None Include="ChildDatabaseDataSet.xsc">
-      <DependentUpon>ChildDatabaseDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ChildDatabaseDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ChildDatabaseDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ChildDatabaseDataSet.xss">
-      <DependentUpon>ChildDatabaseDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -150,13 +132,6 @@
   <ItemGroup>
     <Content Include="CACMboro.png" />
     <Content Include="CACTNDB.ico" />
-    <Content Include="ChildDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ChildDatabase_log.ldf">
-      <DependentUpon>ChildDatabase.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -169,15 +144,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ChildDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ChildDatabase_log.ldf">
-      <DependentUpon>ChildDatabase.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
